@@ -1,0 +1,93 @@
+{
+  "naslov": "Test otvaranja",
+  "ruke": [
+    {
+      "id": "ruka-1",
+      "naslov": "Nemaš jednu boju",
+      "tocka": "t. 16",
+      "karte": {"kupe": ["2","A","K","5"], "spade": ["3","A","7","4"], "dinari": ["6","5"], "bastoni": []},
+      "otvaranja": [
+        {"karta": "2", "boja": "kupe", "signal": "bez signala", "opis": "tražiš tricu; inzistiraš kraljem dok trica ne padne", "ocjena": "savrseno",
+         "zasto": "Trica od trice+aša jedini je siguran povratak, pa se otvara duja+aš (t. 16)"},
+        {"karta": "2", "boja": "kupe", "signal": "bez signala", "opis": "a kad trica ne padne, 3 špada tražeći duju", "ocjena": "katastrofalno",
+         "zasto": "Autor: potez koji apsolutno ne smiješ napraviti, upropaštava dvije igre (t. 16)"},
+        {"karta": "3", "boja": "spade", "signal": "bez signala", "ocjena": "pogresno",
+         "zasto": "S tricom+ašem nikad se ne otvara udarajući tricom, osim ako je šesta (t. 11)"},
+        {"karta": "6", "boja": "dinari", "signal": "bez signala", "ocjena": "pogresno",
+         "zasto": "Kad nemaš boju, kreni s najjačom igrom (t. 4)"}
+      ]
+    },
+    {
+      "id": "ruka-2",
+      "naslov": "Jedino bato",
+      "tocka": "t. 3",
+      "karte": {"kupe": ["C","7","4"], "spade": ["3","6","5","4"], "dinari": ["A","6"], "bastoni": ["K"]},
+      "otvaranja": [
+        {"karta": "4", "boja": "spade", "signal": "bato", "ocjena": "savrseno",
+         "zasto": "S jedinom bojom za batiti otvara se ta boja, da partner zna gdje je trica (t. 3)"},
+        {"karta": "K", "boja": "bastoni", "signal": "volo", "ocjena": "pogresno",
+         "zasto": "Suhi kralj volava se samo kad si vrlo jak u ostalim bojama (t. 8)"},
+        {"karta": "C", "boja": "kupe", "signal": "bez signala", "ocjena": "pogresno",
+         "zasto": "Otvaranje najslabije boje vrijedi uz srednju igru u tri boje, a nje nema (t. 2)"},
+        {"karta": "A", "boja": "dinari", "signal": "strišo", "ocjena": "pogresno",
+         "zasto": "Aš se strišava kao prvi od ruke tek uz treće velike u ostalim bojama (t. 21b)"}
+      ]
+    },
+    {
+      "id": "ruka-3",
+      "naslov": "Duga duja",
+      "tocka": "t. 1",
+      "karte": {"kupe": ["2","7","6","5","4"], "spade": ["3","K","4"], "dinari": ["A","C"], "bastoni": []},
+      "otvaranja": [
+        {"karta": "4", "boja": "kupe", "signal": "rebato", "ocjena": "savrseno",
+         "zasto": "S dugom dujom (još 4 ili više karata) uvijek se otvara ta boja (t. 1)"},
+        {"karta": "4", "boja": "spade", "signal": "bato", "ocjena": "pogresno",
+         "zasto": "Duga duja ima prednost; a kad nemaš boju, kreće se s najjačom igrom (t. 1, t. 4)"},
+        {"karta": "A", "boja": "dinari", "signal": "strišo", "ocjena": "pogresno",
+         "zasto": "Kad nemaš boju, kreni s najjačom igrom (t. 4)"}
+      ]
+    },
+    {
+      "id": "ruka-4",
+      "naslov": "Duja+aš i suha trica+aš",
+      "tocka": "t. 10 i t. 11",
+      "karte": {"kupe": ["3","A"], "spade": ["2","A","K","5"], "dinari": ["C","7","5"], "bastoni": ["F"]},
+      "otvaranja": [
+        {"karta": "2", "boja": "spade", "signal": "bez signala", "opis": "tražiš tricu", "ocjena": "savrseno",
+         "zasto": "S dujom+ašem uz barem još jednu kartu uvijek se otvara dujom (t. 11)"},
+        {"karta": "3", "boja": "kupe", "signal": "bez signala", "ocjena": "pogresno",
+         "zasto": "Sa suhom tricom+ašem nikad se ne otvara prvi (t. 10)"},
+        {"karta": "A", "boja": "spade", "signal": "bez signala", "ocjena": "pogresno",
+         "zasto": "S dujom+ašem štih mora ostati tebi, zato duja, a ne aš (t. 11)"}
+      ]
+    },
+    {
+      "id": "ruka-5",
+      "naslov": "Srednja igra u tri boje",
+      "tocka": "t. 2",
+      "karte": {"kupe": ["3","6"], "spade": ["2","5"], "dinari": ["2","7","4"], "bastoni": ["C","6","5"]},
+      "otvaranja": [
+        {"karta": "C", "boja": "bastoni", "signal": "bez signala", "ocjena": "savrseno",
+         "zasto": "Uz srednju igru u tri boje otvara se najslabija, bez signala (t. 2)"},
+        {"karta": "C", "boja": "bastoni", "signal": "strišo", "ocjena": "pogresno",
+         "zasto": "Signalizirati strišo kao prvi od ruke autor zove ludošću (poglavlje Strišo)"},
+        {"karta": "4", "boja": "dinari", "signal": "rebato", "ocjena": "pogresno",
+         "zasto": "Kao prvi od ruke ne rebatiš, osim s dugom dujom (t. 1)"},
+        {"karta": "6", "boja": "kupe", "signal": "bato", "ocjena": "pogresno",
+         "zasto": "Druga trica nije boja za batiti (t. 3)"}
+      ]
+    },
+    {
+      "id": "ruka-6",
+      "naslov": "Suha trica+duja",
+      "tocka": "t. 17",
+      "karte": {"kupe": ["3","2"], "spade": ["C","7","5"], "dinari": ["A","6","4"], "bastoni": ["F","6"]},
+      "otvaranja": [
+        {"karta": "3", "boja": "kupe", "signal": "suhe trice+duje", "ocjena": "savrseno",
+         "zasto": "Udari tricu i signaliziraj; partner niskom lišinom traži da udariš i duju (t. 17)"},
+        {"karta": "4", "boja": "dinari", "signal": "bez signala", "ocjena": "pogresno",
+         "zasto": "Treći aš otvara se samo uz treće velike u ostalim trima bojama (Uporaba aša, t. 1)"}
+      ]
+    }
+  ]
+}
