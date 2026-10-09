@@ -68,7 +68,7 @@ function nacrtajKartu(vrijednost, boja) {
   k.setAttribute('aria-label', `${IMENA_VRIJEDNOSTI[vrijednost] || vrijednost} ${BOJE[boja].gen}`);
   const indeks = (cls) => {
     const i = el('span', `idx ${cls}`);
-    i.append(el('b', null, vrijednost));
+    i.append(el('b', null, vrijednost), ikona(boja));
     return i;
   };
   const lice = el('div', 'face');
@@ -119,7 +119,7 @@ function pocetak() {
   const naslov = el('h1', null, 'Test otvaranja');
   const uvod = el('div', 'panel');
   uvod.append(
-    el('p', null, 'Trešeta u parove. Dobiješ deset karata kao prvi od ruke; partner sjedi nasuprot. Odaberi otvaranje.'),
+    el('p', null, 'Trešeta u parove. Sjediš za stolom s deset karata u ruci kao prvi od ruke; partner sjedi nasuprot. Dodirni kartu kojom otvaraš, odaberi signal i odigraj je.'),
     el('p', 'muted', `Krug ima ${n} ${n === 1 ? 'ruku' : 'ruke'}. Savršeno otvaranje nosi 3 boda, pogrešno 0, a katastrofalno −2. Nakon svakog odgovora vidiš objašnjenje i točku iz priručnika.`)
   );
   const b = el('button', 'btn', 'Počni test');
@@ -128,85 +128,163 @@ function pocetak() {
   prikaz(naslov, uvod, b);
 }
 
+function zbroj() {
+  return stanje.odgovori.reduce((s, a) => s + OCJENE[a.odabrano.ocjena].bodovi, 0);
+}
+
+const poredak = (o) => opisOtvaranja(o);
+const tekstIgre = (o) => {
+  const d = poredak(o);
+  return d.signal === 'bez signala' ? 'Igraj bez signala' : `Igraj uz ${d.signal}`;
+};
+const istaKarta = (o, v, b) => o.karta === v && o.boja === b;
+
+function straznjaStrana(cls) {
+  return el('i', `back ${cls || ''}`);
+}
+function sjedalo(klasa, naziv, okomito) {
+  const s = el('div', `seat ${klasa}`);
+  const karte = el('div', 'backs');
+  for (let i = 0; i < 10; i++) karte.append(straznjaStrana(okomito ? 'side' : ''));
+  s.append(el('span', 'lbl', naziv), karte);
+  return s;
+}
+
 function ruka() {
   const r = ruke[stanje.i];
   const n = ruke.length;
-  const kraj = stanje.i + 1;
+  const redoslijed = promijesaj(r.otvaranja);
 
   const prog = el('div', 'progress');
-  prog.append(el('span', null, `Ruka ${kraj} od ${n}`), el('span', null, `Bodovi: ${zbroj()}`));
+  prog.append(el('span', null, `Ruka ${stanje.i + 1} od ${n}`), el('span', null, `Bodovi: ${zbroj()}`));
   const bar = el('div', 'bar');
   const fill = el('i');
   fill.style.width = `${(stanje.i / n) * 100}%`;
   bar.append(fill);
 
-  const naslov = el('h2', null, r.naslov);
-  const seat = el('div', 'seat');
-  seat.append(el('span', null, 'Ti si prvi od ruke'), el('span', null, 'Partner sjedi nasuprot'));
+  const stol = el('section', 'table');
+  stol.setAttribute('aria-label', 'Stol');
+  const trick = el('div', 'trick');
+  const hint = el('span', 'hint', 'Ti si prvi od ruke');
+  trick.append(hint);
+  const ja = el('div', 'me', 'Ti · prvi od ruke');
+  const ruka_ = el('div', 'myhand');
+  ruka_.setAttribute('role', 'group');
+  ruka_.setAttribute('aria-label', 'Tvojih deset karata');
+  stol.append(sjedalo('top', 'Partner', false), sjedalo('left', 'Protivnik', true), trick, sjedalo('right', 'Protivnik', true), ja, ruka_);
 
-  const hand = el('div', 'hand');
-  hand.setAttribute('role', 'group');
-  hand.setAttribute('aria-label', 'Tvojih deset karata');
+  const akcije = el('div', 'actions');
+  const upute = 'Dodirni kartu kojom otvaraš. Zatamnjene karte nisu među ponuđenim otvaranjima.';
+  akcije.append(el('p', 'muted', upute));
+
   const legend = el('div', 'legend');
+  let odabrana = null;
+  let zavrseno = false;
+  const slotovi = [];
+  let prvi = true;
+
   REDOSLIJED.forEach(b => {
     const karte = r.karte[b] || [];
-    karte.forEach(v => hand.append(nacrtajKartu(v, b)));
     const l = el('span');
-    l.dataset.suit = b;
     l.append(ikona(b), document.createTextNode(`${BOJE[b].naziv}: ${karte.length ? karte.join(' ') : 'nema'}`));
     legend.append(l);
+    karte.forEach((v, idx) => {
+      const gumb = el('button', 'slot');
+      gumb.type = 'button';
+      if (idx === 0 && !prvi) gumb.classList.add('suit-start');
+      prvi = false;
+      const moguce = redoslijed.filter(o => istaKarta(o, v, b));
+      if (!moguce.length) gumb.classList.add('dim');
+      gumb.append(nacrtajKartu(v, b));
+      gumb.addEventListener('click', () => {
+        if (zavrseno) return;
+        if (!moguce.length) {
+          odabrana = null;
+          slotovi.forEach(x => x.gumb.classList.remove('sel'));
+          akcije.replaceChildren(el('p', 'muted warn', 'Ta karta nije među ponuđenim otvaranjima. Odaberi neku od istaknutih.'));
+          return;
+        }
+        if (odabrana === gumb) {
+          odabrana = null;
+          gumb.classList.remove('sel');
+          akcije.replaceChildren(el('p', 'muted', upute));
+          return;
+        }
+        odabrana = gumb;
+        slotovi.forEach(x => x.gumb.classList.toggle('sel', x.gumb === gumb));
+        prikaziSignale(v, b, moguce);
+      });
+      slotovi.push({ gumb, v, b });
+      ruka_.append(gumb);
+    });
   });
 
-  const q = el('p', 'q', 'Kako otvaraš?');
-  const opts = el('div', 'opts');
-  const slot = el('div');
-  const redoslijed = promijesaj(r.otvaranja);
-  const gumbi = redoslijed.map(o => {
-    const d = opisOtvaranja(o);
-    const g = el('button', 'opt');
-    g.type = 'button';
-    const glavna = el('span', 'main', d.glavno);
-    const sig = el('span', 'sig', ` · ${d.signal}`);
-    g.append(glavna, sig);
-    if (d.opis) g.append(el('span', 'extra', d.opis));
-    g.addEventListener('click', () => odaberi(r, o, redoslijed, gumbi, slot));
-    opts.append(g);
-    return g;
-  });
+  function prikaziSignale(v, b, moguce) {
+    const naslov = el('p', 'q', `Otvaraš s ${v} ${BOJE[b].gen}. Kako igraš?`);
+    const opts = el('div', 'opts');
+    moguce.forEach(o => {
+      const d = poredak(o);
+      const g = el('button', 'opt');
+      g.type = 'button';
+      g.append(el('span', 'main', tekstIgre(o)));
+      if (d.opis) g.append(el('span', 'extra', d.opis));
+      g.addEventListener('click', () => odigraj(o, v, b));
+      opts.append(g);
+    });
+    akcije.replaceChildren(naslov, opts);
+  }
 
-  prikaz(prog, bar, naslov, seat, hand, legend, q, opts, slot);
+  function odigraj(o, v, b) {
+    zavrseno = true;
+    stanje.odgovori.push({ ruka: r, odabrano: o });
+    slotovi.forEach(x => { x.gumb.disabled = true; x.gumb.classList.remove('sel'); });
+    const igrana = slotovi.find(x => x.v === v && x.b === b);
+    igrana.gumb.classList.add('played');
+    const najbolja = r.otvaranja.find(x => x.ocjena === 'savrseno');
+    if (najbolja && !(najbolja.karta === v && najbolja.boja === b)) {
+      const s = slotovi.find(x => x.v === najbolja.karta && x.b === najbolja.boja);
+      if (s) s.gumb.classList.add('best');
+    }
+    hint.remove();
+    const odigrana = el('div', 'played-card');
+    odigrana.append(nacrtajKartu(v, b));
+    const d = poredak(o);
+    odigrana.append(el('span', 'bubble', d.signal === 'bez signala' ? 'bez signala' : d.signal));
+    trick.append(odigrana);
+    ocjena(o, redoslijed, akcije, r);
+  }
+
+  prikaz(prog, bar, el('h2', null, `Ruka ${stanje.i + 1}`), stol, akcije, legend);
 }
 
-function zbroj() {
-  return stanje.odgovori.reduce((s, a) => s + OCJENE[a.odabrano.ocjena].bodovi, 0);
-}
-
-function odaberi(r, odabrano, redoslijed, gumbi, slot) {
-  stanje.odgovori.push({ ruka: r, odabrano });
-  gumbi.forEach((g, i) => {
-    const o = redoslijed[i];
-    g.disabled = true;
-    if (o === odabrano) g.classList.add('chosen');
-    const oc = OCJENE[o.ocjena];
-    const badge = el('span', `badge g-${o.ocjena}`, `${oc.naziv} · ${String(oc.bodovi).replace("-", "−")} b.${o === odabrano ? ' · tvoj izbor' : ''}`);
-    g.append(el('br'), badge);
-    if (o !== odabrano) g.append(el('span', 'why', o.zasto));
-  });
-
+function ocjena(odabrano, redoslijed, akcije, r) {
   const oc = OCJENE[odabrano.ocjena];
   const fb = el('div', `panel fb ${odabrano.ocjena}`);
   fb.append(
-    el('h2', null, `${oc.naziv} (${oc.bodovi > 0 ? '+' : ''}${oc.bodovi.toString().replace('-', '−')} b.)`),
+    el('h2', null, `${oc.naziv} (${oc.bodovi > 0 ? '+' : ''}${String(oc.bodovi).replace('-', '−')} b.)`),
     el('p', null, odabrano.zasto),
-    el('p', 'muted', `Priručnik: ${r.tocka}`)
+    el('p', 'muted', `${r.naslov} · Priručnik: ${r.tocka}`)
   );
+  const sva = el('div', 'panel');
+  sva.append(el('h2', null, 'Sva ponuđena otvaranja'));
+  r.otvaranja.forEach(o => {
+    const d = poredak(o);
+    const red = el('div', 'res' + (o === odabrano ? ' mine' : ''));
+    const gl = el('div');
+    gl.append(el('strong', null, d.glavno), document.createTextNode(` · ${d.signal}`));
+    red.append(gl);
+    if (d.opis) red.append(el('div', 'muted', d.opis));
+    const ob = OCJENE[o.ocjena];
+    red.append(el('span', `badge g-${o.ocjena}`, `${ob.naziv} · ${String(ob.bodovi).replace('-', '−')} b.${o === odabrano ? ' · tvoj izbor' : ''}`));
+    if (o !== odabrano) red.append(el('div', 'why', o.zasto));
+    sva.append(red);
+  });
   const zadnja = stanje.i === ruke.length - 1;
   const dalje = el('button', 'btn', zadnja ? 'Prikaži rezultat' : 'Dalje');
   dalje.type = 'button';
   dalje.addEventListener('click', () => { stanje.i++; zadnja ? kraj() : ruka(); });
-  slot.replaceChildren(fb, dalje);
+  akcije.replaceChildren(fb, dalje, sva);
   fb.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-  dalje.focus({ preventScroll: true });
 }
 
 function razina(bodovi, maks) {
