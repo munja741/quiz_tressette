@@ -19,7 +19,18 @@ const RAZINE = [
   { naziv: 'Igrač', udio: 0.4 },
   { naziv: 'Početnik', udio: -Infinity }
 ];
-const IMENA_VRIJEDNOSTI = { K: 'kralj', C: 'konj', F: 'fanat', A: 'aš' };
+const IMENA_VRIJEDNOSTI = { 13: 'kralj', 12: 'konj', 11: 'fanat', A: 'aš' };
+// Položaji znakova (u % lica karte) za vrijednosti 1 do 7; figure 11, 12 i 13 imaju svoj piktogram.
+const L = { x1: 24, x2: 76, m: 50 };
+const RASPORED = {
+  A: [[50, 50]],
+  2: [[50, 24], [50, 76]],
+  3: [[50, 20], [50, 50], [50, 80]],
+  4: [[L.x1, 26], [L.x2, 26], [L.x1, 74], [L.x2, 74]],
+  5: [[L.x1, 24], [L.x2, 24], [50, 50], [L.x1, 76], [L.x2, 76]],
+  6: [[L.x1, 20], [L.x2, 20], [L.x1, 50], [L.x2, 50], [L.x1, 80], [L.x2, 80]],
+  7: [[L.x1, 20], [L.x2, 20], [50, 35], [L.x1, 50], [L.x2, 50], [L.x1, 80], [L.x2, 80]]
+};
 
 const app = document.getElementById('app');
 let ruke = [];
@@ -31,12 +42,12 @@ const el = (tag, cls, text) => {
   if (text != null) e.textContent = text;
   return e;
 };
-const ikona = (boja) => {
+const ikona = (boja, figura) => {
   const ns = 'http://www.w3.org/2000/svg';
   const s = document.createElementNS(ns, 'svg');
   s.setAttribute('aria-hidden', 'true');
   const u = document.createElementNS(ns, 'use');
-  u.setAttribute('href', '#s-' + boja);
+  u.setAttribute('href', figura ? '#' + boja : '#s-' + boja);
   s.appendChild(u);
   return s;
 };
@@ -55,7 +66,25 @@ function nacrtajKartu(vrijednost, boja) {
   k.dataset.suit = boja;
   k.setAttribute('role', 'img');
   k.setAttribute('aria-label', `${IMENA_VRIJEDNOSTI[vrijednost] || vrijednost} ${BOJE[boja].gen}`);
-  k.append(el('span', 'v tl', vrijednost), ikona(boja), el('span', 'v br', vrijednost));
+  const indeks = (cls) => {
+    const i = el('span', `idx ${cls}`);
+    i.append(el('b', null, vrijednost));
+    return i;
+  };
+  const lice = el('div', 'face');
+  if (RASPORED[vrijednost]) {
+    lice.classList.add(vrijednost === 'A' ? 'ace' : 'pips');
+    RASPORED[vrijednost].forEach(([x, y]) => {
+      const p = ikona(boja);
+      p.style.left = x + '%';
+      p.style.top = y + '%';
+      lice.append(p);
+    });
+  } else {
+    lice.classList.add('court');
+    lice.append(ikona('p-' + vrijednost, true), ikona(boja));
+  }
+  k.append(indeks('tl'), lice, indeks('br'));
   return k;
 }
 

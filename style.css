@@ -33,13 +33,21 @@ p { margin: 0 0 12px; }
 .seat { display: flex; justify-content: space-between; font-size: .85rem; color: var(--muted); margin: 6px 2px; }
 .hand { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .card { aspect-ratio: 5 / 7; background: #fffdf8; color: var(--suit); border: 1px solid #b9b2a2; border-radius: 7px;
-  position: relative; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+  position: relative; box-shadow: 0 1px 2px rgba(0,0,0,.2); overflow: hidden; }
+.card::before { content: ""; position: absolute; inset: 2px; border: 1px solid currentColor; opacity: .3; border-radius: 5px; }
 .card[data-suit=kupe] { --suit: #b3261e; } .card[data-suit=spade] { --suit: #1f3f8f; }
 .card[data-suit=dinari] { --suit: #8a5a00; } .card[data-suit=bastoni] { --suit: #1f6f4a; }
-.card .v { position: absolute; font-weight: 800; font-size: 1.15rem; line-height: 1; }
-.card .v.tl { top: 5px; left: 6px; } .card .v.br { bottom: 5px; right: 6px; transform: rotate(180deg); }
-.card svg { position: absolute; inset: 0; margin: auto; width: 46%; height: 46%; }
-.card.first { margin-left: 0; }
+.idx { position: absolute; display: flex; flex-direction: column; align-items: center; width: 22%; line-height: 1; }
+.idx b { font-size: .95rem; font-weight: 800; letter-spacing: -.5px; }
+
+.idx.tl { top: 6px; left: 4px; }
+.idx.br { bottom: 6px; right: 4px; transform: rotate(180deg); }
+.face { position: absolute; top: 8%; bottom: 8%; left: 21%; right: 21%; }
+.face svg { position: absolute; width: 36%; aspect-ratio: 1; transform: translate(-50%, -50%); }
+.face.ace svg { width: 74%; }
+.face.court svg { transform: none; }
+.face.court svg:first-child { width: 84%; left: 8%; top: 8%; }
+.face.court svg:last-child { width: 38%; left: 31%; bottom: 3%; }
 .legend { margin: 8px 2px 0; font-size: .85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; }
 .legend svg { width: 14px; height: 14px; vertical-align: -2px; margin-right: 3px; }
 
