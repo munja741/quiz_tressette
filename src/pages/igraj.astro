@@ -1,0 +1,8 @@
+---
+import Osnovni from '../layouts/Osnovni.astro';
+import Igra from '../igra/ui/Igra.tsx';
+---
+<Osnovni naslov="Igraj · Škola trešete" opis="Partija trešete u parove protiv računala, po hrvatskim pravilima.">
+  <Igra client:only="preact" />
+  <noscript><p style="padding:16px">Za igru je potreban JavaScript.</p></noscript>
+</Osnovni>

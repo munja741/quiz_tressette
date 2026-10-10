@@ -1,0 +1,313 @@
+<title>Test otvaranja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=Alegreya+SC:wght@700&display=swap">
+<style>
+/* Layout: one card-table column; the hand of ten cards is the centre of every screen, feedback slides in under it. Single look: green felt, deliberately dark. */
+:root{
+  --felt:#163b2c; --felt-deep:#0f2b20; --felt-line:#2b5a45;
+  --cream:#f1ebdc; --cream-dim:#b9c4b7; --brass:#d8b45a; --brass-ink:#2a1f05;
+  --card:#fbf7ee; --card-edge:#d8cfbd;
+  --kupe:#2c5896; --spade:#1f1f1f; --dinari:#c4900f; --bastoni:#c2412d;
+  --good:#7fcf8f; --warn:#e9b44c; --bad:#ff7a66;
+  --f-head:"Big Shoulders Display","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Arial,sans-serif;
+  --f-rank:"Alegreya SC",Georgia,serif;
+  color-scheme:dark;
+}
+html,body{min-height:100%}
+body{background:radial-gradient(120% 80% at 50% 0%, var(--felt) 0%, var(--felt-deep) 100%) fixed, var(--felt-deep); color:var(--cream); font-family:var(--f-body); font-size:16px; line-height:1.45}
+.wrap{max-width:46rem; margin:0 auto; padding-inline:16px; padding-block:1rem 3rem}
+header.top{display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap; border-bottom:1px solid var(--felt-line); padding-bottom:.6rem}
+h1{font-family:var(--f-head); font-weight:800; font-size:clamp(1.9rem,7vw,2.6rem); letter-spacing:.02em; text-transform:uppercase; margin:0; line-height:1}
+.meta{display:flex; gap:1rem; font-family:var(--f-head); font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:.95rem; color:var(--cream-dim)}
+.meta b{color:var(--brass); font-weight:800}
+.pips{display:flex; gap:6px; margin:.8rem 0 0}
+.pip{flex:1; height:4px; border-radius:2px; background:var(--felt-line)}
+.pip.done{background:var(--brass)} .pip.cur{background:var(--cream)}
+.ask{margin:1.2rem 0 .3rem; font-size:1.15rem}
+.ask strong{font-family:var(--f-head); font-weight:800; letter-spacing:.04em; text-transform:uppercase; font-size:1.25rem; display:block; color:var(--brass)}
+.hint{color:var(--cream-dim); font-size:.92rem; margin:0 0 .8rem}
+.hand{display:flex; flex-wrap:wrap; gap:14px 18px; margin:1rem 0 .4rem}
+.suit{display:flex; flex-direction:column; gap:6px; min-width:0}
+.suit-name{font-family:var(--f-head); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem; color:var(--cream-dim)}
+.cards{display:flex; gap:6px}
+.void{font-style:italic; color:var(--cream-dim); font-size:.9rem; padding:.4rem 0}
+.card{position:relative; width:62px; height:96px; border-radius:7px; background:var(--card); border:0; box-shadow:0 2px 0 rgba(0,0,0,.25), 0 6px 14px rgba(0,0,0,.25); cursor:pointer; padding:0; transition:transform .15s ease, box-shadow .15s ease}
+.card svg{display:block; width:100%; height:100%}
+.card:hover{transform:translateY(-4px)}
+.card[aria-pressed="true"]{transform:translateY(-12px); box-shadow:0 0 0 3px var(--brass), 0 10px 18px rgba(0,0,0,.35)}
+.card:focus-visible{outline:3px solid var(--cream); outline-offset:3px}
+.card:disabled{cursor:default; opacity:.55; transform:none}
+.card.played{opacity:1; box-shadow:0 0 0 3px var(--brass)}
+.signals{margin:1.2rem 0 .2rem}
+.signals .lab{font-family:var(--f-head); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.85rem; color:var(--cream-dim); margin-bottom:.4rem}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{font:inherit; font-weight:600; color:var(--cream); background:transparent; border:1px solid var(--felt-line); border-radius:999px; padding:.55rem .95rem; min-height:44px; cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--brass); color:var(--brass-ink); border-color:var(--brass)}
+.chip:focus-visible,.btn:focus-visible{outline:3px solid var(--cream); outline-offset:2px}
+.chip:disabled{opacity:.5; cursor:default}
+.actions{display:flex; gap:10px; align-items:center; margin-top:1.1rem; flex-wrap:wrap}
+.btn{font-family:var(--f-head); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:1.05rem; background:var(--brass); color:var(--brass-ink); border:0; border-radius:8px; padding:.7rem 1.4rem; min-height:48px; cursor:pointer}
+.btn:disabled{background:var(--felt-line); color:var(--cream-dim); cursor:default}
+.btn.ghost{background:transparent; color:var(--cream); border:1px solid var(--felt-line)}
+.sel{color:var(--cream-dim); font-size:.95rem}
+.sel b{color:var(--cream)}
+.result{margin-top:1.3rem; background:rgba(0,0,0,.22); border:1px solid var(--felt-line); border-radius:10px; padding:1rem 1.1rem}
+.verdict{font-family:var(--f-head); font-weight:800; font-size:1.7rem; letter-spacing:.04em; text-transform:uppercase; line-height:1}
+.v-savrseno{color:var(--good)} .v-pogresno{color:var(--warn)} .v-katastrofalno{color:var(--bad)}
+.pts{font-family:var(--f-head); font-weight:700; color:var(--cream-dim); letter-spacing:.06em; margin-left:.4rem; font-size:1rem}
+.result p{margin:.6rem 0 0}
+.src{font-size:.85rem; color:var(--cream-dim)}
+.theme{font-family:var(--f-head); font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--brass); font-size:.9rem; margin-top:.2rem}
+.follow{margin-top:1rem; border-top:1px dashed var(--felt-line); padding-top:.9rem}
+.follow .q{font-weight:600}
+.opts{display:grid; gap:8px; margin-top:.6rem}
+.opt{font:inherit; text-align:left; color:var(--cream); background:transparent; border:1px solid var(--felt-line); border-radius:8px; padding:.7rem .9rem; min-height:44px; cursor:pointer}
+.opt:hover{border-color:var(--brass)}
+.end{margin-top:1.4rem}
+.score{display:flex; align-items:baseline; gap:.6rem; flex-wrap:wrap}
+.score .big{font-family:var(--f-head); font-weight:800; font-size:4.2rem; line-height:.9; color:var(--brass)}
+.score .of{font-family:var(--f-head); font-weight:700; font-size:1.4rem; color:var(--cream-dim)}
+.level{font-family:var(--f-head); font-weight:800; text-transform:uppercase; letter-spacing:.04em; font-size:2.2rem; margin:.6rem 0 0; line-height:1}
+.level-d{color:var(--cream-dim); margin:.35rem 0 0; max-width:36rem}
+.review{list-style:none; padding:0; margin:1.4rem 0 0; display:grid; gap:10px}
+.review li{background:rgba(0,0,0,.2); border:1px solid var(--felt-line); border-radius:10px; padding:.8rem 1rem}
+.review .h{display:flex; justify-content:space-between; gap:.8rem; flex-wrap:wrap; font-weight:600}
+.review .best{color:var(--cream-dim); font-size:.93rem; margin-top:.3rem}
+footer{margin-top:2.4rem; color:var(--cream-dim); font-size:.82rem; border-top:1px solid var(--felt-line); padding-top:.8rem}
+@media (max-width:420px){ .card{width:54px; height:84px} .hand{gap:12px 14px} }
+@media (prefers-reduced-motion: reduce){ .card{transition:none} }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>Test otvaranja</h1>
+    <div class="meta"><span>Ruka <b id="hNo">1</b>/<span id="hTot">6</span></span><span>Bodovi <b id="pts">0</b></span></div>
+  </header>
+  <div class="pips" id="pips" aria-hidden="true"></div>
+  <main id="app"></main>
+  <footer>Prema priručniku <i>Biblija trešete u parove</i> (il regista). Prvi si od ruke, partner sjedi nasuprot. Savršeno 3 boda, pogrešno 0, katastrofalno −2.</footer>
+</div>
+
+<script>
+(function(){
+var SUITS={
+  kupe:{n:'Kupe',g:'kupa',c:'var(--kupe)'},
+  spade:{n:'Špade',g:'špada',c:'var(--spade)'},
+  dinari:{n:'Dinari',g:'dinara',c:'var(--dinari)'},
+  bastoni:{n:'Baštoni',g:'baštona',c:'var(--bastoni)'}
+};
+var ORDER=['kupe','spade','dinari','bastoni'];
+var RANKS=['3','2','A','K','C','F','7','6','5','4'];
+var RNAME={'3':'trica','2':'duja','A':'aš','K':'kralj','C':'konj','F':'fanat','7':'sedmica','6':'šestica','5':'petica','4':'četvorka'};
+var SIG=[['bez','bez signala'],['bato','bato'],['rebato','rebato'],['striso','strišo'],['volo','"volo"']];
+var PTS={savrseno:3,pogresno:0,katastrofalno:-2};
+var VNAME={savrseno:'Savršeno',pogresno:'Pogrešno',katastrofalno:'Katastrofalno'};
+
+var DISP={'K':'13','C':'12','F':'11'};
+var GOLD='#e0b23a', GOLDD='#9a6d0a', RED='#c2412d', BLUE='#2c5896', BLACK='#1f1f1f', STEEL='#3a3d42', INK='#3a2a12', SKIN='#f3dcc0', BROWN='#8a5a2b';
+// one pip, drawn in a 32x32 box
+var PIP={
+ kupe:'<path d="M7 8.5h18c0 6.5-3.2 10.2-7 11.2v3.6h3.6c1.4 0 2.4 1 2.4 2.4V27H8v-1.3c0-1.4 1-2.4 2.4-2.4H14v-3.6c-3.8-1-7-4.7-7-11.2z" fill="'+BLUE+'" stroke="'+INK+'" stroke-width=".8"/><rect x="7.6" y="10.4" width="16.8" height="2.6" fill="'+GOLD+'"/><circle cx="16" cy="5.2" r="2.2" fill="'+GOLD+'" stroke="'+INK+'" stroke-width=".6"/>',
+ spade:'<path d="M14.6 2.5c4.8 4.6 5.4 11.5 2.6 18.5l-3-.6c2-5.8 1.7-11.6.4-17.9z" fill="'+STEEL+'" stroke="'+INK+'" stroke-width=".7"/><rect x="8.5" y="20.2" width="15" height="3.2" rx="1.6" fill="'+GOLD+'" stroke="'+INK+'" stroke-width=".6"/><rect x="14.4" y="23.2" width="3.2" height="5.2" fill="'+RED+'"/><circle cx="16" cy="29.4" r="2" fill="'+GOLD+'" stroke="'+INK+'" stroke-width=".6"/>',
+ dinari:'<circle cx="16" cy="16" r="12.5" fill="'+GOLD+'" stroke="'+GOLDD+'" stroke-width="1.2"/><circle cx="16" cy="16" r="8.4" fill="'+RED+'"/><path d="M16 9.5l1.6 4.9h5.1l-4.1 3 1.6 4.9-4.2-3-4.2 3 1.6-4.9-4.1-3h5.1z" fill="'+GOLD+'"/>',
+ bastoni:'<path d="M22.4 3.2c2.9 1.4 3.6 4.3 2.2 6.8L13.9 29.6c-.8 1.4-2.5 1.9-3.9 1.1-1.4-.8-1.9-2.5-1.1-3.9L19.5 7.3c-.7-2 .3-3.7 2.9-4.1z" fill="'+RED+'" stroke="'+INK+'" stroke-width=".8"/><circle cx="19.2" cy="12.4" r="1.8" fill="'+GOLD+'"/><circle cx="15.6" cy="19.2" r="1.7" fill="'+GOLD+'"/><circle cx="12.4" cy="25" r="1.5" fill="'+GOLD+'"/>'
+};
+function pip(s,x,y,size){ var k=size/32; return '<g transform="translate('+(x-size/2)+' '+(y-size/2)+') scale('+k+')">'+PIP[s]+'</g>'; }
+var LAY={1:[[31,50]],2:[[31,32],[31,68]],3:[[31,27],[31,50],[31,73]],4:[[21,32],[41,32],[21,68],[41,68]],5:[[21,30],[41,30],[31,50],[21,70],[41,70]],6:[[21,27],[41,27],[21,50],[41,50],[21,73],[41,73]],7:[[21,26],[41,26],[31,38],[21,50],[41,50],[21,73],[41,73]]};
+function figure(s,r){
+  var robe={kupe:BLUE,spade:BLACK,dinari:'#b8860b',bastoni:RED}[s], g='';
+  if(r==='C'){ // konj: horse with rider
+    g+='<path d="M14 56c0-6 5-10 12-10h10c4 0 7-3 9-6l3 2c-1 4-3 7-6 9l1 6c0 2-1 3-3 3H17c-2 0-3-1-3-4z" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".8"/>';
+    g+='<path d="M45 40l3-5 2 1-1 6z" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".7"/>';
+    g+='<rect x="18" y="58" width="3" height="15" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".6"/><rect x="38" y="58" width="3" height="15" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".6"/>';
+    g+='<path d="M24 47l3-13h8l2 13z" fill="'+robe+'" stroke="'+INK+'" stroke-width=".8"/><circle cx="31" cy="29" r="4.6" fill="'+SKIN+'" stroke="'+INK+'" stroke-width=".7"/><path d="M26.5 26.5c1-3 8-3 9 0z" fill="'+GOLD+'"/>';
+    g+=pip(s,18,38,12);
+  } else { // fanat or kralj standing
+    g+='<path d="M20 76l4-34h14l4 34z" fill="'+robe+'" stroke="'+INK+'" stroke-width=".8"/>';
+    g+='<path d="M24 42h14l1 7H23z" fill="'+GOLD+'" opacity=".85"/>';
+    g+='<circle cx="31" cy="34" r="6" fill="'+SKIN+'" stroke="'+INK+'" stroke-width=".7"/>';
+    if(r==='K'){ g+='<path d="M24.5 28.5l1.6-6 2.4 3.4 2.5-4.4 2.5 4.4 2.4-3.4 1.6 6z" fill="'+GOLD+'" stroke="'+GOLDD+'" stroke-width=".7"/><path d="M27 38.5c1.5 2.5 6.5 2.5 8 0" stroke="'+INK+'" stroke-width=".7" fill="none"/>'; }
+    else { g+='<path d="M24.5 31c0-5 13-5 13 0l-2-2.2h-9z" fill="'+robe+'" stroke="'+INK+'" stroke-width=".7"/><circle cx="37.5" cy="27.5" r="1.6" fill="'+GOLD+'"/>'; }
+    g+=pip(s,45,52,15);
+  }
+  return g;
+}
+function cardSVG(s,r){
+  var col={kupe:BLUE,spade:BLACK,dinari:GOLDD,bastoni:RED}[s], d=DISP[r]||r, body='';
+  if(r==='A'){ body='<circle cx="31" cy="50" r="19" fill="none" stroke="'+col+'" stroke-width=".8" opacity=".5"/><circle cx="31" cy="50" r="15.5" fill="none" stroke="'+col+'" stroke-width=".5" opacity=".35"/>'+pip(s,31,50,30); }
+  else if(DISP[r]){ body=figure(s,r); }
+  else { var n=+r; (LAY[n]||[]).forEach(function(p){ body+=pip(s,p[0],p[1],n>4?15:(n>3?17:19)); }); }
+  return '<svg viewBox="0 0 62 96" aria-hidden="true"><rect x=".5" y=".5" width="61" height="95" rx="6.5" fill="#fbf7ee" stroke="#d8cfbd"/><rect x="4" y="4" width="54" height="88" rx="4" fill="none" stroke="'+col+'" stroke-width=".8" opacity=".55"/>'+body+'<text x="7.5" y="15" font-family="Alegreya SC, Georgia, serif" font-weight="700" font-size="11" fill="'+col+'">'+d+'</text><text x="54.5" y="81" transform="rotate(180 54.5 81)" text-anchor="start" font-family="Alegreya SC, Georgia, serif" font-weight="700" font-size="11" fill="'+col+'">'+d+'</text></svg>';
+}
+
+var HANDS=[
+ {id:1, tema:'Nemaš jednu boju', tocka:'točka 16',
+  karte:{kupe:['2','A','K','5'], spade:['3','A','7','4'], dinari:['6','5'], bastoni:[]},
+  best:'2 kupa, zatim kralj kupa dok trica ne padne',
+  opts:[
+   {s:'kupe',c:['2'],sig:null,r:'savrseno',why:'Trica od trice+aša u špadama tvoj je jedini sigurni povratak, zato otvaraš dujom boju duje+aša i tražiš tricu.',
+    follow:{q:'Svi su odgovorili, trica nije pala i ruka je tvoja. Što igraš dalje?',
+     ch:[
+      {l:'Kralj kupa, inzistiram dok trica ne padne',r:'savrseno',why:'Točno. Inzistiraš u boji duje+aša dok trica ne padne, a trica špada ostaje tvoj povratak (t. 16).'},
+      {l:'3 špada, sad tražim duju',r:'katastrofalno',why:'Autor ovaj potez izričito zabranjuje: otvoriti dujom tražeći tricu, pa tricom tražeći duju. Tako nepopravljivo upropaštavaš dvije igre (t. 16).'},
+      {l:'6 dinara, mijenjam boju',r:'pogresno',why:'Prerano odustaješ. Pravilo je inzistirati u boji duje+aša dok trica ne padne (t. 16).'}
+     ]}},
+   {s:'spade',c:['3'],sig:null,r:'pogresno',why:'S tricom+ašem nikad se ne otvara udarajući tricom, osim ako je šesta (t. 11).'},
+   {s:'dinari',c:['6','5'],sig:null,r:'pogresno',why:'Kad nemaš jednu boju, uvijek kreni s najjačom igrom, u nadi da ćeš se susresti s partnerovim kartama (t. 4).'}
+  ]},
+ {id:2, tema:'Jedina boja za batiti', tocka:'točka 3',
+  karte:{kupe:['C','7','4'], spade:['3','6','5','4'], dinari:['A','6'], bastoni:['K']},
+  best:'4 špada, signal bato',
+  opts:[
+   {s:'spade',c:['4','5','6'],sig:'bato',r:'savrseno',why:'S jednom bojom za batiti (trica barem četvrta), jednim ašem, jednom kartom u trećoj boji i tri karte bez velikih u četvrtoj, otvaraš upravo tu boju. Partner odmah zna gdje se može osloniti na tvoju tricu.'},
+   {s:'bastoni',c:['K'],sig:null,r:'pogresno',why:'Suhi kralj "volava" se kao prvi od ruke samo kad si vrlo jak u svim ostalim bojama (t. 8).'},
+   {s:'kupe',c:['C','7','4'],sig:null,r:'pogresno',why:'Otvaranje najslabije boje vrijedi kad imaš srednju igru u tri boje; ovdje je nemaš (t. 2).'},
+   {s:'dinari',c:['A'],sig:null,r:'pogresno',why:'Aš se kao prvi od ruke strišava tek kad u ostalim bojama imaš treće duje ili trice (t. 21b).'}
+  ]},
+ {id:3, tema:'Duga duja', tocka:'točka 1',
+  karte:{kupe:['2','7','6','5','4'], spade:['3','K','4'], dinari:['A','C'], bastoni:[]},
+  best:'lišina kupa, signal rebato',
+  opts:[
+   {s:'kupe',c:['7','6','5','4'],sig:'rebato',r:'savrseno',why:'Kao prvi od ruke inače ne rebatiš, ali duga duja (s još 4 ili više karata) je iznimka: tada uvijek otvaraš tu boju. I kad nemaš jednu boju, kreće se s najjačom igrom (t. 1, t. 4).'},
+   {s:'spade',c:['4'],sig:null,r:'pogresno',why:'Duga duja ima prednost; s njom uvijek moraš pokušati otvoriti tu boju (t. 1).'},
+   {s:'dinari',c:['A','C'],sig:null,r:'pogresno',why:'Kad nemaš jednu boju, kreni s najjačom igrom, a to su ovdje kupe (t. 4).'}
+  ]},
+ {id:4, tema:'Duja+aš i suha trica+aš', tocka:'točke 10 i 11',
+  karte:{kupe:['3','A'], spade:['2','A','K','5'], dinari:['C','7','5'], bastoni:['F']},
+  best:'2 špada, tražiš tricu',
+  opts:[
+   {s:'spade',c:['2'],sig:null,r:'savrseno',why:'S dujom+ašem uz barem još jednu kartu uvijek otvaraš dujom i tražiš tricu, čak i bez kralja. Ruka mora ostati tebi (t. 11).'},
+   {s:'kupe',c:['3','A'],sig:null,r:'pogresno',why:'Sa suhom tricom+ašem nikad se ne otvara prvi; čekaš da tu boju otvore drugi (t. 10).'},
+   {s:'spade',c:['A'],sig:null,r:'pogresno',why:'S dujom+ašem otvara se dujom, ne ašem: ruka mora ostati tebi da možeš inzistirati ili promijeniti boju (t. 11).'}
+  ]},
+ {id:5, tema:'Srednja igra u tri boje', tocka:'točka 2',
+  karte:{kupe:['3','6'], spade:['2','5'], dinari:['2','7','4'], bastoni:['C','6','5']},
+  best:'konj baštona, bez signala',
+  opts:[
+   {s:'bastoni',c:['C'],sig:'bez',r:'savrseno',why:'Uz srednju igru u tri boje i samo tri karte bez velikih u četvrtoj, otvaraš upravo tu najslabiju boju, bez signala. Partner saznaje gdje nemaš (t. 2).'},
+   {s:'bastoni',c:['C','6','5'],sig:'striso',r:'pogresno',why:'Signalizirati strišo kao prvi od ruke autor zove ludošću: protivnicima olakšava sve zaključke (poglavlje Strišo).'},
+   {s:'dinari',c:['7','4'],sig:'rebato',r:'pogresno',why:'Kao prvi od ruke ne rebatiš, osim s dugom dujom (t. 1).'},
+   {s:'kupe',c:['6'],sig:'bato',r:'pogresno',why:'Druga trica nije boja za batiti (t. 3).'}
+  ]},
+ {id:6, tema:'Suha trica+duja', tocka:'točka 17',
+  karte:{kupe:['3','2'], spade:['C','7','5'], dinari:['A','6','4'], bastoni:['F','6']},
+  extra:[['suha32','suha trica+duja']],
+  best:'3 kupa, signal suhe trice+duje',
+  opts:[
+   {s:'kupe',c:['3'],sig:'suha32',r:'savrseno',why:'Udariš tricu i signaliziraš suhu tricu+duju. Ako partner baci nisku lišinu, poziva te da udariš i duju (t. 17).'},
+   {s:'dinari',c:['A','6','4'],sig:null,r:'pogresno',why:'Boja trećeg aša otvara se samo kad u ostalim trima bojama imaš treće velike ili velike za strišo (Uporaba aša, t. 1).'}
+  ]}
+];
+
+var app=document.getElementById('app'), ptsEl=document.getElementById('pts'), hNo=document.getElementById('hNo'), pipsEl=document.getElementById('pips');
+document.getElementById('hTot').textContent=HANDS.length;
+var st;
+function reset(){ st={i:0, score:0, log:[], sel:null, sig:null, phase:'pick'}; draw(); }
+function cardLabel(s,r){ return RNAME[r]+' '+SUITS[s].g; }
+function esc(t){ return String(t).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+function pips(){ var h=''; for(var k=0;k<HANDS.length;k++){ h+='<div class="pip '+(k<st.i?'done':(k===st.i?'cur':''))+'"></div>'; } pipsEl.innerHTML=h; }
+
+function handHTML(H,lock){
+  var h='<div class="hand">';
+  ORDER.forEach(function(s){
+    var cs=H.karte[s]||[];
+    h+='<div class="suit"><div class="suit-name">'+SUITS[s].n+'</div>';
+    if(!cs.length){ h+='<div class="void">nema</div>'; }
+    else { h+='<div class="cards">'; cs.forEach(function(r){
+      var on=st.sel&&st.sel.s===s&&st.sel.r===r;
+      h+='<button type="button" class="card'+(lock&&on?' played':'')+'" style="--c:'+SUITS[s].c+'" data-s="'+s+'" data-r="'+r+'" aria-pressed="'+(on?'true':'false')+'" aria-label="'+esc(cardLabel(s,r))+'"'+(lock?' disabled':'')+'>'+cardSVG(s,r)+'</button>';
+    }); h+='</div>'; }
+    h+='</div>';
+  });
+  return h+'</div>';
+}
+
+function draw(){
+  ptsEl.textContent=st.score; pips();
+  if(st.i>=HANDS.length){ return drawEnd(); }
+  hNo.textContent=st.i+1;
+  var H=HANDS[st.i], lock=st.phase!=='pick';
+  var h='<p class="ask"><strong>Kako otvaraš?</strong>Prvi si od ruke. Dodirni kartu, odaberi signal i otvori.</p>';
+  h+=handHTML(H,lock);
+  var sigs=SIG.concat(H.extra||[]);
+  h+='<div class="signals"><div class="lab">Signal</div><div class="chips" role="group" aria-label="Signal">';
+  sigs.forEach(function(x){ h+='<button type="button" class="chip" data-sig="'+x[0]+'" aria-pressed="'+(st.sig===x[0]?'true':'false')+'"'+(lock?' disabled':'')+'>'+esc(x[1])+'</button>'; });
+  h+='</div></div>';
+  if(st.phase==='pick'){
+    var ready=st.sel&&st.sig;
+    h+='<div class="actions"><button type="button" class="btn" id="go"'+(ready?'':' disabled')+'>Otvori</button><span class="sel">'+(st.sel?'Igraš: <b>'+esc(cardLabel(st.sel.s,st.sel.r))+'</b>'+(st.sig?' · '+esc(sigName(st.sig)):''):'Još nisi odabrao kartu.')+'</span></div>';
+  } else { h+=resultHTML(H); }
+  app.innerHTML=h;
+  bind(H);
+}
+function sigName(k){ var all=SIG.concat(HANDS[Math.min(st.i,HANDS.length-1)].extra||[]); for(var j=0;j<all.length;j++){ if(all[j][0]===k) return all[j][1]; } return k; }
+
+function grade(H){
+  for(var j=0;j<H.opts.length;j++){ var o=H.opts[j];
+    if(o.s===st.sel.s && o.c.indexOf(st.sel.r)>-1 && (o.sig===null || o.sig===st.sig)) return o; }
+  return {r:'pogresno', why:'Ovo otvaranje priručnik u ovoj ruci ne preporučuje.'};
+}
+
+function resultHTML(H){
+  var g=st.cur, h='<div class="result" aria-live="polite">';
+  h+='<div class="theme">'+esc(H.tema)+' · '+esc(H.tocka)+'</div>';
+  h+='<div style="margin-top:.4rem"><span class="verdict v-'+g.r+'">'+VNAME[g.r]+'</span>';
+  if(!(g.follow&&st.phase==='follow')) h+='<span class="pts">'+fmt(PTS[st.final?st.final.r:g.r])+'</span>';
+  h+='</div><p>'+esc(g.why)+'</p>';
+  if(g.follow){
+    if(st.phase==='follow'){
+      h+='<div class="follow"><div class="q">'+esc(g.follow.q)+'</div><div class="opts">';
+      g.follow.ch.forEach(function(c,k){ h+='<button type="button" class="opt" data-k="'+k+'">'+esc(c.l)+'</button>'; });
+      h+='</div></div>';
+    } else {
+      var f=st.final;
+      h+='<div class="follow"><div class="q">'+esc(g.follow.q)+'</div><p><b>'+esc(f.l)+'</b></p><span class="verdict v-'+f.r+'" style="font-size:1.3rem">'+VNAME[f.r]+'</span><span class="pts">'+fmt(PTS[f.r])+'</span><p>'+esc(f.why)+'</p></div>';
+    }
+  }
+  if(st.phase==='done'){
+    var fin=st.final||g;
+    if(fin.r!=='savrseno') h+='<p class="src">Savršeno otvaranje: '+esc(H.best)+'.</p>';
+    h+='<div class="actions"><button type="button" class="btn" id="next">'+(st.i+1<HANDS.length?'Sljedeća ruka':'Pogledaj rezultat')+'</button></div>';
+  }
+  return h+'</div>';
+}
+function fmt(n){ return (n>0?'+':n<0?'−':'')+Math.abs(n)+(Math.abs(n)===1?' bod':' boda'); }
+
+function bind(H){
+  app.querySelectorAll('.card').forEach(function(b){ b.addEventListener('click',function(){ st.sel={s:b.dataset.s,r:b.dataset.r}; draw(); }); });
+  app.querySelectorAll('.chip').forEach(function(b){ b.addEventListener('click',function(){ st.sig=b.dataset.sig; draw(); }); });
+  var go=document.getElementById('go'); if(go) go.addEventListener('click',function(){
+    var g=grade(H); st.cur=g; st.final=null;
+    if(g.follow){ st.phase='follow'; } else { finish(H,g); }
+    draw();
+  });
+  app.querySelectorAll('.opt').forEach(function(b){ b.addEventListener('click',function(){ var f=st.cur.follow.ch[+b.dataset.k]; st.final=f; finish(H,f); draw(); }); });
+  var nx=document.getElementById('next'); if(nx) nx.addEventListener('click',function(){ st.i++; st.sel=null; st.sig=null; st.cur=null; st.final=null; st.phase='pick'; draw(); window.scrollTo(0,0); });
+}
+function finish(H,g){ st.phase='done'; st.score+=PTS[g.r]; st.log.push({H:H, r:g.r, play:cardLabel(st.sel.s,st.sel.r)+', '+sigName(st.sig)}); }
+
+function drawEnd(){
+  hNo.textContent=HANDS.length; pips();
+  var max=HANDS.length*3, p=Math.max(0,st.score)/max, L;
+  if(p>=.9) L=['Sjena','Kao sjena se prilagođavaš svakoj ruci. Partner zna što imaš, a protivnici pred sobom vide zid.'];
+  else if(p>=.67) L=['Iskusni igrač','Poznaješ pravila otvaranja. Još malo pa partneru uvijek šalješ točne vijesti.'];
+  else if(p>=.4) L=['Igrač','Igraš razumno, ali otvaranje još ne govori partneru dovoljno. Ponovi poglavlje Otvaranje.'];
+  else L=['Početnik','Svako otvaranje nešto govori partneru. Kreni od prvih točaka poglavlja Otvaranje.'];
+  var h='<section class="end" aria-live="polite"><div class="score"><span class="big">'+st.score+'</span><span class="of">od '+max+' bodova</span></div>';
+  h+='<div class="level">'+L[0]+'</div><p class="level-d">'+L[1]+'</p>';
+  var miss=st.log.filter(function(x){ return x.r!=='savrseno'; });
+  if(miss.length){
+    h+='<ul class="review">';
+    miss.forEach(function(x){ h+='<li><div class="h"><span>Ruka '+x.H.id+' · '+esc(x.H.tema)+'</span><span class="v-'+x.r+'">'+VNAME[x.r]+'</span></div><div class="best">Igrao si: '+esc(x.play)+'<br>Savršeno: '+esc(x.H.best)+' ('+esc(x.H.tocka)+')</div></li>'; });
+    h+='</ul>';
+  } else { h+='<p class="level-d">Sva otvaranja su savršena.</p>'; }
+  h+='<div class="actions"><button type="button" class="btn" id="again">Ponovi test</button></div></section>';
+  app.innerHTML=h;
+  document.getElementById('again').addEventListener('click',function(){ reset(); window.scrollTo(0,0); });
+  try{ var b=parseInt(localStorage.getItem('treseta-test-best')||'-99',10); if(st.score>b) localStorage.setItem('treseta-test-best',String(st.score)); }catch(e){}
+}
+reset();
+})();
+</script>

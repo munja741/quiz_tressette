@@ -1,0 +1,22 @@
+:root { --bg: #f3f5f1; --paper: #fff; --ink: #18201b; --muted: #5a665e; --rule: #d6ddd6; --felt: #1d5a3c; --brass: #9a7417; color-scheme: light dark; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0f1712; --paper: #162019; --ink: #e7ece6; --muted: #9eaba2; --rule: #28352c; --felt: #79c597; --brass: #d8b45a; } }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Source Sans 3', 'Segoe UI', Arial, sans-serif; font-size: 17px; line-height: 1.5; }
+.traka { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1rem; padding: .6rem 16px; border-bottom: 1px solid var(--rule); background: var(--paper); }
+.znak { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--ink); text-decoration: none; letter-spacing: .01em; }
+.traka nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+.traka nav a { color: var(--muted); text-decoration: none; font-weight: 600; padding: .3rem 0; border-bottom: 2px solid transparent; }
+.traka nav a[aria-current='page'], .traka nav a:hover { color: var(--ink); border-bottom-color: var(--felt); }
+a:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+.pocetna { max-width: 64rem; margin: 0 auto; padding: 2rem 16px 4rem; }
+.uvodni { padding: 1rem 0 2rem; max-width: 40rem; }
+.uvodni h1 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: clamp(3rem, 11vw, 5.5rem); line-height: .95; margin: 0 0 .8rem; }
+.uvodni p { color: var(--muted); font-size: 1.15rem; margin: 0 0 1.4rem; }
+.gumb-veliki { display: inline-block; background: #1d5a3c; color: #fff; text-decoration: none; font-weight: 700; padding: .8rem 1.4rem; border-radius: 8px; }
+.pocetna h2 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 2rem; margin: 1rem 0; }
+.razine { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+.razina { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; }
+.razina h3 { margin: 0 0 .4rem; font-size: 1.2rem; }
+.razina ol { margin: 0; padding-left: 1.2rem; color: var(--muted); }
+.uskoro { margin: .6rem 0 0; font-size: .9rem; color: var(--brass); }

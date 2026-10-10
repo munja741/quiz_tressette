@@ -1,0 +1,94 @@
+<title>Pravila odbacivanja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=Alegreya+SC:wght@700&display=swap">
+<style>
+:root{
+  --bg:#f3f5f1; --paper:#ffffff; --ink:#18201b; --muted:#5a665e; --rule:#d6ddd6;
+  --felt:#1d5a3c; --felt-tint:#e4efe8; --brass:#9a7417; --chip-ink:#ffffff;
+  --f-head:"Big Shoulders Display","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1712; --paper:#162019; --ink:#e7ece6; --muted:#9eaba2; --rule:#28352c;
+  --felt:#79c597; --felt-tint:#1b2c22; --brass:#d8b45a; --chip-ink:#0f1712; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f1712; --paper:#162019; --ink:#e7ece6; --muted:#9eaba2; --rule:#28352c;
+  --felt:#79c597; --felt-tint:#1b2c22; --brass:#d8b45a; --chip-ink:#0f1712; color-scheme:dark }
+body{background:var(--bg); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.45}
+.wrap{max-width:60rem; margin:0 auto; padding-inline:16px; padding-block:1.4rem 3rem}
+.kicker{font-family:var(--f-head); font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--felt); font-size:.9rem}
+h1{font-family:var(--f-head); font-weight:800; text-transform:uppercase; font-size:clamp(2.4rem,9vw,3.6rem); line-height:.95; margin:.2rem 0 .6rem; letter-spacing:.01em; text-wrap:balance}
+.lead{max-width:40rem; color:var(--muted); font-size:1.08rem; margin:0}
+nav.sheets{display:flex; flex-wrap:wrap; gap:6px; margin:1rem 0 0}
+nav.sheets a, nav.sheets span{font-family:var(--f-head); font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:.85rem; padding:.35rem .7rem; border-radius:999px; border:1px solid var(--rule); color:var(--ink); text-decoration:none}
+nav.sheets span{background:var(--felt); color:var(--chip-ink); border-color:var(--felt)}
+nav.sheets a:hover{border-color:var(--felt)}
+section{margin-top:2.2rem}
+h2{font-family:var(--f-head); font-weight:800; text-transform:uppercase; letter-spacing:.03em; font-size:1.6rem; margin:0 0 .8rem; padding-bottom:.35rem; border-bottom:2px solid var(--ink)}
+.rules{display:grid; grid-template-columns:repeat(auto-fill,minmax(17.5rem,1fr)); gap:12px}
+.rule{background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:.9rem 1rem; display:flex; flex-direction:column; gap:.55rem; min-width:0}
+.vis{display:flex; align-items:center; gap:.6rem; min-height:58px}
+.hand{display:flex; gap:3px}
+.hand .c{width:38px; height:59px; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.hand .c svg{display:block; width:100%; height:100%}
+.chip{font-family:var(--f-head); font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:.8rem; background:var(--felt); color:var(--chip-ink); padding:.25rem .6rem; border-radius:999px; white-space:nowrap}
+.rule .t{font-weight:700; font-size:1.02rem; line-height:1.3}
+.rule .d{color:var(--muted); font-size:.95rem; margin:0}
+.ref{margin-top:auto; font-family:var(--f-head); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.75rem; color:var(--brass)}
+.strip{display:flex; flex-wrap:wrap; gap:6px; align-items:flex-end}
+.strip .c{width:52px; height:81px; border-radius:6px; box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.strip .c svg{display:block; width:100%; height:100%}
+.strip .gt{font-family:var(--f-head); font-weight:800; color:var(--muted); align-self:center}
+.tbl{overflow-x:auto; background:var(--paper); border:1px solid var(--rule); border-radius:10px}
+table{border-collapse:collapse; width:100%; min-width:20rem}
+th,td{text-align:left; padding:.6rem .85rem; border-bottom:1px solid var(--rule); vertical-align:top}
+th{font-family:var(--f-head); font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:.85rem; color:var(--felt); background:var(--felt-tint)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+.note{color:var(--muted); font-size:.92rem; margin:.6rem 0 0; max-width:44rem}
+footer{margin-top:2.8rem; padding-top:.8rem; border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem}
+</style>
+<div class="wrap"><p class="kicker">Biblija trešete u parove · za početnike</p><h1>Odbacivanje</h1><p class="lead">Kad ne možeš odgovoriti na boju, karta koju odbaciš je poruka partneru. Odbacivanje je najvažnija vještina u igri.</p><section><h2>Prvo odbacivanje</h2><div class="rules"><article class="rule"><div class="vis"><span class="chip">prvo odbacivanje</span></div><div class="t">Prvo odbacivanje para postavlja cijelo dijeljenje.</div><p class="d">Računa se odbacivanje onoga od vas dvojice tko prvi ne može odgovoriti na boju.</p><div class="ref">t. 5</div></article><article class="rule"><div class="vis"><span class="chip">ne istu boju</span></div><div class="t">Ne odbacuj boju partnerovog prvog odbacivanja.</div><p class="d">Iznimka: u toj boji imaš tricu. Tada je odbaci i ti, najprije figuru pa lišinu.</p><div class="ref">t. 50</div></article><article class="rule"><div class="vis"><span class="chip">ne otvaraj</span></div><div class="t">Ne otvaraj boju partnerovog prvog odbacivanja.</div><p class="d">Tamo partner nema.</p><div class="ref">t. 5</div></article></div></section><section><h2>Smjer odbacivanja</h2><div class="tbl"><table><thead><tr><th scope="col">Odbacuješ</th><th scope="col">Na čije ruke</th><th scope="col">Partneru govoriš</th></tr></thead><tbody><tr><td>Od veće prema manjoj (figura, pa lišina)</td><td>Protivničke</td><td>U ovoj boji imam tricu</td></tr><tr><td>Od veće prema manjoj, slabe boje naizmjence</td><td>Bilo čije</td><td>Zatvaram se; zovem te u boju koju ne odbacujem</td></tr><tr><td>Od manje prema većoj (4, 5, 7…)</td><td>Partnerove</td><td>Otvori ovu boju</td></tr><tr><td>Po jednu kartu iz svake od ostalih boja, redom</td><td>Bilo čije</td><td>Nemam ništa za tebe; brani se (odbacivanje odbijanja)</td></tr><tr><td>Sve tri boje redom, lišine</td><td>Protivničke</td><td>Nemam velikih, igraj sam (napuštanje)</td></tr></tbody></table></div><p class="note">Iz točaka 31, 45 i 46 te poglavlja Odbacivanje.</p></section><section><h2>Posebna odbacivanja</h2><div class="rules"><article class="rule"><div class="vis"><div class="hand"><div class="c" data-s="kupe" data-r="2"></div></div><span class="chip">duja</span></div><div class="t">Duja na partnerove ruke: zatvaram se.</div><p class="d">Partner može igrati zatvorenih očiju u ostalim bojama. Inače nikad ne bacaj duju, ni suhu.</p><div class="ref">Odbacivanje</div></article><article class="rule"><div class="vis"><div class="hand"><div class="c" data-s="kupe" data-r="2"></div><div class="c" data-s="kupe" data-r="4"></div></div><span class="chip">duja+aš</span></div><div class="t">Duja pa lišina na protivničke ruke.</div><p class="d">Imam duju+aša s kraljem, najmanje četvrtu.</p><div class="ref">Odbacivanje</div></article><article class="rule"><div class="vis"><div class="hand"><div class="c" data-s="kupe" data-r="A"></div></div><span class="chip">aš</span></div><div class="t">Tko odbaci aša na protivničku ruku, ima tricu te boje.</div><p class="d">Tko na partnerovu ruku baci tricu, ima duju.</p><div class="ref">t. 59</div></article></div></section><section><h2>Oprez</h2><div class="rules"><article class="rule"><div class="vis"><span class="chip">partner</span></div><div class="t">Vjeruj više partnerovom odbacivanju nego protivničkom.</div><p class="d">Protivnici često odbacuju protiv pravila, da te navedu u krivu boju.</p><div class="ref">t. 48</div></article><article class="rule"><div class="vis"><span class="chip">jasno</span></div><div class="t">Nikad ne odbacuj nasumce.</div><p class="d">Kad nemaš ništa, reci to partneru s tri odbacivanja, da se može braniti sam.</p><div class="ref">Temelji</div></article></div></section><footer>Sažeto prema priručniku <i>Biblija trešete u parove</i> (il regista). "t." je broj točke u priručniku. Igrač prije tebe igra neposredno prije tebe, igrač poslije tebe neposredno poslije.</footer></div>
+<script>
+(function(){
+var DISP={'K':'13','C':'12','F':'11'};
+var GOLD='#e0b23a', GOLDD='#9a6d0a', RED='#c2412d', BLUE='#2c5896', BLACK='#1f1f1f', STEEL='#3a3d42', INK='#3a2a12', SKIN='#f3dcc0', BROWN='#8a5a2b';
+// one pip, drawn in a 32x32 box
+var PIP={
+ kupe:'<path d="M7 8.5h18c0 6.5-3.2 10.2-7 11.2v3.6h3.6c1.4 0 2.4 1 2.4 2.4V27H8v-1.3c0-1.4 1-2.4 2.4-2.4H14v-3.6c-3.8-1-7-4.7-7-11.2z" fill="'+BLUE+'" stroke="'+INK+'" stroke-width=".8"/><rect x="7.6" y="10.4" width="16.8" height="2.6" fill="'+GOLD+'"/><circle cx="16" cy="5.2" r="2.2" fill="'+GOLD+'" stroke="'+INK+'" stroke-width=".6"/>',
+ spade:'<path d="M14.6 2.5c4.8 4.6 5.4 11.5 2.6 18.5l-3-.6c2-5.8 1.7-11.6.4-17.9z" fill="'+STEEL+'" stroke="'+INK+'" stroke-width=".7"/><rect x="8.5" y="20.2" width="15" height="3.2" rx="1.6" fill="'+GOLD+'" stroke="'+INK+'" stroke-width=".6"/><rect x="14.4" y="23.2" width="3.2" height="5.2" fill="'+RED+'"/><circle cx="16" cy="29.4" r="2" fill="'+GOLD+'" stroke="'+INK+'" stroke-width=".6"/>',
+ dinari:'<circle cx="16" cy="16" r="12.5" fill="'+GOLD+'" stroke="'+GOLDD+'" stroke-width="1.2"/><circle cx="16" cy="16" r="8.4" fill="'+RED+'"/><path d="M16 9.5l1.6 4.9h5.1l-4.1 3 1.6 4.9-4.2-3-4.2 3 1.6-4.9-4.1-3h5.1z" fill="'+GOLD+'"/>',
+ bastoni:'<path d="M22.4 3.2c2.9 1.4 3.6 4.3 2.2 6.8L13.9 29.6c-.8 1.4-2.5 1.9-3.9 1.1-1.4-.8-1.9-2.5-1.1-3.9L19.5 7.3c-.7-2 .3-3.7 2.9-4.1z" fill="'+RED+'" stroke="'+INK+'" stroke-width=".8"/><circle cx="19.2" cy="12.4" r="1.8" fill="'+GOLD+'"/><circle cx="15.6" cy="19.2" r="1.7" fill="'+GOLD+'"/><circle cx="12.4" cy="25" r="1.5" fill="'+GOLD+'"/>'
+};
+function pip(s,x,y,size){ var k=size/32; return '<g transform="translate('+(x-size/2)+' '+(y-size/2)+') scale('+k+')">'+PIP[s]+'</g>'; }
+var LAY={1:[[31,50]],2:[[31,32],[31,68]],3:[[31,27],[31,50],[31,73]],4:[[21,32],[41,32],[21,68],[41,68]],5:[[21,30],[41,30],[31,50],[21,70],[41,70]],6:[[21,27],[41,27],[21,50],[41,50],[21,73],[41,73]],7:[[21,26],[41,26],[31,38],[21,50],[41,50],[21,73],[41,73]]};
+function figure(s,r){
+  var robe={kupe:BLUE,spade:BLACK,dinari:'#b8860b',bastoni:RED}[s], g='';
+  if(r==='C'){ // konj: horse with rider
+    g+='<path d="M14 56c0-6 5-10 12-10h10c4 0 7-3 9-6l3 2c-1 4-3 7-6 9l1 6c0 2-1 3-3 3H17c-2 0-3-1-3-4z" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".8"/>';
+    g+='<path d="M45 40l3-5 2 1-1 6z" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".7"/>';
+    g+='<rect x="18" y="58" width="3" height="15" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".6"/><rect x="38" y="58" width="3" height="15" fill="'+BROWN+'" stroke="'+INK+'" stroke-width=".6"/>';
+    g+='<path d="M24 47l3-13h8l2 13z" fill="'+robe+'" stroke="'+INK+'" stroke-width=".8"/><circle cx="31" cy="29" r="4.6" fill="'+SKIN+'" stroke="'+INK+'" stroke-width=".7"/><path d="M26.5 26.5c1-3 8-3 9 0z" fill="'+GOLD+'"/>';
+    g+=pip(s,18,38,12);
+  } else { // fanat or kralj standing
+    g+='<path d="M20 76l4-34h14l4 34z" fill="'+robe+'" stroke="'+INK+'" stroke-width=".8"/>';
+    g+='<path d="M24 42h14l1 7H23z" fill="'+GOLD+'" opacity=".85"/>';
+    g+='<circle cx="31" cy="34" r="6" fill="'+SKIN+'" stroke="'+INK+'" stroke-width=".7"/>';
+    if(r==='K'){ g+='<path d="M24.5 28.5l1.6-6 2.4 3.4 2.5-4.4 2.5 4.4 2.4-3.4 1.6 6z" fill="'+GOLD+'" stroke="'+GOLDD+'" stroke-width=".7"/><path d="M27 38.5c1.5 2.5 6.5 2.5 8 0" stroke="'+INK+'" stroke-width=".7" fill="none"/>'; }
+    else { g+='<path d="M24.5 31c0-5 13-5 13 0l-2-2.2h-9z" fill="'+robe+'" stroke="'+INK+'" stroke-width=".7"/><circle cx="37.5" cy="27.5" r="1.6" fill="'+GOLD+'"/>'; }
+    g+=pip(s,45,52,15);
+  }
+  return g;
+}
+function cardSVG(s,r){
+  var col={kupe:BLUE,spade:BLACK,dinari:GOLDD,bastoni:RED}[s], d=DISP[r]||r, body='';
+  if(r==='A'){ body='<circle cx="31" cy="50" r="19" fill="none" stroke="'+col+'" stroke-width=".8" opacity=".5"/><circle cx="31" cy="50" r="15.5" fill="none" stroke="'+col+'" stroke-width=".5" opacity=".35"/>'+pip(s,31,50,30); }
+  else if(DISP[r]){ body=figure(s,r); }
+  else { var n=+r; (LAY[n]||[]).forEach(function(p){ body+=pip(s,p[0],p[1],n>4?15:(n>3?17:19)); }); }
+  return '<svg viewBox="0 0 62 96" aria-hidden="true"><rect x=".5" y=".5" width="61" height="95" rx="6.5" fill="#fbf7ee" stroke="#d8cfbd"/><rect x="4" y="4" width="54" height="88" rx="4" fill="none" stroke="'+col+'" stroke-width=".8" opacity=".55"/>'+body+'<text x="7.5" y="15" font-family="Alegreya SC, Georgia, serif" font-weight="700" font-size="11" fill="'+col+'">'+d+'</text><text x="54.5" y="81" transform="rotate(180 54.5 81)" text-anchor="start" font-family="Alegreya SC, Georgia, serif" font-weight="700" font-size="11" fill="'+col+'">'+d+'</text></svg>';
+}
+
+
+document.querySelectorAll('.c[data-s]').forEach(function(el){ el.innerHTML=cardSVG(el.dataset.s, el.dataset.r); el.setAttribute('role','img'); el.setAttribute('aria-label', el.dataset.r); });
+})();
+</script>
