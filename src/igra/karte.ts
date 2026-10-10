@@ -11,6 +11,7 @@ export type Oznaka = (typeof OZNAKE)[number];
 const NAZIV_KARTE = ['trica', 'duja', 'aš', 'kralj', 'konj', 'fanat', 'sedmica', 'šestica', 'petica', 'četvorka'];
 const NAZIV_KARTE_AKU = ['tricu', 'duju', 'aša', 'kralja', 'konja', 'fanta', 'sedmicu', 'šesticu', 'peticu', 'četvorku'];
 export const NAZIV_BOJE: Record<Boja, string> = { kupe: 'Kupe', spade: 'Špade', dinari: 'Dinari', bastoni: 'Baštoni' };
+export const LOKATIV_BOJE: Record<Boja, string> = { kupe: 'kupama', spade: 'špadama', dinari: 'dinarima', bastoni: 'baštonima' };
 export const GENITIV_BOJE: Record<Boja, string> = { kupe: 'kupa', spade: 'špada', dinari: 'dinara', bastoni: 'baštona' };
 
 export const TRICA = 0, DUJA = 1, AS = 2, KRALJ = 3;
