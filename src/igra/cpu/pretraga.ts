@@ -143,7 +143,8 @@ function alfaBeta(s: Sim, alfa: number, beta: number, mojPar: 0 | 1): number {
     const n = klon(s);
     const prije = n.bele[mojPar];
     igraj(n, k);
-    const v = n.bele[mojPar] - prije + alfaBeta(n, alfa, beta, mojPar);
+    const dobitak = n.bele[mojPar] - prije;
+    const v = dobitak + alfaBeta(n, alfa - dobitak, beta - dobitak, mojPar);
     if (max) { if (v > najbolje) najbolje = v; if (v > alfa) alfa = v; }
     else { if (v < najbolje) najbolje = v; if (v < beta) beta = v; }
     if (beta <= alfa) break;

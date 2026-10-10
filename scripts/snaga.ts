@@ -1,4 +1,5 @@
 // Provjera snage CPU razina: npm run snaga
+declare const process: { argv: string[] };
 import { novaPartija, ZADANE_POSTAVKE, type Razina } from '../src/igra/partija.ts';
 import { odigrajPartiju } from '../src/igra/cpu/igraj-dijeljenje.ts';
 

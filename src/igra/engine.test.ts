@@ -170,3 +170,15 @@ describe('partija', () => {
     expect(p.gotova).toBe(true);
   });
 });
+
+import { stanjeNakon, potezi } from './pregled.ts';
+describe('pregled', () => {
+  it('stanje nakon svih poteza jednako je završnom', () => {
+    let d = podijeli(21, 3, opc);
+    d = odigrajNasumicno(d, 5);
+    const s = stanjeNakon(d, 40);
+    expect(s.odigrane.map((r) => r.uzeo)).toEqual(d.odigrane.map((r) => r.uzeo));
+    expect(potezi(d)).toHaveLength(40);
+    expect(stanjeNakon(d, 0).ruke).toEqual(d.pocetneRuke);
+  });
+});

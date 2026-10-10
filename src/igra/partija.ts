@@ -45,21 +45,24 @@ export interface Partija {
   gotova: boolean;
   /** 0 = mi, 1 = oni, null = neriješeno (samo kod jednog dijeljenja) */
   pobjednik: 0 | 1 | null;
+  /** je li trenutno dijeljenje već zbrojeno */
+  zakljuceno: boolean;
 }
 
 export const sjemeDijeljenja = (sjeme: number, n: number): number => (sjeme + Math.imul(n, 0x9e3779b1)) >>> 0;
 
 /** Nova partija. Prvo dijeljenje uvijek otvara igrač (mjesto 0), pa je djelitelj igrač prije njega (mjesto 3). */
-export function novaPartija(postavke: Postavke, sjeme: number, zadanaRuka?: Karta[]): Partija {
+export function novaPartija(postavke: Postavke, sjeme: number, zadanaRuka?: Karta[], prvo?: { sjeme: number; djelitelj: number }): Partija {
   const opcije = { akuza: postavke.akuza, signali: postavke.signali };
   return {
     postavke,
     sjeme,
     zavrsena: [],
-    trenutno: podijeli(sjemeDijeljenja(sjeme, 0), 3, opcije, zadanaRuka),
+    trenutno: prvo ? podijeli(prvo.sjeme, prvo.djelitelj, opcije, zadanaRuka) : podijeli(sjemeDijeljenja(sjeme, 0), 3, opcije, zadanaRuka),
     zbroj: [0, 0],
     gotova: false,
     pobjednik: null,
+    zakljuceno: false,
   };
 }
 
@@ -67,7 +70,7 @@ export function novaPartija(postavke: Postavke, sjeme: number, zadanaRuka?: Kart
 export function zakljuciDijeljenje(p: Partija): Partija {
   const d = p.trenutno;
   if (!d.gotovo) return p;
-  if (p.zavrsena.some((z) => z.dijeljenje === d)) return p;
+  if (p.zakljuceno) return p;
   const rezultat = obracun(d);
   const zbroj: [number, number] = [p.zbroj[0] + rezultat.ukupno[0], p.zbroj[1] + rezultat.ukupno[1]];
   const zavrsena = [...p.zavrsena, { sjeme: d.sjeme, djelitelj: d.djelitelj, rezultat, dijeljenje: d }];
@@ -84,7 +87,7 @@ export function zakljuciDijeljenje(p: Partija): Partija {
       pobjednik = zbroj[0] > zbroj[1] ? 0 : 1;
     }
   }
-  return { ...p, zavrsena, zbroj, gotova, pobjednik };
+  return { ...p, zavrsena, zbroj, gotova, pobjednik, zakljuceno: true };
 }
 
 export function sljedeceDijeljenje(p: Partija): Partija {
@@ -92,5 +95,20 @@ export function sljedeceDijeljenje(p: Partija): Partija {
   const n = p.zavrsena.length;
   const djelitelj = sljedeci(p.trenutno.djelitelj);
   const opcije = { akuza: p.postavke.akuza, signali: p.postavke.signali };
-  return { ...p, trenutno: podijeli(sjemeDijeljenja(p.sjeme, n), djelitelj, opcije) };
+  return { ...p, trenutno: podijeli(sjemeDijeljenja(p.sjeme, n), djelitelj, opcije), zakljuceno: false };
+}
+
+/** Ponovi trenutno dijeljenje (isto sjeme i djelitelj); njegov rezultat se briše iz zbroja. */
+export function ponoviDijeljenje(p: Partija): Partija {
+  const d = p.trenutno;
+  let { zavrsena, zbroj } = p;
+  if (p.zakljuceno) {
+    const zadnje = zavrsena[zavrsena.length - 1];
+    zavrsena = zavrsena.slice(0, -1);
+    zbroj = [zbroj[0] - zadnje.rezultat.ukupno[0], zbroj[1] - zadnje.rezultat.ukupno[1]];
+  }
+  const novo = podijeli(d.sjeme, d.djelitelj, d.opcije);
+  novo.ruke = d.pocetneRuke.map((h) => [...h]);
+  novo.pocetneRuke = d.pocetneRuke.map((h) => [...h]);
+  return { ...p, zavrsena, zbroj, trenutno: novo, gotova: false, pobjednik: null, zakljuceno: false };
 }
