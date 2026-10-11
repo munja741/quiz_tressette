@@ -1,0 +1,31 @@
+---
+interface Props { naslov: string; opis?: string }
+const { naslov, opis = 'Škola trešete: učenje trešete u parove na hrvatskom.' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!doctype html>
+<html lang="hr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content={opis} />
+    <title>{naslov}</title>
+    <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=Alegreya+SC:wght@700&display=swap" />
+    <link rel="stylesheet" href={`${base}/osnovno.css`} />
+  </head>
+  <body>
+    <header class="traka">
+      <a class="znak" href={`${base}/`}>Škola trešete</a>
+      <nav aria-label="Glavna navigacija">
+        <a href={`${base}/`}>Put učenja</a>
+        <a href={`${base}/igraj/`} aria-current={Astro.url.pathname.includes('/igraj') ? 'page' : undefined}>Igraj</a>
+        <a href={`${base}/kviz-otvaranja/`}>Test otvaranja</a>
+      </nav>
+    </header>
+    <slot />
+  </body>
+</html>

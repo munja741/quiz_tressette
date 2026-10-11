@@ -1,0 +1,31 @@
+---
+import Osnovni from '../layouts/Osnovni.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const razine = [
+  { ime: 'Početnik', lekcije: ['Pravila igre', 'Punti, bele i ultima', 'Akuža', 'Signali: bato i strišo', 'Za stolom'] },
+  { ime: 'Igrač', lekcije: ['Otvaranje: osnovna pravila', 'Otvaranje: duja+aš, trica+aš, napolitana', 'Uporaba aša', 'Odgovori na otvaranje', 'Odbacivanje'] },
+  { ime: 'Napredni', lekcije: ['Duja u modernoj igri', 'Igra bez signala', 'Zašto ne signalizirati strišo', 'Napadi i protivnička igra', 'Igra para: temelji'] },
+  { ime: 'Majstor', lekcije: ['Hvatanje trećeg aša', 'Zadnje ruke i brojanje karata', 'Simulacije i finese', 'Zašto akuža koči igru', 'Test vještine'] },
+];
+---
+<Osnovni naslov="Škola trešete">
+  <main class="pocetna">
+    <section class="uvodni">
+      <h1>Škola trešete</h1>
+      <p>Trešeta u parove na hrvatskom, od prvih pravila do zadnjih ruku. Lekcije su u izradi; igra protiv računala već radi.</p>
+      <a class="gumb-veliki" href={`${base}/igraj/`}>Igraj partiju</a>
+    </section>
+    <section aria-labelledby="put">
+      <h2 id="put">Put učenja</h2>
+      <div class="razine">
+        {razine.map((r) => (
+          <div class="razina">
+            <h3>{r.ime}</h3>
+            <ol>{r.lekcije.map((l) => <li>{l}</li>)}</ol>
+            <p class="uskoro">Lekcije uskoro.</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</Osnovni>
