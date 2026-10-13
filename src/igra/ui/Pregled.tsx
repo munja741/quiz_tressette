@@ -58,7 +58,7 @@ export function Pregled({ d, zatvori, kompaktne }: { d: Dijeljenje; zatvori: () 
   return (
     <section class="pregled" aria-labelledby="naslov-pregled">
       <div class="pregled-zaglavlje">
-        <h2 id="naslov-pregled">Pregled dijeljenja</h2>
+        <h2 id="naslov-pregled">Analiza dijeljenja</h2>
         <button type="button" class="gumb" onClick={zatvori}>Natrag na obračun</button>
       </div>
       <div class="pregled-stol">

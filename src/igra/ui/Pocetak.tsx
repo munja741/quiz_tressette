@@ -1,4 +1,4 @@
-import type { Postavke, Cilj, Razina } from '../partija.ts';
+import type { Postavke, Cilj } from '../partija.ts';
 
 const NACINI: { cilj: Cilj; naslov: string; opis: string }[] = [
   { cilj: 0, naslov: 'Jedno dijeljenje', opis: 'Deset ruku, obračun i pregled poteza.' },
@@ -7,11 +7,6 @@ const NACINI: { cilj: Cilj; naslov: string; opis: string }[] = [
   { cilj: 41, naslov: 'Do 41', opis: 'Kako se igra kod nas.' },
 ];
 
-export const RAZINE: { r: Razina; ime: string }[] = [
-  { r: 'pocetnik', ime: 'Početnik' },
-  { r: 'igrac', ime: 'Igrač' },
-  { r: 'majstor', ime: 'Majstor' },
-];
 
 interface Props {
   postavke: Postavke;
@@ -25,7 +20,7 @@ export function Pocetak({ postavke, promijeni, igraj, nastavi, izPoveznice }: Pr
   return (
     <section class="pocetak" aria-labelledby="naslov-pocetak">
       <h1 id="naslov-pocetak">Igraj trešetu</h1>
-      <p class="uvod">Ti i partner protiv dva protivnika. Partnera i protivnike igra računalo, prema pravilima iz priručnika i hrvatskoj praksi.</p>
+      <p class="uvod">Ti i partner protiv dva protivnika. Partnera i protivnike igra računalo na razini Majstor, prema pravilima iz priručnika i hrvatskoj praksi.</p>
       {izPoveznice && <p class="napomena">{izPoveznice}</p>}
 
       <fieldset class="nacini">
@@ -47,21 +42,6 @@ export function Pocetak({ postavke, promijeni, igraj, nastavi, izPoveznice }: Pr
         <label class="prekidac">
           <input type="checkbox" checked={postavke.signali} onChange={(e) => promijeni({ signali: (e.target as HTMLInputElement).checked })} />
           <span>Signali bato i strišo</span>
-        </label>
-      </div>
-
-      <div class="red-postavki">
-        <label class="izbor">
-          <span>Partner</span>
-          <select value={postavke.razinaPartner} onChange={(e) => promijeni({ razinaPartner: (e.target as HTMLSelectElement).value as Razina })}>
-            {RAZINE.map((x) => <option value={x.r} key={x.r}>{x.ime}</option>)}
-          </select>
-        </label>
-        <label class="izbor">
-          <span>Protivnici</span>
-          <select value={postavke.razinaProtivnici} onChange={(e) => promijeni({ razinaProtivnici: (e.target as HTMLSelectElement).value as Razina })}>
-            {RAZINE.map((x) => <option value={x.r} key={x.r}>{x.ime}</option>)}
-          </select>
         </label>
       </div>
 

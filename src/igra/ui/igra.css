@@ -118,13 +118,16 @@
 /* moja ruka */
 .moja-ruka { display: flex; flex-wrap: wrap; justify-content: center; gap: .3rem .9rem; margin: .9rem 0 .2rem; padding-top: 14px; }
 .boja-grupa { display: flex; }
-.karta-gumb { width: 62px; height: 96px; padding: 0; margin-left: -18px; border: 0; background: none; border-radius: 7px; cursor: pointer; line-height: 0; box-shadow: 0 2px 6px rgba(0, 0, 0, .18); }
+.karta-gumb { width: 62px; height: 96px; padding: 0; margin-left: -18px; border: 0; background: none; border-radius: 7px; cursor: pointer; line-height: 0; }
+.karta-gumb svg { filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .18)); }
 .boja-grupa .karta-gumb:first-child { margin-left: 0; }
 .karta-gumb.kompaktna { width: 46px; height: 64px; margin-left: -8px; }
 .karta-gumb svg { width: 100%; height: 100%; display: block; }
-.karta-gumb:not(:disabled):hover, .karta-gumb.podignuta { transform: translateY(-12px); }
+/* podiže se slika, ne gumb: površina za klik ostaje na mjestu, nema treperenja */
+.karta-gumb svg { transition: none; }
+.karta-gumb:not(:disabled):hover svg, .karta-gumb.podignuta svg { transform: translateY(-12px); }
+.karta-gumb.savjet svg { border-radius: 7px; box-shadow: 0 0 0 3px var(--mjed); }
 .karta-gumb:disabled { cursor: default; filter: saturate(.5) brightness(.9); }
-.karta-gumb.savjet { box-shadow: 0 0 0 3px var(--mjed), 0 2px 6px rgba(0, 0, 0, .18); }
 .ispod-ruke { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .6rem 1rem; margin-top: .4rem; }
 .signali { display: flex; align-items: center; gap: .4rem; }
 .signali .oznaka { color: var(--sivo); font-size: .9rem; }
@@ -206,3 +209,18 @@
   .karta-gumb.kompaktna { width: 40px; height: 56px; margin-left: -10px; }
 }
 @media (prefers-reduced-motion: reduce) { .karta-gumb { transition: none; } }
+
+/* najave na stolu: akuža u prvom krugu i signali, ispred igrača */
+.najave { display: flex; flex-direction: column; align-items: center; gap: .25rem; max-width: 15rem; text-align: center; }
+.najava-akuza { background: rgba(10, 30, 20, .72); color: #f7f4ea; border: 1px solid var(--mjed); border-radius: 6px; padding: .25rem .55rem; font-size: .88rem; line-height: 1.25; }
+.najava-oznaka { color: var(--mjed); font-weight: 700; }
+.najava-signal { background: var(--mjed); color: #18201b; border-radius: 999px; padding: .15rem .9rem; font-weight: 800; font-size: 1.05rem; letter-spacing: .02em; box-shadow: 0 1px 0 rgba(0, 0, 0, .35); }
+
+/* ispod stola: obračun i analiza, stol ostaje vidljiv */
+.ispod-stola { margin-top: .9rem; background: var(--ploca); border: 1px solid var(--ploca-rub); border-radius: 10px; padding: 1rem 1.1rem; }
+.obracun-ploca h2 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.8rem; line-height: 1; margin: 0 0 .6rem; }
+.obracun-ploca .tablica { max-width: 30rem; }
+@media (max-width: 760px) {
+  .najava-akuza { font-size: .78rem; padding: .2rem .4rem; }
+  .najava-signal { font-size: .92rem; }
+}

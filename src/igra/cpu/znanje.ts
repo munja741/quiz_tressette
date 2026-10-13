@@ -44,7 +44,7 @@ export interface Znanje {
   nemaBoju: boolean[][];
   /** karte za koje se zna čije su (iz akuže), a još nisu odigrane */
   poznate: Map<Karta, number>;
-  /** igrač ima barem `najmanje` od ovih karata (akuža tri iste) */
+  /** igrač ima barem `najmanje` od ovih karata (trenutno se ne koristi: akuža otkriva točne karte) */
   ogranicenja: { igrac: number; karte: Karta[]; najmanje: number }[];
   /** karte koje nisu odigrane ni u mojoj ruci */
   nepoznate: Karta[];
@@ -69,13 +69,8 @@ export function izgradiZnanje(p: Pogled): Znanje {
   for (const a of p.akuza) {
     if (a.igrac === p.ja) continue;
     for (const k of a.kombinacije) {
-      if (k.vrsta === 'cetiri' || k.vrsta === 'napolitana') {
-        for (const c of k.karte) if (!odigrano.has(c)) poznate.set(c, a.igrac);
-      } else {
-        // tri iste: igrač ima 3 od 4 karte tog položaja
-        const sve = [0, 1, 2, 3].map((b) => karta(b, k.kljuc));
-        ogranicenja.push({ igrac: a.igrac, karte: sve, najmanje: 3 });
-      }
+      // akuža je javna: tri iste prijavljuju se s bojom koja nedostaje, pa se zna točno koje karte igrač ima
+      for (const c of k.karte) if (!odigrano.has(c)) poznate.set(c, a.igrac);
     }
   }
   const nepoznate = SPIL.filter((k) => !odigrano.has(k) && !moje.has(k));
