@@ -79,7 +79,7 @@
 .kartica-lekcije a::after { content: ''; position: absolute; inset: 0; }
 .kartica-lekcije a:focus-visible { outline: none; }
 .kartica-lekcije:has(a:focus-visible) { outline: 3px solid var(--brass); outline-offset: 2px; }
-.kartica-lekcije.uskoro { opacity: .55; }
+.kartica-lekcije.neobjavljena { opacity: .55; }
 .kartica-meta { font-size: .85rem; color: var(--muted); }
 .stanje { font-size: .85rem; font-weight: 700; }
 .kartica-lekcije.savladano { border-color: var(--felt); box-shadow: inset 4px 0 0 var(--felt); }

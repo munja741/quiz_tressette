@@ -22,7 +22,7 @@ const postoji = new Map(lekcije.map((l) => [l.id, l]));
             {lista.map((x) => {
               const l = postoji.get(x.slug);
               return (
-                <li class={`kartica-lekcije ${l ? '' : 'uskoro'}`} data-slug={x.slug}>
+                <li class={`kartica-lekcije ${l ? '' : 'neobjavljena'}`} data-slug={x.slug}>
                   {l ? <a href={`${base}/lekcije/${x.slug}/`}>{x.naslov}</a> : <span>{x.naslov}</span>}
                   <span class="kartica-meta">{l ? `oko ${l.data.minuta} min` : 'uskoro'}</span>
                   <span class="stanje" aria-live="polite"></span>
