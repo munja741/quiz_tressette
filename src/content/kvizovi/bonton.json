@@ -1,0 +1,54 @@
+{
+  "lekcija": "bonton",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "bo-1",
+      "vrsta": "izbor",
+      "pitanje": "Partner je otvorio boju u kojoj ti imaš aša. Uzdahneš s olakšanjem. Što je to?",
+      "odgovori": [
+        { "tekst": "Nedopušten znak, jer partneru nešto govori", "tocno": true },
+        { "tekst": "Dopušteno, jer nisi ništa rekao" },
+        { "tekst": "Dopušteno, ako je partner otvorio uz bato" }
+      ],
+      "objasnjenje": "Svaki znak o kartama osim bata i strišo smatra se varanjem, i kad nije izgovoren.",
+      "izvor": { "lekcija": "bonton", "odjeljak": "sto-se-smije" }
+    },
+    {
+      "id": "bo-2",
+      "vrsta": "izbor",
+      "pitanje": "Kako se kažnjava lažna prijava akuže?",
+      "odgovori": [
+        { "tekst": "Protivnici dobivaju 11 punata", "tocno": true },
+        { "tekst": "Akuža se samo ne broji" },
+        { "tekst": "Par gubi partiju" }
+      ],
+      "objasnjenje": "Lažna akuža kažnjava se s 11 punata protivnicima.",
+      "izvor": { "lekcija": "bonton", "odjeljak": "akuza" }
+    },
+    {
+      "id": "bo-3",
+      "vrsta": "izbor",
+      "pitanje": "Koju poruku smiješ poslati partneru dok odgovaraš na boju koju je otvorio protivnik?",
+      "odgovori": [
+        { "tekst": "Samo kartu koju staviš", "tocno": true },
+        { "tekst": "Bato, ako imaš tricu" },
+        { "tekst": "Strišo, ako imaš još karata te boje" }
+      ],
+      "objasnjenje": "Signal daje samo onaj tko otvara ruku. Kad odgovaraš, poruka je samo karta.",
+      "izvor": { "lekcija": "bonton", "odjeljak": "sto-se-smije" }
+    },
+    {
+      "id": "bo-4",
+      "vrsta": "izbor",
+      "pitanje": "Zašto je dobro igrati ujednačenim tempom?",
+      "odgovori": [
+        { "tekst": "Jer duga stanka samo kod teške odluke otkriva protivnicima da je imaš", "tocno": true },
+        { "tekst": "Jer je sporost kažnjiva" },
+        { "tekst": "Jer partner tako zna koliko imaš karata" }
+      ],
+      "objasnjenje": "Tempo je informacija. Ujednačen tempo ne otkriva ništa.",
+      "izvor": { "lekcija": "bonton", "odjeljak": "navike" }
+    }
+  ]
+}

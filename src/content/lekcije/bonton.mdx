@@ -1,0 +1,50 @@
+---
+naslov: Za stolom
+razina: Početnik
+redoslijed: 5
+minuta: 4
+opis: Što se za stolom smije, a što se smatra varanjem.
+preduvjeti: [signali, akuza]
+ciljevi:
+  - Znati gdje je granica između signala i varanja.
+  - Znati kako se kažnjava lažna akuža.
+  - Usvojiti nekoliko navika koje čine igru ugodnom za sve.
+sazetak: Za stolom se o kartama ne govori ništa osim dva dogovorena signala, bata i strišo. Svaki drugi govor ili znak je varanje, a lažna akuža kažnjava se s 11 punata protivnicima. Mirna igra bez komentara pomaže i tebi, jer protivnici iz tvog ponašanja ne mogu ništa zaključiti.
+---
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+
+<h2 id="sto-se-smije">Što se smije reći</h2>
+
+O kartama se za stolom ne govori. Jedina dopuštena poruka partneru su dva signala koja daje igrač koji otvara ruku: bato i strišo.
+
+<KodNas>
+  <p>Dopuštena su samo dva dogovorena signala, strišo i bato. Svaki drugi govor ili znak o kartama smatra se varanjem.</p>
+</KodNas>
+
+To uključuje i ono što nije izgovoreno: uzdah kad partner otvori, kucanje prstima, dugo gledanje u partnera, karta bačena na stol jače nego inače. Ako to partneru nešto govori, to je znak.
+
+<Pravilo naslov="Jedina poruka je karta">
+  <p>Osim bata i strišo, partneru govoriš samo kartom koju staviš na stol.</p>
+</Pravilo>
+
+<h2 id="akuza">Akuža</h2>
+
+Akuža se prijavljuje prije prve karte i mora biti točna.
+
+<KodNas>
+  <p>Lažna prijava akuže kažnjava se s 11 punata protivnicima.</p>
+</KodNas>
+
+U igri na ovom siteu računalo samo provjerava akužu, pa lažne prijave nema.
+
+<h2 id="navike">Dobre navike</h2>
+
+Ovo nisu pravila, nego savjeti škole koji igru čine ugodnijom i boljom:
+
+- **Igraj ujednačenim tempom.** Tko dugo razmišlja samo kad ima tešku odluku, protivnicima govori da ima tešku odluku.
+- **Ne komentiraj partnerove poteze tijekom dijeljenja.** Analiza dolazi kad se karte pokupe.
+- **Drži karte tako da ih nitko ne vidi**, ni partner.
+- **Kad nisi siguran u pravilo, pitaj prije nego igraš**, a ne nakon što je ruka odigrana.
+
+{/* TREBA POTVRDITI: kako se kod nas rješavaju sporovi za stolom i koje su kazne osim lažne akuže i nedopuštenih znakova (vidi docs/otvorena-pitanja.md). */}
