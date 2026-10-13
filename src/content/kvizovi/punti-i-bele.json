@@ -1,0 +1,168 @@
+{
+  "lekcija": "punti-i-bele",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "pb-1",
+      "vrsta": "izbor",
+      "pitanje": "Koliko bela čini jedan punat?",
+      "odgovori": [
+        {
+          "tekst": "Tri",
+          "tocno": true
+        },
+        {
+          "tekst": "Dvije"
+        },
+        {
+          "tekst": "Pet"
+        }
+      ],
+      "objasnjenje": "Bela je trećina punta, pa tri bele čine punat.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "bele"
+      }
+    },
+    {
+      "id": "pb-2",
+      "vrsta": "izbor",
+      "pitanje": "Koja karta vrijedi najviše?",
+      "odgovori": [
+        {
+          "tekst": "Aš",
+          "tocno": true
+        },
+        {
+          "tekst": "Trica"
+        },
+        {
+          "tekst": "Kralj"
+        }
+      ],
+      "objasnjenje": "Aš vrijedi cijeli punat. Trica je najjača, ali vrijedi samo belu.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "vrijednosti"
+      }
+    },
+    {
+      "id": "pb-3",
+      "vrsta": "broj",
+      "pitanje": "Par je uzeo ove karte. Koliko punata ima?",
+      "karte": "kupe:A,3,13|spade:2,12|dinari:11,6|bastoni:A,4",
+      "tocno": 3,
+      "jedinica": "punta",
+      "objasnjenje": "Dva aša su 2 punta. Trica, kralj, duja, konj i fanat su 5 bela, odnosno 1 punat i 2 bele. Ukupno 3 punta i 2 bele, a to se broji kao 3 punta.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "bele"
+      }
+    },
+    {
+      "id": "pb-4",
+      "vrsta": "broj",
+      "pitanje": "Koliko punata ukupno ima u jednom dijeljenju?",
+      "tocno": 11,
+      "jedinica": "punata",
+      "objasnjenje": "Četiri aša, dvadeset bela i ultima daju 11 punata i 2 bele. Te dvije bele se ne broje.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "ultima"
+      }
+    },
+    {
+      "id": "pb-5",
+      "vrsta": "izbor",
+      "pitanje": "Što donosi ultima?",
+      "odgovori": [
+        {
+          "tekst": "Jedan punat uz karte u zadnjoj ruci",
+          "tocno": true
+        },
+        {
+          "tekst": "Jednu belu"
+        },
+        {
+          "tekst": "Ništa, samo pravo da se otvara"
+        },
+        {
+          "tekst": "Tri punta"
+        }
+      ],
+      "objasnjenje": "Tko uzme zadnju ruku, dobiva još jedan punat. Vrijedi koliko jedan aš.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "ultima"
+      }
+    },
+    {
+      "id": "pb-6",
+      "vrsta": "izbor",
+      "pitanje": "Partija je do 41. Nakon dijeljenja imate 43, a protivnici 45. Što sada?",
+      "odgovori": [
+        {
+          "tekst": "Pobijedili su protivnici, jer imaju više",
+          "tocno": true
+        },
+        {
+          "tekst": "Pobijedili ste vi, jer ste prvi prešli 41"
+        },
+        {
+          "tekst": "Igra se dodatno dijeljenje"
+        }
+      ],
+      "objasnjenje": "Kad oba para prijeđu cilj u istom dijeljenju, pobjeđuje par s više punata. Dodatno dijeljenje igra se samo kod izjednačenja.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "partija"
+      }
+    },
+    {
+      "id": "pb-7",
+      "vrsta": "izbor",
+      "pitanje": "Par nije uzeo nijedan punat, ali je akužao 3 trice. Što dobiva?",
+      "odgovori": [
+        {
+          "tekst": "3 punta od akuže",
+          "tocno": true
+        },
+        {
+          "tekst": "Ništa, kapot briše akužu"
+        },
+        {
+          "tekst": "3 punta manje"
+        }
+      ],
+      "objasnjenje": "Kod nas kapot ne nosi dodatne punte i ne briše akužu.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "kapot"
+      }
+    },
+    {
+      "id": "pb-8",
+      "vrsta": "stol",
+      "pitanje": "Partner je otvorio tricu kupa, a igrač prije tebe stavio je četvorku. Trica sigurno uzima ruku. Što staviš?",
+      "ruka": "kupe:13,6|spade:7,4|dinari:12,5",
+      "stol": [
+        {
+          "tko": "partner",
+          "karta": "kupe:3"
+        },
+        {
+          "tko": "prije",
+          "karta": "kupe:4"
+        }
+      ],
+      "tocne": [
+        "kupe:13"
+      ],
+      "objasnjenje": "Trica je najjača karta u boji, pa partner sigurno uzima ruku. Daješ mu kralja: bela ide vašem paru. Šestica ne nosi ništa.",
+      "izvor": {
+        "lekcija": "punti-i-bele",
+        "odjeljak": "savjet"
+      }
+    }
+  ]
+}
