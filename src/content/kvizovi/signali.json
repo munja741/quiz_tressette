@@ -1,0 +1,104 @@
+{
+  "lekcija": "signali",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "si-1",
+      "vrsta": "izbor",
+      "pitanje": "Koji su signali kod nas dopušteni?",
+      "odgovori": [
+        { "tekst": "Samo bato i strišo", "tocno": true },
+        { "tekst": "Bato, rebato, strišo i volo" },
+        { "tekst": "Bilo koji, ako se partneri dogovore" }
+      ],
+      "objasnjenje": "Kod nas su dopuštena samo dva signala. Ono što talijanska škola zove rebato daje se batom.",
+      "izvor": { "lekcija": "signali", "odjeljak": "zasto" }
+    },
+    {
+      "id": "si-2",
+      "vrsta": "izbor",
+      "pitanje": "Tko smije dati signal?",
+      "odgovori": [
+        { "tekst": "Samo igrač koji otvara ruku, uz kartu kojom otvara", "tocno": true },
+        { "tekst": "Svaki igrač, kad stavlja kartu" },
+        { "tekst": "Samo partner igrača koji otvara" }
+      ],
+      "objasnjenje": "Signal daje samo onaj tko otvara, samo za boju koju otvara. Ostali odgovaraju kartom, bez signala.",
+      "izvor": { "lekcija": "signali", "odjeljak": "tko-signalizira" }
+    },
+    {
+      "id": "si-3",
+      "vrsta": "izbor",
+      "pitanje": "Što znači bato?",
+      "odgovori": [
+        { "tekst": "Igraj najjaču i vrati mi manjom", "tocno": true },
+        { "tekst": "Imam još jednu manju kartu te boje" },
+        { "tekst": "Nemam više karata te boje" }
+      ],
+      "objasnjenje": "Bato traži od partnera najjaču kartu u boji i povratak u tu boju manjom kartom.",
+      "izvor": { "lekcija": "signali", "odjeljak": "bato" }
+    },
+    {
+      "id": "si-4",
+      "vrsta": "stol",
+      "pitanje": "Partner je otvorio četvorku kupa uz bato, igrač prije tebe stavio je sedmicu. Što staviš?",
+      "ruka": "kupe:A,13,5|spade:12,4|dinari:6",
+      "stol": [
+        { "tko": "partner", "karta": "kupe:4", "signal": "bato" },
+        { "tko": "prije", "karta": "kupe:7" }
+      ],
+      "tocne": ["kupe:A"],
+      "objasnjenje": "Na partnerov bato igraš svoju najjaču kartu te boje. Tvoja najjača kupa je aš.",
+      "izvor": { "lekcija": "signali", "odjeljak": "odgovor-na-bato" }
+    },
+    {
+      "id": "si-5",
+      "vrsta": "izbor",
+      "pitanje": "Na partnerov bato uzeo si ruku ašem kupa. Što sada otvaraš?",
+      "odgovori": [
+        { "tekst": "Manju kupu, da se vratim partneru u boju", "tocno": true },
+        { "tekst": "Kralja špada, da promijenim boju" },
+        { "tekst": "Kralja kupa, najjaču kupu koju imam" }
+      ],
+      "objasnjenje": "Drugi dio bata je \"vrati mi manjom\": kad uzmeš ruku, vraćaš se u partnerovu boju manjom kartom.",
+      "izvor": { "lekcija": "signali", "odjeljak": "odgovor-na-bato" }
+    },
+    {
+      "id": "si-6",
+      "vrsta": "izbor",
+      "pitanje": "Imaš duju i tri lišine kupa, bez trice, i želiš da partner stavi tricu ako je ima. Koji signal daješ?",
+      "karte": "kupe:2,7,5,4",
+      "odgovori": [
+        { "tekst": "Bato", "tocno": true },
+        { "tekst": "Strišo" },
+        { "tekst": "Nijedan, za to kod nas nema signala" }
+      ],
+      "objasnjenje": "Kod nas se bato daje i s dujom kad se traži trica. Talijanska škola tome kaže rebato.",
+      "izvor": { "lekcija": "signali", "odjeljak": "bato" }
+    },
+    {
+      "id": "si-7",
+      "vrsta": "izbor",
+      "pitanje": "Igrač poslije tebe otvorio je uz strišo. Što znaš?",
+      "odgovori": [
+        { "tekst": "Ima još jednu manju kartu te boje", "tocno": true },
+        { "tekst": "Ima tricu te boje" },
+        { "tekst": "To mu je zadnja karta te boje" }
+      ],
+      "objasnjenje": "Strišo znači da otvarač ima još jednu kartu iste boje, manju od one koju je odigrao. Signal čuju svi za stolom.",
+      "izvor": { "lekcija": "signali", "odjeljak": "striso" }
+    },
+    {
+      "id": "si-8",
+      "vrsta": "izbor",
+      "pitanje": "Partner otvara kupe, a ti kažeš \"imam aša\". Je li to dopušteno?",
+      "odgovori": [
+        { "tekst": "Nije. Svaki govor o kartama osim dva signala je varanje.", "tocno": true },
+        { "tekst": "Jest, ako to kažeš prije nego staviš kartu" },
+        { "tekst": "Jest, ako se protivnici slažu" }
+      ],
+      "objasnjenje": "Dopušteni su samo bato i strišo, i daje ih samo onaj tko otvara.",
+      "izvor": { "lekcija": "signali", "odjeljak": "zasto" }
+    }
+  ]
+}
