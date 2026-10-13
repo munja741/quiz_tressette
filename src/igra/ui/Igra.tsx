@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { type Karta, naziv, nazivAkuzativ, parsirajZapis, boja, uBoji, GENITIV_BOJE, BOJE } from '../karte.ts';
-import { type Dijeljenje, type Odigrano, type Signal, type Kombinacija, odigraj, dopustene, akuzaj, pronadiAkuzu, beleDoSada, par } from '../dijeljenje.ts';
-import { type Partija, type Postavke, type Razina, novaPartija, zakljuciDijeljenje, sljedeceDijeljenje, ponoviDijeljenje } from '../partija.ts';
+import { type Dijeljenje, type Odigrano, type Signal, odigraj, dopustene, akuzaj, pronadiAkuzu, beleDoSada, par } from '../dijeljenje.ts';
+import { type Partija, type Postavke, novaPartija, zakljuciDijeljenje, sljedeceDijeljenje, ponoviDijeljenje } from '../partija.ts';
 import { novoSjeme } from '../slucaj.ts';
 import { vidljivoStanje } from '../cpu/znanje.ts';
 import { situacija } from '../cpu/situacija.ts';
@@ -9,7 +9,8 @@ import { pravilo, type CpuPotez } from '../cpu/igrac-cpu.ts';
 import { cpuPotez } from '../cpu/klijent.ts';
 import { cpuAkuza } from '../cpu/igraj-dijeljenje.ts';
 import { SlikaKarte, Poledina, svgKarte } from './Karta.tsx';
-import { Pocetak, RAZINE } from './Pocetak.tsx';
+import { Pocetak } from './Pocetak.tsx';
+import { opisKombinacije } from '../opis.ts';
 import { Pregled } from './Pregled.tsx';
 import { ucitaj, spremi, type Statistika } from './spremanje.ts';
 import { IME, ULOGA, IME_PARA } from './imena.ts';
@@ -25,12 +26,6 @@ function punti(b: number): string {
   if (!p && !r) return '0';
   if (!r) return `${p}`;
   return p ? `${p} i ${r} ${r === 1 ? 'bela' : 'bele'}` : `${r} ${r === 1 ? 'bela' : 'bele'}`;
-}
-
-function opisKombinacije(k: Kombinacija): string {
-  if (k.vrsta === 'napolitana') return `napolitana u ${['kupama', 'špadama', 'dinarima', 'baštonima'][k.kljuc]}`;
-  const ime = ['trice', 'duje', 'aša'][k.kljuc];
-  return `${k.vrsta === 'cetiri' ? '4' : '3'} ${ime}`;
 }
 
 function hashPoveznica(): { ruka?: Karta[]; dijeljenje?: { sjeme: number; djelitelj: number }; opis?: string } {
@@ -124,8 +119,9 @@ export default function Igra() {
     if (n > prikazanoRuku.current && d.tekuca.length === 0) {
       prikazanoRuku.current = n;
       const r = d.odigrane[n - 1];
-      setPrikazStih(r.karte);
       setNajava((x) => `${x} ${r.uzeo === 0 ? 'Ruku uzimaš ti' : `Ruku uzima ${IME[r.uzeo]}`}.`);
+      if (d.gotovo) return; // ultima ostaje na stolu dok igrač ne krene dalje
+      setPrikazStih(r.karte);
       const t = setTimeout(() => setPrikazStih(null), Math.max(400, postavke.stanka * 1.4));
       return () => clearTimeout(t);
     }
@@ -133,7 +129,7 @@ export default function Igra() {
 
   // kraj dijeljenja
   useEffect(() => {
-    if (!partija || !d || !d.gotovo || prikazStih || faza !== 'igra') return;
+    if (!partija || !d || !d.gotovo || partija.zakljuceno || faza !== 'igra') return;
     const z = zakljuciDijeljenje(partija);
     setPartija(z);
     const o = z.zavrsena[z.zavrsena.length - 1].rezultat;
@@ -155,12 +151,11 @@ export default function Igra() {
   useEffect(() => {
     if (!partija || !d || faza !== 'igra' || d.gotovo || prikazStih || d.naPotezu === 0 || akuzaCeka) return;
     const igrac = d.naPotezu;
-    const razina: Razina = igrac === 2 ? partija.postavke.razinaPartner : partija.postavke.razinaProtivnici;
     const moj = ++zeton.current;
     const pocetak = Date.now();
     const pogled = vidljivoStanje(d, igrac);
     let t: ReturnType<typeof setTimeout> | undefined;
-    cpuPotez(pogled, razina).then((pot) => {
+    cpuPotez(pogled, 'majstor').then((pot) => {
       const ostatak = Math.max(0, postavke.stanka - (Date.now() - pocetak));
       t = setTimeout(() => {
         if (zeton.current !== moj) return;
@@ -264,16 +259,32 @@ export default function Igra() {
   const mojPotez = d.naPotezu === 0 && !d.gotovo && !prikazStih && !akuzaCeka && faza === 'igra';
   const dop = mojPotez ? dopustene(d) : [];
   const bele = beleDoSada(d);
-  const uzete = [0, 1].map((p) => d.odigrane.filter((r) => par(r.uzeo) === p).length);
-  const naStolu: Odigrano[] = prikazStih ?? d.tekuca;
   const zadnja = d.odigrane.length ? d.odigrane[d.odigrane.length - 1] : null;
-  const signalRuke = prikazStih ? (zadnja?.signal ?? null) : d.tekuciSignal;
-  const otvaracRuke = prikazStih ? zadnja?.otvara : d.otvaraTekucu;
+  const prikazujeZadnju = !!prikazStih || d.gotovo;
+  const uzete = [0, 1].map((p) => d.odigrane.filter((r) => par(r.uzeo) === p).length);
+  const naStolu: Odigrano[] = prikazStih ?? (d.gotovo && zadnja ? zadnja.karte : d.tekuca);
+  const signalRuke = prikazujeZadnju ? (zadnja?.signal ?? null) : d.tekuciSignal;
+  const otvaracRuke = prikazujeZadnju ? zadnja?.otvara : d.otvaraTekucu;
   const brojDijeljenja = partija.zavrsena.length + (partija.zakljuceno ? 0 : 1);
   const akuzaIgraca = (i: number) => d.akuza.find((a) => a.igrac === i);
+  // prvi krug: akuža se vidi redom kako igrači dolaze na red, dok traje prva ruka
+  const prviKrug = d.odigrane.length === 0 || (d.odigrane.length === 1 && !!prikazStih);
+  const prvaRuka = d.odigrane.length ? d.odigrane[0].karte : d.tekuca;
+  const akuzaVidljiva = (i: number) => prviKrug && (prvaRuka.some((o) => o.igrac === i) || (d.odigrane.length === 0 && d.naPotezu === i));
+
+  const najave = (i: number) => {
+    const a = akuzaVidljiva(i) ? akuzaIgraca(i) : undefined;
+    const sig = signalRuke && otvaracRuke === i && naStolu.length > 0 ? signalRuke : null;
+    if (!a && !sig) return null;
+    return (
+      <div class={`najave najave-${i}`} aria-live="polite">
+        {a && <div class="najava-akuza"><span class="najava-oznaka">Akuža {a.punti}</span> {a.kombinacije.map(opisKombinacije).join(', ')}</div>}
+        {sig && <div class="najava-signal">{SIGNAL_IME[sig]}</div>}
+      </div>
+    );
+  };
 
   const plocica = (i: number) => {
-    const a = akuzaIgraca(i);
     return (
       <div class={`plocica mjesto-${i} ${d.naPotezu === i && !d.gotovo && !prikazStih ? 'na-potezu' : ''}`}>
         <div class="plocica-ime">
@@ -284,8 +295,6 @@ export default function Igra() {
           {ULOGA[i] && <span>{ULOGA[i]}</span>}
           <span>{d.ruke[i].length} {d.ruke[i].length === 1 ? 'karta' : d.ruke[i].length < 5 && d.ruke[i].length > 1 ? 'karte' : 'karata'}</span>
         </div>
-        {(signalRuke && otvaracRuke === i && naStolu.length > 0) && <div class="oznaka-signala">{SIGNAL_IME[signalRuke]}</div>}
-        {a && d.odigrane.length < 2 && <div class="oznaka-akuze">akuža {a.punti}: {a.kombinacije.map(opisKombinacije).join(', ')}</div>}
       </div>
     );
   };
@@ -323,10 +332,10 @@ export default function Igra() {
 
         {/* stol */}
         <main class="stol-okvir">
-          <div class="stol" onClick={() => prikazStih && setPrikazStih(null)}>
-            <div class="pozicija gore">{plocica(2)}<div class="poledine">{d.ruke[2].map((k) => <Poledina key={k} klasa="mala" />)}</div></div>
-            <div class="pozicija lijevo">{plocica(1)}</div>
-            <div class="pozicija desno">{plocica(3)}</div>
+          <div class="stol" onClick={() => prikazStih && !d.gotovo && setPrikazStih(null)}>
+            <div class="pozicija gore">{plocica(2)}<div class="poledine">{d.ruke[2].map((k) => <Poledina key={k} klasa="mala" />)}</div>{najave(2)}</div>
+            <div class="pozicija lijevo">{plocica(1)}{najave(1)}</div>
+            <div class="pozicija desno">{plocica(3)}{najave(3)}</div>
             <div class="sredina" aria-label="Karte na stolu">
               {naStolu.map((o) => (
                 <div class={`na-stolu od-${o.igrac}`} key={o.karta}>
@@ -354,10 +363,18 @@ export default function Igra() {
                 </div>
               )}
             </div>
-            <div class="pozicija dolje">{plocica(0)}</div>
+            <div class="pozicija dolje">{najave(0)}{plocica(0)}</div>
           </div>
 
+          {faza === 'obracun' && partija.zavrsena.length > 0 && (
+            <Obracun partija={partija} sljedece={sljedece} pregled={() => setFaza('pregled')} ponovi={ponovi} kopiraj={kopirajPoveznicu} kopirano={kopirano}
+              novaPartija={() => { setFaza('pocetak'); setPartija(null); }} />
+          )}
+          {faza === 'pregled' && partija.zavrsena.length > 0 && (
+            <div class="ispod-stola"><Pregled d={partija.zavrsena[partija.zavrsena.length - 1].dijeljenje} zatvori={() => setFaza('obracun')} kompaktne={kompaktne} /></div>
+          )}
           {/* moja ruka */}
+          {!d.gotovo && <>
           <div class="moja-ruka" role="group" aria-label="Tvoje karte">
             {poBojama.map((karte) => (
               <div class="boja-grupa" key={boja(karte[0])}>
@@ -388,7 +405,7 @@ export default function Igra() {
               </div>
             )}
             <div class="poruka" aria-live="polite">
-              {mojPotez ? (postavke.potvrda === 'dva' && odabrana !== null ? `Dodirni ${nazivAkuzativ(odabrana)} još jednom da je odigraš.` : d.tekuca.length ? `Odgovori na ${GENITIV_BOJE[BOJE[boja(d.tekuca[0].karta)]]}.` : 'Ti otvaraš ruku.') : prikazStih ? 'Dodirni stol za sljedeću ruku.' : akuzaCeka ? 'Odluči o akuži.' : d.gotovo ? '' : `Na potezu: ${IME[d.naPotezu]}.`}
+              {d.gotovo ? '' : mojPotez ? (postavke.potvrda === 'dva' && odabrana !== null ? `Dodirni ${nazivAkuzativ(odabrana)} još jednom da je odigraš.` : d.tekuca.length ? `Odgovori na ${GENITIV_BOJE[BOJE[boja(d.tekuca[0].karta)]]}.` : 'Ti otvaraš ruku.') : prikazStih ? 'Dodirni stol za sljedeću ruku.' : akuzaCeka ? 'Odluči o akuži.' : d.gotovo ? '' : `Na potezu: ${IME[d.naPotezu]}.`}
             </div>
             {pp.ucitelj !== 'iskljucen' && (
               <button type="button" class="gumb malen" disabled={!mojPotez || savjetRacuna} onClick={traziSavjet}>{savjetRacuna ? 'Računam…' : 'Savjet'}</button>
@@ -397,6 +414,7 @@ export default function Igra() {
           {savjet && mojPotez && (
             <p class="savjet-tekst">Savjet: {nazivAkuzativ(savjet.karta)}{savjet.signal ? `, ${SIGNAL_IME[savjet.signal]}` : ''}. {savjet.razlog.tekst}{savjet.razlog.tocka ? ` (${savjet.razlog.tocka})` : ''}</p>
           )}
+          </>}
         </main>
 
         {/* bočna ploča */}
@@ -430,10 +448,7 @@ export default function Igra() {
             )}
             {kartica === 'postavke' && (
               <form class="postavke" onSubmit={(e) => e.preventDefault()}>
-                <label class="izbor"><span>Partner</span>
-                  <select value={pp.razinaPartner} onChange={(e) => promijeniPostavke({ razinaPartner: (e.target as HTMLSelectElement).value as Razina })}>{RAZINE.map((x) => <option value={x.r} key={x.r}>{x.ime}</option>)}</select></label>
-                <label class="izbor"><span>Protivnici</span>
-                  <select value={pp.razinaProtivnici} onChange={(e) => promijeniPostavke({ razinaProtivnici: (e.target as HTMLSelectElement).value as Razina })}>{RAZINE.map((x) => <option value={x.r} key={x.r}>{x.ime}</option>)}</select></label>
+                <p class="malo">Partnera i protivnike igra računalo na razini Majstor.</p>
                 <label class="izbor"><span>Stanka između poteza</span>
                   <select value={postavke.stanka} onChange={(e) => promijeniPostavke({ stanka: Number((e.target as HTMLSelectElement).value) })}>
                     <option value={300}>kratka</option><option value={700}>normalna</option><option value={1200}>duga</option></select></label>
@@ -455,11 +470,6 @@ export default function Igra() {
         </aside>
       </div>
 
-      {faza === 'obracun' && partija.zavrsena.length > 0 && (
-        <Obracun partija={partija} sljedece={sljedece} pregled={() => setFaza('pregled')} ponovi={ponovi} kopiraj={kopirajPoveznicu} kopirano={kopirano}
-          novaPartija={() => { setFaza('pocetak'); setPartija(null); }} />
-      )}
-      {faza === 'pregled' && <div class="preklop"><div class="preklop-ploca siroka"><Pregled d={partija.zavrsena[partija.zavrsena.length - 1].dijeljenje} zatvori={() => setFaza('obracun')} kompaktne={kompaktne} /></div></div>}
     </div>
   );
 }
@@ -473,8 +483,8 @@ function Obracun({ partija, sljedece, pregled, ponovi, kopiraj, kopirano, novaPa
     : `Dijeljenje ${partija.zavrsena.length}`;
   const ruke = (n: number) => `${n} ${n === 1 ? 'punat' : n > 1 && n < 5 ? 'punta' : 'punata'}`;
   return (
-    <div class="preklop" role="dialog" aria-labelledby="obracun-naslov">
-      <div class="preklop-ploca">
+    <section class="ispod-stola obracun-ploca" aria-labelledby="obracun-naslov">
+      <div>
         <h2 id="obracun-naslov">{naslov}</h2>
         <table class="tablica obracun">
           <thead><tr><th scope="col"></th><th scope="col">{IME_PARA[0]}</th><th scope="col">{IME_PARA[1]}</th></tr></thead>
@@ -494,12 +504,12 @@ function Obracun({ partija, sljedece, pregled, ponovi, kopiraj, kopirano, novaPa
         <div class="akcije">
           {!kraj && <button type="button" class="gumb glavni" onClick={sljedece}>Sljedeće dijeljenje</button>}
           {kraj && <button type="button" class="gumb glavni" onClick={novaPartija}>Nova partija</button>}
-          <button type="button" class="gumb" onClick={pregled}>Pregled dijeljenja</button>
+          <button type="button" class="gumb" onClick={pregled}>Analiza dijeljenja</button>
           {!kraj && <button type="button" class="gumb" onClick={ponovi}>Ponovi ovo dijeljenje</button>}
           <button type="button" class="gumb" onClick={kopiraj}>{kopirano ? 'Poveznica kopirana' : 'Kopiraj poveznicu na dijeljenje'}</button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

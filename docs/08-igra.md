@@ -27,13 +27,12 @@ Početni zaslon: izbor načina, prekidač **Igra s akužom** (uključeno ili isk
 | --- | --- | --- |
 | Cilj | jedno dijeljenje, 21, 31, 41 | 41 |
 | Signali | bato i strišo, bez signala | bato i strišo |
-| Razina CPU igrača | Početnik, Igrač, Majstor | Igrač |
 | Stanka između poteza | kratka (0,3 s), normalna (0,7 s), duga (1,2 s) | normalna |
 | Učitelj | isključen, savjet na zahtjev, upozori na grešku | savjet na zahtjev |
 | Brojač punata | vidljiv, skriven ("broji sam") | vidljiv |
 | Potvrda poteza | jedan dodir, dva dodira | dva dodira na mobitelu, jedan na računalu |
 
-Razina CPU igrača može se zadati posebno za partnera i za protivnike (napredna postavka), da igrač može igrati s majstorom protiv početnika ili obratno.
+Partnera i protivnike u igri uvijek igra računalo na razini **Majstor**, najbolje što zna. Razine Početnik i Igrač ostaju u kodu za testove i provjeru snage, ali se u igri ne biraju (odluka urednice, 13. 10. 2026.).
 
 Igra se po hrvatskoj praksi koju je potvrdila urednica (vidi `01-vizija.md`, Potvrđena hrvatska praksa). Smjer igre nije postavka: igra uvijek ide u smjeru kazaljke na satu. Dopušteni su samo signali bato i strišo. Ono što talijanska škola zove rebato kod nas se daje istim signalom, batom. "Volo" i ostali talijanski signali se ne izvode.
 
@@ -90,7 +89,7 @@ Pravila se pišu prema lekcijama `pravila`, `punti-i-bele` i `akuza` te prema po
 - Postoje samo dva signala:
   - **Bato:** "igraj najjaču i vrati mi manjom". Partner stavlja svoju najjaču kartu te boje i, kad uzme ruku, vraća se u tu boju manjom kartom. Bato se daje i s tricom i s dujom kad se traži trica: ono što talijanska škola razlikuje kao bato i rebato, kod nas je jedan signal.
   - **Strišo:** isto značenje kao "liscio" u talijanskom priručniku (lekcija `signali`).
-- Signal se prikazuje kao oznaka na natpisnoj pločici igrača ("bato") i ostaje vidljiva dok traje ruka. Zapisuje se u povijest ruku.
+- Signal se jasno ispisuje na stolu, ispred igrača koji ga je dao ("bato" ili "strišo"), i ostaje vidljiv dok traje ruka. Tako se uvijek vidi tko signalizira i što. Zapisuje se i u povijest ruku.
 - Drugih signala nema. Engine odbija svaki drugi signal.
 
 ## Prikaz stola (po uzoru na BBO)
@@ -127,6 +126,8 @@ Raspored i ponašanje slijede BBO-ov stol za bridž, prilagođeno trešeti. Graf
 - **Partnerove i protivničke karte** prikazuju se poleđinom ili samo kao broj na pločici. Poleđina je vlastiti crtež: zelena čoha i mjedena mreža.
 - **Sredina stola:** odigrana karta odmah se pojavi ispred mjesta igrača koji ju je odigrao. Nema klizanja ni okretanja.
 - **Kraj ruke:** kad su na stolu sve četiri karte, ostaju vidljive koliko traje postavka Stanka između poteza, a zatim nestanu. Brojač uzetih ruku odmah se poveća. Klik ili dodir na stol skraćuje stanku.
+- **Ultima ostaje na stolu:** nakon zadnje ruke dijeljenja karte se ne miču i stol se ničim ne prekriva, da se može proučiti kako je ultima odigrana. Obračun i izbornik pojavljuju se ispod stola.
+- **Akuža na stolu:** u prvom krugu, redom kako igrači dolaze na red, ispred svakog igrača piše što je akužao, npr. "Akuža 3: 3 trice (bez kupa)". Kod tri iste u zagradi je boja koja nedostaje. Kod četiri iste nema zagrade, jer igrač ima veliku u svim bojama. Napolitana se piše s bojom: "napolitana u dinarima". Natpisi nestaju kad se prva ruka pokupi.
 - **Karte:** velika ilustrirana karta iz `05-dizajn.md` (komponenta `Karta`), u bojama kupe plava, špade crna, dinari zlatna, baštoni crvena. Uz postavku "kompaktne karte" koristi se karta iz dijagrama ruke (broj i ikona), kao jednostavne karte u BBO-u.
 
 **Ploča sa stanjem** (gornji kut, kao BBO-ov okvir s brojem dijeljenja)
@@ -147,7 +148,7 @@ Raspored i ponašanje slijede BBO-ov stol za bridž, prilagođeno trešeti. Graf
 
 - Dijeljenje se ne prikazuje. Na početku dijeljenja ruke su odmah pune.
 - Potez CPU igrača pojavi se nakon postavljene stanke. Stanka postoji samo zato da igrač stigne vidjeti tko je što odigrao.
-- Ploča obračuna na kraju dijeljenja pojavi se odmah, bez klizanja.
+- Obračun na kraju dijeljenja pojavi se odmah ispod stola, bez klizanja i bez prekrivanja stola.
 - Zvuk je isključen dok ga igrač ne uključi. Samo tihi zvuk karte na stolu.
 
 **Mobitel (prvo)**
@@ -173,9 +174,9 @@ Raspored i ponašanje slijede BBO-ov stol za bridž, prilagođeno trešeti. Graf
 | Akuža | 3 | |
 | **Ukupno** | **10** | **5** |
 
-Ispod: stanje partije, gumbi **Sljedeće dijeljenje**, **Pregled dijeljenja** i **Ponovi ovo dijeljenje**.
+Obračun stoji ispod stola, na mjestu gdje je bila ruka igrača. Ispod tablice: stanje partije i gumbi **Sljedeće dijeljenje** (ili **Nova partija** na kraju), **Analiza dijeljenja**, **Ponovi ovo dijeljenje** i **Kopiraj poveznicu na dijeljenje**. Analiza se također otvara ispod stola, ne preko cijelog zaslona.
 
-**Pregled dijeljenja** (kao BBO-ov pregled nakon dijeljenja)
+**Analiza dijeljenja** (kao BBO-ov pregled nakon dijeljenja)
 
 - Sve četiri ruke otvorene od početka. Gumbi na početak, natrag, naprijed i na kraj vode potez po potez, kao u BBO-u.
 - Uz svaki potez CPU igrača piše razlog (vidi Objašnjenja).
@@ -371,6 +372,10 @@ Radi se nakon Faze 2 (kad postoje komponente karte), a može ići usporedno s fa
 6. Akuža se uključuje ili isključuje pri pokretanju partije.
 7. Signali su samo bato ("igraj najjaču i vrati mi manjom") i strišo (kao liscio u priručniku). Talijanski rebato kod nas se daje batom. Ostali talijanski signali se ne izvode.
 8. Igra nema animacija: ni dijeljenja ni odigravanja karata. Izgled slijedi BBO.
+9. Partner i protivnici uvijek igraju na razini Majstor (13. 10. 2026.).
+10. Akuža se u prvom krugu ispisuje na stolu ispred igrača; kod tri iste u zagradi "bez" i boja koja nedostaje, kod četiri iste bez zagrade. Akuža je zato javna i CPU igrači znaju točne karte iz nje.
+11. Signali bato i strišo ispisuju se na stolu ispred igrača koji signalizira.
+12. Nakon ultime stol ostaje kakav jest; obračun i izbornik su ispod stola.
 
 ## Otvoreno
 

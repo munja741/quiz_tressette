@@ -37,6 +37,7 @@ Jednom treba uključiti Pages: **Settings → Pages → Source: GitHub Actions**
 
 Razine CPU igrača:
 
+- **U igri** partnera i protivnike uvijek igra **Majstor**. Ostale razine služe testovima i provjeri snage:
 - **Početnik:** heuristika, 20 % nasumičnih poteza.
 - **Igrač:** pravila iz priručnika, heuristika, signali, brojanje karata u zadnje tri ruke.
 - **Majstor:** sve to i pretraga.

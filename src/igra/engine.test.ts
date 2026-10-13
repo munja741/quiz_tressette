@@ -182,3 +182,14 @@ describe('pregled', () => {
     expect(stanjeNakon(d, 0).ruke).toEqual(d.pocetneRuke);
   });
 });
+
+import { opisKombinacije } from './opis.ts';
+describe('opis akuže na stolu', () => {
+  it('tri iste s bojom koja nedostaje, četiri bez zagrade', () => {
+    const k = pronadiAkuzu(parsirajZapis('kupe:3,A|spade:3,A|dinari:A|bastoni:3,2'));
+    expect(k.map(opisKombinacije).sort()).toEqual(['3 aša (bez baštona)', '3 trice (bez dinara)']);
+    const c = pronadiAkuzu(parsirajZapis('kupe:2|spade:2|dinari:2|bastoni:2'));
+    expect(c.map(opisKombinacije)).toEqual(['4 duje']);
+    expect(pronadiAkuzu(parsirajZapis('dinari:3,2,A')).map(opisKombinacije)).toEqual(['napolitana u dinarima']);
+  });
+});
