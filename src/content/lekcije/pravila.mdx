@@ -1,0 +1,91 @@
+---
+naslov: Pravila igre
+razina: Početnik
+redoslijed: 1
+minuta: 7
+opis: Špil, red jačine, dijeljenje i kako se igra jedna ruka trešete u parove.
+ciljevi:
+  - Prepoznati četiri boje i deset karata u svakoj.
+  - Znati red jačine, od trice do četvorke.
+  - "Odigrati ruku (štih) po pravilima: tko otvara, kako se odgovara, tko uzima."
+  - Razumjeti dijeljenje i smjer igre.
+sazetak: Igraju dva para, partneri sjede nasuprot, a svatko dobiva deset karata. Najjača karta u boji je trica, zatim duja i aš, a na otvorenu boju mora se odgovoriti ako je imaš. Ruku uzima najjača karta otvorene boje, a tko je uzme, otvara sljedeću.
+---
+import Karte from '../../components/Karte.astro';
+import Dijagram from '../../components/Dijagram.astro';
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+
+<h2 id="stol">Četiri igrača, dva para</h2>
+
+Trešetu u parove igraju četiri igrača. Partneri sjede nasuprot jedan drugome, pa se za stolom izmjenjuju: ti, protivnik, partner, protivnik. Punte koje uzmete ti i partner zbrajaju se zajedno.
+
+U ovoj školi igrače uvijek zovemo prema tome kada igraju: **igrač prije tebe** igra neposredno prije tebe, **igrač poslije tebe** neposredno poslije. Tako opis vrijedi za bilo koji stol, bez obzira na to gdje tko sjedi.
+
+<h2 id="spil">Špil</h2>
+
+Igra se talijanskim špilom od 40 karata. Četiri su boje: **kupe**, **špade**, **dinari** i **baštoni**. U svakoj boji je deset karata: trica, duja, aš, tri figure i četiri male karte.
+
+Figure su kralj, konj i fanat. Na našim slikama karata označene su brojevima 13, 12 i 11, kao na mnogim talijanskim špilovima.
+
+<Karte karte="kupe:3,2,A,13,12,11,7,6,5,4" potpis="Svih deset karata jedne boje, od najjače do najslabije." />
+
+<h2 id="red-jacine">Red jačine</h2>
+
+U svakoj boji vrijedi isti red, od najjače prema najslabijoj:
+
+**trica, duja, aš, kralj (13), konj (12), fanat (11), sedmica, šestica, petica, četvorka.**
+
+To je prva stvar na koju se početnik mora naviknuti: aš nije najjači. Trica i duja ga tuku. Te tri karte, trica, duja i aš, zovu se **velike**. Karte od četvorke do sedmice zovu se **lišine** ili male.
+
+<Pravilo naslov="Najjača je trica">
+  <p>Trica tuče sve karte svoje boje, duja tuče sve osim trice, a aš je tek treći.</p>
+</Pravilo>
+
+Zato je duja koju držiš sama vrlo ranjiva dok trica nije izašla, a aš je siguran tek kad su trica i duja te boje već odigrane. O tome se u trešeti stalno razmišlja.
+
+<h2 id="dijeljenje">Dijeljenje</h2>
+
+U svakom dijeljenju podijeli se svih 40 karata, pa svaki igrač dobiva **deset karata**. Dijeli se u dva kruga po pet karata, počevši od igrača poslije djelitelja.
+
+Prvu ruku otvara igrač koji je na redu poslije djelitelja. Nakon svakog dijeljenja djelitelj se mijenja: dijeli sljedeći igrač u smjeru igre.
+
+<KodNas>
+  <p>Špil se ne siječe. Dijeli se u dva kruga po pet karata.</p>
+</KodNas>
+
+{/* TREBA POTVRDITI: tko dijeli prvi u partiji uživo (vidi docs/otvorena-pitanja.md). */}
+
+<h2 id="ruka">Kako se igra ruka</h2>
+
+Jedna ruka (štih) su četiri karte, po jedna od svakog igrača.
+
+1. Igrač koji otvara igra bilo koju kartu. Njezina boja postaje **otvorena boja**.
+2. Ostali igraju redom. Tko ima kartu otvorene boje, **mora** je igrati. Može birati koju, ali mora odgovoriti na boju.
+3. Tko nema otvorenu boju, igra bilo koju kartu. To se zove **odbacivanje**.
+4. Ruku uzima **najjača karta otvorene boje**. Odbačene karte druge boje ne mogu uzeti ruku, pa ni trica.
+5. Tko je uzeo ruku, otvara sljedeću.
+
+Aduta u trešeti nema. Zato je odgovaranje na boju toliko važno: jedini način da uzmeš ruku je imati jaču kartu u boji koja je otvorena.
+
+**Primjer.** Igrač prije tebe otvori peticu kupa. Ti staviš aša kupa, igrač poslije tebe nema kupa i baci tricu špada, a partner stavi duju kupa.
+
+<Karte karte="kupe:2,A,5|spade:3" potpis="Karte na stolu. Ruku uzima duja kupa, partnerova karta." />
+
+Trica špada je najjača karta na stolu po imenu, ali nije u otvorenoj boji, pa ne vrijedi ništa za uzimanje ruke. Među kupama najjača je duja. Partner uzima ruku i otvara sljedeću.
+
+<h2 id="smjer">Smjer igre</h2>
+
+Karte se dijele i igra ide u istom smjeru, igrač za igračem.
+
+<KodNas>
+  <p>Igra ide u smjeru kazaljke na satu. Talijanski priručnik koji ova škola koristi kao izvor opisuje suprotan smjer. Zato u lekcijama nikad ne pišemo "lijevo" i "desno", nego "igrač prije tebe" i "igrač poslije tebe".</p>
+</KodNas>
+
+<h2 id="cilj">Cilj igre</h2>
+
+Deset ruku čini jedno dijeljenje. Na kraju dijeljenja svaki par broji punte u kartama koje je uzeo. Partija se igra kroz više dijeljenja, dok jedan par ne skupi dogovoreni broj punata.
+
+Kako se broje punti, što je ultima i zašto se ne broji svaka karta, uči sljedeća lekcija.
+
+<Dijagram karte="kupe:3,A,13,5|spade:2,7,4|dinari:12,6|bastoni:A" potpis="Ovako u lekcijama izgleda ruka od deset karata: grupirana po bojama, unutar boje od najjače karte." />
