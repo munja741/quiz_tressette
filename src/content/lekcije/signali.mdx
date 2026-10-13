@@ -1,0 +1,84 @@
+---
+naslov: "Signali: bato i strišo"
+razina: Početnik
+redoslijed: 4
+minuta: 8
+opis: Dva dopuštena signala u trešeti u parove, što znače, tko ih smije dati i kako na njih odgovara partner.
+preduvjeti: [pravila]
+ciljevi:
+  - Znati koja su dva signala dopuštena i što znače.
+  - Znati tko smije signalizirati i kada.
+  - Odgovoriti na partnerov bato.
+  - Iz protivnikovih signala zaključiti gdje su karte.
+sazetak: Dopuštena su samo dva signala, bato i strišo, i daje ih samo igrač koji otvara ruku, uz kartu kojom otvara. Bato znači "igraj najjaču i vrati mi manjom", a strišo da otvarač ima još jednu manju kartu te boje. Signal čuju i protivnici, pa svaki signal pomaže partneru, ali i otkriva karte.
+---
+import Dijagram from '../../components/Dijagram.astro';
+import Karte from '../../components/Karte.astro';
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+
+<h2 id="zasto">Zašto signali</h2>
+
+Partneri ne smiju razgovarati o kartama. Ne smiju reći "imam tricu" ni pokazati karte. Ipak, par igra zajedno i treba znati gdje je čija snaga. Zato postoje dogovoreni signali: kratka, unaprijed poznata poruka koja ide uz kartu.
+
+<KodNas>
+  <p>Dopuštena su samo dva signala, bato i strišo. Svaki drugi govor ili znak o kartama smatra se varanjem.</p>
+</KodNas>
+
+{/* TREBA POTVRDITI: daju li se bato i strišo kod nas gestom ili riječju (vidi docs/otvorena-pitanja.md). */}
+
+<h2 id="tko-signalizira">Tko smije signalizirati</h2>
+
+<Pravilo naslov="Signal daje samo onaj tko otvara">
+  <p>Signal smije dati samo igrač koji otvara ruku, samo za boju koju otvara i samo uz kartu kojom je otvara.</p>
+</Pravilo>
+
+Igrači koji odgovaraju na boju ne signaliziraju ništa. Njihova poruka partneru je sama karta koju stave.
+
+<h2 id="bato">Bato: igraj najjaču i vrati mi manjom</h2>
+
+Kad otvaraš uz **bato**, partneru kažeš dvije stvari:
+
+1. **igraj najjaču** kartu koju imaš u toj boji;
+2. kad uzmeš ruku, **vrati mi** se u tu boju **manjom** kartom.
+
+Bato se daje u boji u kojoj si jak: kad imaš tricu i još barem dvije karte, ili kad imaš duju i tražiš tricu. Talijanska škola za ovaj drugi slučaj ima poseban signal, rebato, a kod nas se oba slučaja daju istim signalom.
+
+<KodNas>
+  <p>Bato znači "igraj najjaču i vrati mi manjom". Daje se i s tricom i s dujom kad se traži trica.</p>
+</KodNas>
+
+**Primjer.** Otvaraš četvorku špada uz bato. Tvoje špade su trica, šestica, petica i četvorka.
+
+<Dijagram karte="spade:3,6,5,4" igra="spade:4" potpis="Trica i još tri lišine: boja za bato. Otvaraš najmanjom kartom." />
+
+Zašto ne otvoriti tricom? Trica bi uzela ruku, ali u njoj bi bile samo male karte. Ovako partner na tvoj bato stavlja svoju najjaču špadu. Ako je to aš, a nitko nema duju koju bi mogao staviti, aš uzima ruku i punat ostaje vama. Partner se zatim vraća manjom špadom, a tvoja trica uzima tu ruku i možda uhvati protivničku duju.
+
+<h2 id="odgovor-na-bato">Kako odgovaraš na partnerov bato</h2>
+
+Partner je otvorio uz bato. Ti igraš najjaču kartu te boje koju imaš. Ako uzmeš ruku, vraćaš se u istu boju manjom kartom.
+
+<Karte karte="kupe:A,13,5" potpis="Tvoje kupe kad partner otvori kupe uz bato. Igraš aša, svoju najjaču kupu." />
+
+Ne razmišljaj previše o tome je li aš "preskup". Partner je batom rekao da je boja jaka kod vas i da želi tvoju najjaču kartu. Ako ti odgovoriš malom kartom, partnerov plan ne radi.
+
+<h2 id="striso">Strišo: imam još jednu manju</h2>
+
+Kad otvaraš uz **strišo**, partneru kažeš da u toj boji imaš još jednu kartu, manju od one koju si odigrao.
+
+Strišo pomaže partneru da prebroji boju: zna da ćeš na sljedeći krug te boje imati čime odgovoriti. Ali isto saznaju i protivnici. O tome kada se strišo isplati, a kada šteti, govori lekcija na razini Napredni.
+
+<h2 id="bez-signala">Otvaranje bez signala</h2>
+
+Tko otvara bez signala, ne kaže ništa izričito. I to je poruka: partner zna da nisi htio batom tražiti najjaču kartu. Mnogi dobri igrači često igraju bez signala, upravo zato da protivnicima ne kažu previše.
+
+<h2 id="citanje">Signal čuju svi</h2>
+
+Signal ne čuje samo partner. Kad protivnik otvori uz bato, i ti znaš da je ta boja jaka kod njih: vjerojatno ima tricu, ili duju i traži tricu.
+
+Iskoristi to:
+
+- Ako imaš aša te boje, a protivnik bati, računaj da je kod njih barem trica ili duja. Tvoj aš je u opasnosti.
+- Kad protivnik signalizira strišo, znaš da ima još jednu manju kartu te boje. Na drugi krug boje odgovorit će i on.
+
+U igri na ovom siteu signal je ispisan na stolu, ispred igrača koji ga je dao, dok traje ruka.

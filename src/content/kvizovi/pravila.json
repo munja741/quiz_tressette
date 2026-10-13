@@ -1,0 +1,99 @@
+{
+  "lekcija": "pravila",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "pr-1",
+      "vrsta": "izbor",
+      "pitanje": "Koja je najjača karta u boji?",
+      "odgovori": [
+        { "tekst": "Trica", "tocno": true },
+        { "tekst": "Aš" },
+        { "tekst": "Kralj (13)" },
+        { "tekst": "Duja" }
+      ],
+      "objasnjenje": "Trica tuče sve karte svoje boje. Slijede duja i aš.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "red-jacine" }
+    },
+    {
+      "id": "pr-2",
+      "vrsta": "redoslijed",
+      "pitanje": "Poredaj ove dinare od najjače prema najslabijoj.",
+      "karte": "dinari:A,3,13,7,2",
+      "objasnjenje": "Red je uvijek isti: trica, duja, aš, kralj, a male karte na kraju.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "red-jacine" }
+    },
+    {
+      "id": "pr-3",
+      "vrsta": "izbor",
+      "pitanje": "Igrač prije tebe otvori peticu kupa. Ti staviš aša kupa, igrač poslije tebe baci tricu špada, a partner stavi duju kupa. Tko uzima ruku?",
+      "karte": "kupe:2,A,5|spade:3",
+      "odgovori": [
+        { "tekst": "Partner, s dujom kupa", "tocno": true },
+        { "tekst": "Igrač poslije tebe, s tricom špada" },
+        { "tekst": "Ti, s ašem kupa" },
+        { "tekst": "Igrač prije tebe, jer je otvorio" }
+      ],
+      "objasnjenje": "Ruku uzima najjača karta otvorene boje. Otvorene su kupe, a duja kupa je jača od aša. Trica špada je druge boje i ne može uzeti ruku.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "ruka" }
+    },
+    {
+      "id": "pr-4",
+      "vrsta": "izbor",
+      "pitanje": "Otvorene su kupe, a ti imaš dvije kupe. Smiješ li odigrati špadu?",
+      "odgovori": [
+        { "tekst": "Ne. Dok imaš kupe, moraš odgovoriti kupama.", "tocno": true },
+        { "tekst": "Da, ako je špada jača karta." },
+        { "tekst": "Da, ako partner drži ruku." }
+      ],
+      "objasnjenje": "Na otvorenu boju mora se odgovoriti ako je imaš. Drugu boju smiješ igrati tek kad otvorene boje više nemaš.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "ruka" }
+    },
+    {
+      "id": "pr-5",
+      "vrsta": "izbor",
+      "pitanje": "Tko otvara sljedeću ruku?",
+      "odgovori": [
+        { "tekst": "Igrač koji je uzeo prethodnu ruku", "tocno": true },
+        { "tekst": "Igrač poslije onoga koji je otvorio prethodnu ruku" },
+        { "tekst": "Uvijek igrač poslije djelitelja" }
+      ],
+      "objasnjenje": "Tko uzme ruku, otvara sljedeću. Zato je važno tko uzima, a ne samo koliko punata je u ruci.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "ruka" }
+    },
+    {
+      "id": "pr-6",
+      "vrsta": "broj",
+      "pitanje": "Koliko karata dobiva svaki igrač u jednom dijeljenju?",
+      "tocno": 10,
+      "jedinica": "karata",
+      "objasnjenje": "Podijeli se svih 40 karata na četiri igrača, svakome po deset, u dva kruga po pet.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "dijeljenje" }
+    },
+    {
+      "id": "pr-7",
+      "vrsta": "izbor",
+      "pitanje": "Djelitelj je igrač prije tebe. Tko otvara prvu ruku?",
+      "odgovori": [
+        { "tekst": "Ti", "tocno": true },
+        { "tekst": "Djelitelj" },
+        { "tekst": "Tvoj partner" },
+        { "tekst": "Igrač poslije tebe" }
+      ],
+      "objasnjenje": "Prvu ruku otvara igrač koji je na redu poslije djelitelja. Ako dijeli igrač prije tebe, sljedeći si ti.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "dijeljenje" }
+    },
+    {
+      "id": "pr-8",
+      "vrsta": "izbor",
+      "pitanje": "Kako se zovu trica, duja i aš zajedno?",
+      "odgovori": [
+        { "tekst": "Velike", "tocno": true },
+        { "tekst": "Lišine" },
+        { "tekst": "Figure" }
+      ],
+      "objasnjenje": "Trica, duja i aš su velike. Figure su kralj, konj i fanat, a lišine su male karte od četvorke do sedmice.",
+      "izvor": { "lekcija": "pravila", "odjeljak": "red-jacine" }
+    }
+  ]
+}

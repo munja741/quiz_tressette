@@ -1,0 +1,16 @@
+---
+import { dijagramSVG } from '../skola/dijagram.ts';
+interface Props { karte: string; igra?: string; n?: number; potpis?: string }
+const { karte, igra, n, potpis } = Astro.props;
+const { svg, imaDopuna } = dijagramSVG(karte, { igra, n });
+---
+<figure class="dijagram">
+  <div class="dijagram-slika" set:html={svg} />
+  {(potpis || igra || imaDopuna) && (
+    <figcaption>
+      {potpis}
+      {igra && <span class="dijagram-napomena"> Zlatni obrub: karta kojom se igra.</span>}
+      {imaDopuna && <span class="dijagram-napomena"> Blijede karte su nasumične i nisu važne za primjer.</span>}
+    </figcaption>
+  )}
+</figure>

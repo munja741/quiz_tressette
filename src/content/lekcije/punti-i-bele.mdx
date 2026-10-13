@@ -1,0 +1,86 @@
+---
+naslov: Punti, bele i ultima
+razina: Početnik
+redoslijed: 2
+minuta: 8
+opis: Koliko vrijedi koja karta, kako se broje punti na kraju dijeljenja i do koliko se igra partija.
+preduvjeti: [pravila]
+ciljevi:
+  - Znati vrijednost svake karte u puntima i belama.
+  - Izbrojiti punte para na kraju dijeljenja.
+  - Razumjeti zašto je ultima toliko važna.
+  - Znati kada partija završava.
+sazetak: Aš vrijedi punat, trica, duja i figure vrijede po belu, a tri bele čine punat. U dijeljenju je 11 punata, a jedan od njih nosi ultima, zadnja ruka. Partija se kod nas igra do 41; ako oba para prijeđu cilj, pobjeđuje par s više punata.
+---
+import Karte from '../../components/Karte.astro';
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+
+<h2 id="vrijednosti">Koliko vrijedi koja karta</h2>
+
+Ne vrijede sve karte jednako, i ne vrijede onoliko koliko su jake. Najjača karta, trica, vrijedi manje od aša.
+
+| Karta | Vrijednost |
+| --- | --- |
+| aš | 1 punat |
+| trica, duja, kralj (13), konj (12), fanat (11) | 1 bela, trećina punta |
+| sedmica, šestica, petica, četvorka | ništa |
+
+U svakoj boji su dakle jedan punat (aš) i pet bela. Lišine ne nose ništa, ali to ne znači da su nevažne: s njima se odgovara na boju i čuvaju se jače karte.
+
+<h2 id="bele">Tri bele čine punat</h2>
+
+Bela je trećina punta. Na kraju dijeljenja svaki par zbroji asove i bele iz ruku koje je uzeo. Bele se dijele s tri, a ostatak se ne broji.
+
+**Primjer.** Par je uzeo ove karte:
+
+<Karte karte="kupe:A,3,13,6|spade:2,12,4|dinari:11,7|bastoni:A" potpis="Dva aša, pet karata koje nose belu i četiri lišine." />
+
+- dva aša: 2 punta;
+- trica, kralj, duja, konj i fanat: 5 bela, a to je 1 punat i 2 bele;
+- ukupno: 3 punta i 2 bele, što se računa kao **3 punta**.
+
+<Pravilo naslov="Bele se zaokružuju naniže">
+  <p>Ostatak od jedne ili dvije bele ne donosi punat. Tko ima 3 punta i 2 bele, ima 3 punta.</p>
+</Pravilo>
+
+<h2 id="ultima">Ultima</h2>
+
+Zadnja, deseta ruka dijeljenja zove se **ultima**. Par koji je uzme dobiva još jedan punat, uz sve što je u njoj.
+
+Zbrojimo cijelo dijeljenje: četiri aša su 4 punta, dvadeset karata s belom su 20 bela, a ultima je još 1 punat. To je 11 punata i 2 bele. Te dvije bele ne pripadaju nikome jer se ne mogu složiti u cijeli punat, pa **u svakom dijeljenju ima točno 11 punata**.
+
+Što to znači u praksi: ultima vrijedi koliko jedan aš. Par koji uzme 5 punata u kartama i ultimu ima 6 i dobio je dijeljenje. Zato se zadnje ruke igraju pažljivo, a karta koja će sigurno uzeti zadnju ruku vrijedi više nego što izgleda.
+
+<h2 id="kapot">Kapot</h2>
+
+Par koji u dijeljenju ne uzme nijedan punat ima **kapot**.
+
+<KodNas>
+  <p>Kapot ne nosi dodatne punte. Par koji je kapot zadržava punte akuže ako ih je prijavio.</p>
+</KodNas>
+
+<h2 id="partija">Partija</h2>
+
+Partija se igra kroz više dijeljenja, dok jedan par ne skupi dogovoreni broj punata. Punti iz svakog dijeljenja zbrajaju se, a punti akuže (sljedeća lekcija) pribrajaju se uz punte tog dijeljenja.
+
+<KodNas>
+  <p>Partija se igra do 41. Ako oba para u istom dijeljenju prijeđu 41, pobjeđuje par s više punata. Ako imaju jednako, igra se još jedno dijeljenje.</p>
+</KodNas>
+
+U igri na ovom siteu može se igrati i do 21 ili 31, a talijanski priručnik igra do 31.
+
+{/* TREBA POTVRDITI: kako se kod nas zove dosta i kako se kažnjava pogrešno zvanje (vidi docs/otvorena-pitanja.md). */}
+
+<h2 id="savjet">Što to znači za igru</h2>
+
+Vrijednosti karata odmah mijenjaju način igre:
+
+- **Kad partner sigurno uzima ruku**, daj mu kartu koja nešto nosi: figuru umjesto lišine, a ponekad i aša. Te bele idu vašem paru.
+- **Kad protivnik sigurno uzima ruku**, daj mu lišinu. Figura bi mu poklonila belu.
+- **Aš je najvrjednija karta, a ne najjača.** Protivnički par želi ti ga uhvatiti tricom ili dujom. Aš koji nije zaštićen lako završi u tuđoj hrpi.
+- **Broji tijekom dijeljenja.** Tko zna da je 5 prema 5, zna da ultima odlučuje o dijeljenju.
+
+**Primjer.** Partner je otvorio tricu kupa, koja sigurno uzima ruku. Tvoje kupe su kralj i šestica:
+
+<Karte karte="kupe:13,6" potpis="Tvoje kupe. Na partnerovu tricu daješ kralja: bela ide vašem paru." />

@@ -1,0 +1,174 @@
+{
+  "lekcija": "akuza",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "ak-1",
+      "vrsta": "broj",
+      "pitanje": "Koliko punata vrijedi akuža ove ruke?",
+      "karte": "kupe:3,2,A,6|spade:3,5|dinari:3,7|bastoni:12,4",
+      "tocno": 6,
+      "jedinica": "punata",
+      "objasnjenje": "Napolitana u kupama vrijedi 3, a tri trice (kupa, špada, dinara) još 3. Trica kupa ulazi u obje kombinacije.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "zbrajanje"
+      }
+    },
+    {
+      "id": "ak-2",
+      "vrsta": "izbor",
+      "pitanje": "Imaš tricu, duju, aša, kralja i sedmicu dinara. Koliko vrijedi ta napolitana?",
+      "karte": "dinari:3,2,A,13,7",
+      "odgovori": [
+        {
+          "tekst": "3 punta",
+          "tocno": true
+        },
+        {
+          "tekst": "4 punta"
+        },
+        {
+          "tekst": "5 punata"
+        }
+      ],
+      "objasnjenje": "Napolitana uvijek vrijedi 3 punta, bez obzira na to koliko karata iste boje ide uz nju.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "kombinacije"
+      }
+    },
+    {
+      "id": "ak-3",
+      "vrsta": "izbor",
+      "pitanje": "Koliko vrijede četiri duje?",
+      "odgovori": [
+        {
+          "tekst": "4 punta",
+          "tocno": true
+        },
+        {
+          "tekst": "3 punta"
+        },
+        {
+          "tekst": "6 punata"
+        }
+      ],
+      "objasnjenje": "Četiri iste velike vrijede 4 punta.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "kombinacije"
+      }
+    },
+    {
+      "id": "ak-4",
+      "vrsta": "izbor",
+      "pitanje": "Kada se akuža prijavljuje?",
+      "odgovori": [
+        {
+          "tekst": "Prije prve karte, kad prvi put dođeš na red",
+          "tocno": true
+        },
+        {
+          "tekst": "Na kraju dijeljenja, kad se broje punti"
+        },
+        {
+          "tekst": "Kad uzmeš prvu ruku"
+        }
+      ],
+      "objasnjenje": "Akuža se prijavljuje prije prve karte. Kad je prva karta odigrana, kasno je.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "prijava"
+      }
+    },
+    {
+      "id": "ak-5",
+      "vrsta": "izbor",
+      "pitanje": "Igrač poslije tebe akužao je \"3 aša (bez špada)\". Što sada znaš?",
+      "odgovori": [
+        {
+          "tekst": "Ima aše kupa, dinara i baštona; aš špada je kod nekog drugog",
+          "tocno": true
+        },
+        {
+          "tekst": "Ima tri aša, ali ne znaš kojih boja"
+        },
+        {
+          "tekst": "Nema nijednu špadu"
+        }
+      ],
+      "objasnjenje": "Uz tri iste vidi se boja koja nedostaje, pa svi za stolom znaju točno koje aše ima. O tome koliko ima špada ne znaš ništa.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "sto-otkriva"
+      }
+    },
+    {
+      "id": "ak-6",
+      "vrsta": "izbor",
+      "pitanje": "Što se kod nas događa s lažnom prijavom akuže?",
+      "odgovori": [
+        {
+          "tekst": "Protivnici dobivaju 11 punata",
+          "tocno": true
+        },
+        {
+          "tekst": "Prijava se samo poništi"
+        },
+        {
+          "tekst": "Dijeljenje se ponavlja"
+        }
+      ],
+      "objasnjenje": "Lažna prijava akuže kažnjava se s 11 punata protivnicima.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "prijava"
+      }
+    },
+    {
+      "id": "ak-7",
+      "vrsta": "izbor",
+      "pitanje": "Par je akužao napolitanu, a u dijeljenju nije uzeo nijedan punat. Koliko dobiva?",
+      "odgovori": [
+        {
+          "tekst": "3 punta",
+          "tocno": true
+        },
+        {
+          "tekst": "Ništa"
+        },
+        {
+          "tekst": "Protivnici dobivaju njegovu akužu"
+        }
+      ],
+      "objasnjenje": "Kod nas kapot ne briše akužu, pa par zadržava 3 punta napolitane.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "prijava"
+      }
+    },
+    {
+      "id": "ak-8",
+      "vrsta": "izbor",
+      "pitanje": "Koja je cijena akuže, osim punata koje donosi?",
+      "odgovori": [
+        {
+          "tekst": "Svi za stolom saznaju koje velike imaš",
+          "tocno": true
+        },
+        {
+          "tekst": "Moraš otvoriti boju napolitane"
+        },
+        {
+          "tekst": "Partner ne smije signalizirati"
+        }
+      ],
+      "objasnjenje": "Akuža otkriva karte. Protivnici znaju gdje su velike i mogu ih loviti.",
+      "izvor": {
+        "lekcija": "akuza",
+        "odjeljak": "sto-otkriva"
+      }
+    }
+  ]
+}
