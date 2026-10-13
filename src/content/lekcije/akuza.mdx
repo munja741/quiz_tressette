@@ -1,0 +1,71 @@
+---
+naslov: Akuža
+razina: Početnik
+redoslijed: 3
+minuta: 7
+opis: Koje kombinacije velikih se akužaju, koliko vrijede, kada se prijavljuju i što akuža otkriva protivnicima.
+preduvjeti: [punti-i-bele]
+ciljevi:
+  - Prepoznati sve kombinacije akuže u ruci.
+  - Izračunati koliko akuža vrijedi.
+  - Znati kada i kako se akuža prijavljuje.
+  - Razumjeti što akuža govori ostalima za stolom.
+sazetak: Akužaju se tri ili četiri iste velike i napolitana, a kombinacije se zbrajaju. Prijavljuje se prije prve karte, a punti se pribrajaju i paru koji je kapot. Akuža donosi punte, ali i otkriva karte, pa protivnici znaju gdje su velike.
+---
+import Dijagram from '../../components/Dijagram.astro';
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+
+<h2 id="kombinacije">Što se akuža</h2>
+
+Akuža su punti koje dobivaš samo zato što ti je došla dobra ruka, prije nego što je odigrana ijedna karta. Akužaju se kombinacije velikih:
+
+| Kombinacija | Što je | Vrijedi |
+| --- | --- | --- |
+| tri iste | tri trice, tri duje ili tri aša | 3 punta |
+| četiri iste | sve četiri trice, duje ili aša | 4 punta |
+| napolitana | trica, duja i aš iste boje | 3 punta |
+
+<Dijagram karte="kupe:3,7|spade:3,12,5|dinari:3,A,4|bastoni:6,4" potpis="Tri trice: kupa, špada i dinara. Nedostaje trica baštona. Akuža vrijedi 3 punta." />
+
+<Dijagram karte="dinari:3,2,A,13,7,5" potpis="Napolitana u dinarima, a uz nju još tri dinara. Vrijedi 3 punta." />
+
+<Pravilo naslov="Napolitana uvijek vrijedi 3">
+  <p>Koliko god karata iste boje uz napolitanu imao, ona vrijedi 3 punta.</p>
+</Pravilo>
+
+<h2 id="zbrajanje">Kombinacije se zbrajaju</h2>
+
+Jedna ruka može imati više kombinacija, i sve se zbrajaju. Ista karta smije biti dio dviju kombinacija.
+
+<Dijagram karte="kupe:3,2,A,6|spade:3,5|dinari:3,7|bastoni:12,4" potpis="Napolitana u kupama i tri trice (bez baštona). Trica kupa ulazi u obje kombinacije: 3 + 3 = 6 punata." />
+
+Zato je dobro naviknuti se da prije prve karte pogledaš ruku i prebrojiš trice, duje i aše, pa onda svaku boju za napolitanu.
+
+<h2 id="prijava">Kada i kako se prijavljuje</h2>
+
+Akuža se prijavljuje prije prve karte. Kad ti je red da prvi put igraš, kažeš što imaš, a onda igraš kartu. Kad je prva karta na stolu, za akužu je kasno.
+
+Punti akuže pribrajaju se tvom paru na kraju dijeljenja, uz punte iz karata.
+
+<KodNas>
+  <p>Lažna prijava akuže kažnjava se s 11 punata protivnicima. Kapot ne briše akužu: par koji je akužao zadržava te punte i kad nije uzeo nijedan punat.</p>
+</KodNas>
+
+U igri na ovom siteu akuža se ispisuje na stolu ispred igrača, redom kako tko dolazi na red. Kod tri iste u zagradi piše boja koja nedostaje, na primjer "3 trice (bez baštona)". Kod četiri iste zagrade nema, jer igrač ima veliku u svakoj boji.
+
+<h2 id="sto-otkriva">Što akuža otkriva</h2>
+
+Akuža donosi punte, ali ima i cijenu: svi za stolom saznaju koje velike imaš. Evo što to znači u igri:
+
+- **"3 aša (bez špada)"** kaže protivnicima točno gdje su tri aša. Znaju da ih mogu loviti tricama i dujama tih boja, a znaju i da je aš špada kod nekog drugog.
+- **Napolitana** otkriva cijelu boju: protivnici znaju da u njoj nemaju što tražiti i neće je otvarati.
+- **Partner** iz tvoje akuže zna gdje može računati na tebe. To je jedina korist od otkrivanja, i dobar par je iskoristi.
+
+Kad netko drugi akuža, iskoristi to i ti. Ako igrač poslije tebe akuža tri aša bez kupa, a ti imaš drugu tricu u jednoj od njegovih boja, znaš točno što će tvoja trica uhvatiti kad on bude morao odgovoriti.
+
+<h2 id="s-akuzom-ili-bez">Igra s akužom ili bez nje</h2>
+
+Talijanski priručnik koji ova škola koristi kao izvor zagovara igru bez akuže. Zašto, objašnjava zasebna lekcija na razini Majstor.
+
+U igri na ovom siteu prije svake partije biraš igra li se s akužom ili bez nje.
