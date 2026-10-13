@@ -13,7 +13,11 @@ a:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
 .uvodni { padding: 1rem 0 2rem; max-width: 40rem; }
 .uvodni h1 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: clamp(3rem, 11vw, 5.5rem); line-height: .95; margin: 0 0 .8rem; }
 .uvodni p { color: var(--muted); font-size: 1.15rem; margin: 0 0 1.4rem; }
+.gumbi { display: flex; flex-wrap: wrap; gap: .7rem; margin: 0 0 1rem; }
+.gumb-veliki:hover { background: #154530; }
+.gumb-veliki:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
 .gumb-veliki { display: inline-block; background: #1d5a3c; color: #fff; text-decoration: none; font-weight: 700; padding: .8rem 1.4rem; border-radius: 8px; }
+.pocetna section + section { margin-top: 2.2rem; }
 .pocetna h2 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 2rem; margin: 1rem 0; }
 .razine { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
 .razina { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; }
