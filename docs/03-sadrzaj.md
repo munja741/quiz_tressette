@@ -16,9 +16,8 @@ Za svaku lekciju: ciljevi, ključne točke (svojim riječima, s brojem točke iz
 - Na otvorenu boju mora se odgovoriti istom bojom; tko nema, odbacuje.
 - Ruku (štih) uzima najjača karta otvorene boje. Tko uzme ruku, otvara sljedeću.
 - **Kod nas:** igra ide u smjeru kazaljke na satu (en.wikipedia, potvrdila urednica); priručnik opisuje suprotan smjer. Zato u cijelom siteu: "igrač prije tebe", "igrač poslije tebe".
-- **Kod nas:** špil se ne siječe (urednica).
+- **Kod nas:** špil siječe igrač prije djelitelja; prvi igra igrač poslije djelitelja (urednica). Tko dijeli prvo dijeljenje lekcija ne opisuje.
 - **Kod nas:** dijeli se svih 40 karata, svakom igraču 10, u dva kruga po pet (urednica).
-- **[POTVRDITI]** tko dijeli prvi u partiji uživo. (U igri na siteu prvo dijeljenje uvijek otvara igrač, vidi `08-igra.md`.)
 
 **Kviz (6):** red jačine (poredaj 4 karte), tko uzima ruku u zadanom primjeru, što ako nemaš boju, tko otvara sljedeću ruku.
 

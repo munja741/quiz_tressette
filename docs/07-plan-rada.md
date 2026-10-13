@@ -51,7 +51,7 @@ Voditi u `docs/otvorena-pitanja.md`. Početni popis:
 
 1. Dopuštenje autora priručnika za objavu prijevoda i prilagodbe.
 2. Konačni naziv i domena.
-3. Hrvatska praksa: tko prvi dijeli u partiji uživo, kako se daje signal (gestom ili riječju), zvanje dosta i kazne. Riješeno je dio pitanja, vidi `01-vizija.md`, Potvrđena hrvatska praksa.
+3. Hrvatska praksa: kako se daje signal (gestom ili riječju), zvanje dosta i kazne. Riješeno je dio pitanja, vidi `01-vizija.md`, Potvrđena hrvatska praksa.
 4. Varijante: u dvoje, u troje, "ko manje".
 5. Treba li site i engleski jezik.
 6. Igra: sve odluke urednice su u `08-igra.md`; otvorenih pitanja nema.

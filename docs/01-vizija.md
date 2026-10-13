@@ -36,7 +36,7 @@ Ne preuzimamo: forume, plaćene razine, rang liste. Moguće u kasnijoj fazi.
 
 Potvrdila urednica 10. 10. 2026. Ove tvrdnje ne trebaju oznaku **[POTVRDITI]**.
 
-- Igra ide u smjeru kazaljke na satu. Špil se ne siječe. Dijeli se svih 40 karata, svakom igraču 10, u dva kruga po pet.
+- Igra ide u smjeru kazaljke na satu. Špil siječe igrač prije djelitelja; prvi igra igrač poslije djelitelja. Dijeli se svih 40 karata, svakom igraču 10, u dva kruga po pet.
 - Ako oba para u istom dijeljenju prijeđu zadani broj, pobjeđuje par s više punata; kod izjednačenja igra se dodatno dijeljenje.
 - Kapot ne nosi dodatne punte i ne briše akužu para koji je akužao.
 - Napolitana uvijek vrijedi 3 punta.
