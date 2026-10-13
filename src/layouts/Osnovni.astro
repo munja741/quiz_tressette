@@ -16,12 +16,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Source+Sans+3:wght@400;600;700&family=Alegreya+SC:wght@700&display=swap" />
     <link rel="stylesheet" href={`${base}/osnovno.css`} />
+    <link rel="stylesheet" href={`${base}/lekcija.css`} />
   </head>
   <body>
     <header class="traka">
       <a class="znak" href={`${base}/`}>Škola trešete</a>
       <nav aria-label="Glavna navigacija">
-        <a href={`${base}/`}>Put učenja</a>
+        <a href={`${base}/put-ucenja/`} aria-current={Astro.url.pathname.includes("/put-ucenja") || Astro.url.pathname.includes("/lekcije/") ? "page" : undefined}>Put učenja</a>
         <a href={`${base}/igraj/`} aria-current={Astro.url.pathname.includes('/igraj') ? 'page' : undefined}>Igraj</a>
         <a href={`${base}/kviz-otvaranja/`}>Test otvaranja</a>
       </nav>

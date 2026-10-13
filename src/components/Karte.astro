@@ -1,0 +1,8 @@
+---
+// Nekoliko karata u retku (npr. karte na stolu u primjeru), bez dopune.
+import { dijagramSVG } from '../skola/dijagram.ts';
+interface Props { karte: string; potpis?: string }
+const { karte, potpis } = Astro.props;
+const { svg } = dijagramSVG(karte, { n: 0 });
+---
+<figure class="dijagram"><div class="dijagram-slika" set:html={svg} />{potpis && <figcaption>{potpis}</figcaption>}</figure>

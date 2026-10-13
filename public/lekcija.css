@@ -1,0 +1,87 @@
+/* Lekcije, kviz i put učenja */
+.lekcija, .put { max-width: 46rem; margin: 0 auto; padding: 1.6rem 16px 4rem; }
+.put { max-width: 64rem; }
+.lekcija h1, .put h1 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 8vw, 3.6rem); line-height: 1; margin: .2rem 0 1rem; }
+.lekcija-razina, .preduvjeti { color: var(--muted); margin: 0; font-size: .95rem; }
+.lekcija-razina a, .preduvjeti a { color: var(--muted); }
+.preduvjeti { margin: -.4rem 0 1rem; }
+.malen-naslov { font-size: 1rem; font-weight: 700; margin: 0 0 .3rem; }
+.ciljevi { border-left: 3px solid var(--felt); padding: .2rem 0 .2rem 1rem; margin: 1.2rem 0 1.6rem; }
+.ciljevi ul { margin: 0; padding-left: 1.1rem; }
+.lekcija-tekst { max-width: 65ch; }
+.lekcija-tekst h2 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.9rem; line-height: 1.05; margin: 2.2rem 0 .6rem; scroll-margin-top: 1rem; }
+.lekcija-tekst h3 { font-size: 1.15rem; margin: 1.4rem 0 .4rem; }
+.lekcija-tekst p, .lekcija-tekst li { line-height: 1.6; }
+.lekcija-tekst table { border-collapse: collapse; width: 100%; margin: .8rem 0 1.2rem; font-variant-numeric: tabular-nums; }
+.lekcija-tekst th, .lekcija-tekst td { border-bottom: 1px solid var(--rule); padding: .4rem .5rem; text-align: left; }
+.lekcija-tekst th { font-weight: 700; }
+.okvir { border-radius: 8px; padding: .8rem 1rem; margin: 1.2rem 0; }
+.okvir p { margin: .3rem 0; }
+.okvir-naslov { font-weight: 700; margin-top: 0 !important; display: flex; justify-content: space-between; gap: 1rem; }
+.pravilo { background: var(--paper); border: 1px solid var(--rule); border-left: 4px solid var(--felt); }
+.kod-nas { background: color-mix(in srgb, var(--brass) 12%, var(--paper)); border-left: 4px solid var(--brass); }
+.tocka { font-weight: 600; color: var(--muted); font-size: .9rem; }
+.dijagram { margin: 1rem 0 1.4rem; }
+.dijagram-slika { overflow-x: auto; }
+.dijagram-svg { display: block; max-width: 100%; height: auto; }
+.dijagram figcaption { font-size: .9rem; color: var(--muted); margin-top: .35rem; }
+.sazetak { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.1rem; margin: 2rem 0; }
+.sazetak p { margin: 0; }
+.lekcija-nav { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.lekcija-nav a { color: var(--felt); font-weight: 600; }
+
+/* kviz */
+.kviz { background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem 1.2rem; margin: 2rem 0; }
+.kviz h2 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 1.9rem; margin: 0 0 .2rem; }
+.kviz-napredak { color: var(--muted); margin: 0 0 .6rem; font-size: .92rem; }
+.kviz-pitanje { font-weight: 600; font-size: 1.08rem; margin: 0 0 .8rem; }
+.kviz-odgovori { display: grid; gap: .5rem; }
+.kviz-odgovor { font: inherit; text-align: left; color: var(--ink); background: var(--bg); border: 1px solid var(--rule); border-radius: 8px; padding: .7rem .9rem; min-height: 44px; cursor: pointer; }
+.kviz-odgovor:hover:not(:disabled) { border-color: var(--felt); }
+.kviz-odgovor:disabled { cursor: default; }
+.kviz-odgovor.tocno { border-color: #2e7d4f; box-shadow: inset 0 0 0 1px #2e7d4f; }
+.kviz-odgovor.netocno { border-color: #b3261e; box-shadow: inset 0 0 0 1px #b3261e; }
+.kviz-gumb { font: inherit; font-weight: 600; display: inline-block; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: .55rem 1rem; min-height: 44px; cursor: pointer; text-decoration: none; }
+.kviz-gumb.glavni { background: #1d5a3c; border-color: #1d5a3c; color: #fff; }
+.kviz-gumb:disabled { opacity: .5; cursor: default; }
+.kviz-povratna { margin-top: 1rem; padding: .8rem 1rem; border-radius: 8px; border-left: 4px solid; }
+.kviz-povratna.tocno { border-color: #2e7d4f; background: color-mix(in srgb, #2e7d4f 9%, var(--paper)); }
+.kviz-povratna.netocno { border-color: #b3261e; background: color-mix(in srgb, #b3261e 8%, var(--paper)); }
+.kviz-povratna p { margin: .3rem 0; }
+.kviz-presuda { font-weight: 700; }
+.kviz-povratna a, .kviz-citanje a { color: var(--felt); font-weight: 600; }
+.kviz-karte { display: flex; flex-wrap: wrap; gap: 4px; margin: .4rem 0 .6rem; min-height: 60px; }
+.kviz-karta { width: 46px; height: 64px; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 6px; line-height: 0; }
+.kviz-karta svg { width: 100%; height: 100%; display: block; }
+.kviz-karta:disabled { cursor: default; }
+.kviz-karta:not(:disabled):hover svg { transform: translateY(-4px); }
+.kviz-karta.oznacena { box-shadow: 0 0 0 3px #c9a227; }
+.kviz-karta:focus-visible, .kviz-gumb:focus-visible, .kviz-odgovor:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+.kviz-uputa { color: var(--muted); font-size: .92rem; margin: .4rem 0 .2rem; }
+.kviz-stol { display: flex; flex-wrap: wrap; gap: .8rem; background: #1d5a3c; border-radius: 10px; padding: .7rem; margin-bottom: .4rem; }
+.kviz-stol-mjesto { display: flex; flex-direction: column; align-items: center; gap: .3rem; color: #f7f4ea; font-size: .85rem; }
+.kviz-broj-unos { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.kviz-broj-unos input { font: inherit; width: 6rem; padding: .45rem .5rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg); color: var(--ink); min-height: 44px; }
+.kviz-tocan { width: 100%; margin: .2rem 0 0; }
+.kviz-rezultat { margin: .2rem 0; color: var(--muted); }
+.kviz-broj { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 3.4rem; line-height: 1; color: var(--ink); margin-right: .3rem; }
+.kviz-akcije { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+
+/* put učenja */
+.uvod-tekst { color: var(--muted); max-width: 40rem; }
+.razina-pojas { margin: 2rem 0; }
+.razina-zaglavlje { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; border-bottom: 2px solid var(--ink); margin-bottom: .8rem; }
+.razina-zaglavlje h2 { font-family: 'Big Shoulders Display', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 2rem; margin: 0; }
+.razina-napredak { margin: 0; color: var(--muted); }
+.lekcije-mreza { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: .7rem; counter-reset: l; }
+.kartica-lekcije { background: var(--paper); border: 1px solid var(--rule); border-radius: 8px; padding: .8rem .9rem; display: flex; flex-direction: column; gap: .25rem; position: relative; }
+.kartica-lekcije a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.kartica-lekcije a::after { content: ''; position: absolute; inset: 0; }
+.kartica-lekcije a:focus-visible { outline: none; }
+.kartica-lekcije:has(a:focus-visible) { outline: 3px solid var(--brass); outline-offset: 2px; }
+.kartica-lekcije.uskoro { opacity: .55; }
+.kartica-meta { font-size: .85rem; color: var(--muted); }
+.stanje { font-size: .85rem; font-weight: 700; }
+.kartica-lekcije.savladano { border-color: var(--felt); box-shadow: inset 4px 0 0 var(--felt); }
+.kartica-lekcije.savladano .stanje { color: var(--felt); }
+.kartica-lekcije.procitano .stanje { color: var(--brass); }

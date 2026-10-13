@@ -1,0 +1,71 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Osnovni from '../../layouts/Osnovni.astro';
+import Kviz from '../../components/Kviz.tsx';
+import { PUT } from '../../skola/put.ts';
+
+export async function getStaticPaths() {
+  const lekcije = await getCollection('lekcije');
+  const kvizovi = await getCollection('kvizovi');
+  for (const k of kvizovi) {
+    const l = lekcije.find((x) => x.id === k.data.lekcija);
+    if (!l) throw new Error(`Kviz ${k.id}: lekcija ${k.data.lekcija} ne postoji.`);
+    for (const p of k.data.pitanja) {
+      if (p.izvor.lekcija !== l.id) throw new Error(`Kviz ${k.id}, pitanje ${p.id}: izvor upućuje na drugu lekciju (${p.izvor.lekcija}).`);
+      if (!l.body?.includes(`id="${p.izvor.odjeljak}"`)) throw new Error(`Kviz ${k.id}, pitanje ${p.id}: odjeljak #${p.izvor.odjeljak} ne postoji u lekciji ${l.id}.`);
+    }
+  }
+  return lekcije.map((l) => ({ params: { slug: l.id } }));
+}
+
+const { slug } = Astro.params;
+const lekcija = (await getEntry('lekcije', slug!))!;
+const kviz = await getEntry('kvizovi', slug!);
+const { Content } = await render(lekcija);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const sve = await getCollection('lekcije');
+const postoji = new Set(sve.map((l) => l.id));
+const idx = PUT.findIndex((x) => x.slug === slug);
+const prethodna = PUT.slice(0, idx).reverse().find((x) => postoji.has(x.slug));
+const sljedeca = PUT.slice(idx + 1).find((x) => postoji.has(x.slug));
+const odjeljci: Record<string, string> = {};
+for (const m of (lekcija.body ?? '').matchAll(/<h2 id="([^"]+)">([^<]+)<\/h2>/g)) odjeljci[m[1]] = m[2];
+const naslovPreduvjeta = (s: string) => PUT.find((x) => x.slug === s)?.naslov ?? s;
+---
+<Osnovni naslov={`${lekcija.data.naslov} · Škola trešete`} opis={lekcija.data.opis}>
+  <main class="lekcija" data-slug={slug}>
+    <p class="lekcija-razina"><a href={`${base}/put-ucenja/`}>{lekcija.data.razina}</a> · lekcija {idx + 1} od {PUT.length} · oko {lekcija.data.minuta} minuta</p>
+    <h1>{lekcija.data.naslov}</h1>
+    {lekcija.data.preduvjeti.length > 0 && (
+      <p class="preduvjeti">Prije ove lekcije: {lekcija.data.preduvjeti.map((p, i) => <>{i > 0 && ', '}<a href={`${base}/lekcije/${p}/`}>{naslovPreduvjeta(p)}</a></>)}</p>
+    )}
+    <section class="ciljevi" aria-labelledby="ciljevi-naslov">
+      <h2 id="ciljevi-naslov" class="malen-naslov">Što ćeš naučiti</h2>
+      <ul>{lekcija.data.ciljevi.map((c) => <li>{c}</li>)}</ul>
+    </section>
+    <article class="lekcija-tekst">
+      <Content />
+    </article>
+    <section class="sazetak" aria-labelledby="sazetak-naslov">
+      <h2 id="sazetak-naslov" class="malen-naslov">Sažetak</h2>
+      <p>{lekcija.data.sazetak}</p>
+    </section>
+    {kviz && (
+      <Kviz client:visible slug={slug!} prolaz={kviz.data.prolaz} pitanja={kviz.data.pitanja as never} odjeljci={odjeljci}
+        sljedeca={sljedeca ? { href: `${base}/lekcije/${sljedeca.slug}/`, naslov: sljedeca.naslov } : undefined} />
+    )}
+    <nav class="lekcija-nav" aria-label="Lekcije">
+      {prethodna ? <a href={`${base}/lekcije/${prethodna.slug}/`}>Prethodna: {prethodna.naslov}</a> : <span />}
+      {sljedeca && <a href={`${base}/lekcije/${sljedeca.slug}/`}>Sljedeća: {sljedeca.naslov}</a>}
+    </nav>
+  </main>
+  <script>
+    import { oznaciProcitano } from '../../skola/napredak.ts';
+    const el = document.querySelector('.sazetak');
+    const slug = (document.querySelector('.lekcija') as HTMLElement)?.dataset.slug;
+    if (el && slug && 'IntersectionObserver' in window) {
+      const o = new IntersectionObserver((e) => { if (e.some((x) => x.isIntersecting)) { oznaciProcitano(slug); o.disconnect(); } });
+      o.observe(el);
+    }
+  </script>
+</Osnovni>

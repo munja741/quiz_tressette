@@ -1,0 +1,8 @@
+---
+interface Props { naslov: string; tocka?: string }
+const { naslov, tocka } = Astro.props;
+---
+<aside class="okvir pravilo">
+  <p class="okvir-naslov">{naslov}{tocka && <span class="tocka">{tocka}</span>}</p>
+  <slot />
+</aside>

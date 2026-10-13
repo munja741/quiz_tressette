@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Osnovni from '../layouts/Osnovni.astro';
+import { PUT, RAZINE } from '../skola/put.ts';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const lekcije = await getCollection('lekcije');
+const postoji = new Map(lekcije.map((l) => [l.id, l]));
+---
+<Osnovni naslov="Put učenja · Škola trešete" opis="Lekcije trešete u parove po razinama, od pravila do zadnjih ruku.">
+  <main class="put">
+    <h1>Put učenja</h1>
+    <p class="uvod-tekst">Četiri razine, dvadeset lekcija. Svaka lekcija završava kvizom; lekcija je savladana s barem 75 % točnih odgovora.</p>
+    {RAZINE.map((r) => {
+      const lista = PUT.filter((x) => x.razina === r);
+      return (
+        <section class="razina-pojas" aria-labelledby={`r-${r}`}>
+          <div class="razina-zaglavlje">
+            <h2 id={`r-${r}`}>{r}</h2>
+            <p class="razina-napredak" data-razina={r} data-slugovi={lista.map((x) => x.slug).join(',')}></p>
+          </div>
+          <ol class="lekcije-mreza">
+            {lista.map((x) => {
+              const l = postoji.get(x.slug);
+              return (
+                <li class={`kartica-lekcije ${l ? '' : 'uskoro'}`} data-slug={x.slug}>
+                  {l ? <a href={`${base}/lekcije/${x.slug}/`}>{x.naslov}</a> : <span>{x.naslov}</span>}
+                  <span class="kartica-meta">{l ? `oko ${l.data.minuta} min` : 'uskoro'}</span>
+                  <span class="stanje" aria-live="polite"></span>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      );
+    })}
+  </main>
+  <script>
+    import { ucitajNapredak, savladano } from '../skola/napredak.ts';
+    const n = ucitajNapredak();
+    document.querySelectorAll<HTMLElement>('.kartica-lekcije').forEach((li) => {
+      const s = n.lekcije[li.dataset.slug!];
+      const el = li.querySelector('.stanje')!;
+      if (savladano(s?.kviz)) { li.classList.add('savladano'); el.textContent = 'savladano'; }
+      else if (s?.procitano || s?.kviz) { li.classList.add('procitano'); el.textContent = s.kviz ? `kviz ${s.kviz.najbolje}/${s.kviz.od}` : 'pročitano'; }
+    });
+    document.querySelectorAll<HTMLElement>('.razina-napredak').forEach((p) => {
+      const slugovi = p.dataset.slugovi!.split(',');
+      const gotovo = slugovi.filter((s) => savladano(n.lekcije[s]?.kviz)).length;
+      p.textContent = `${gotovo} od ${slugovi.length} savladano`;
+    });
+  </script>
+</Osnovni>
