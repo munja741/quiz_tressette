@@ -47,7 +47,7 @@ Pravila se pišu prema lekcijama `pravila`, `punti-i-bele` i `akuza` te prema po
 - Igra ide u smjeru kazaljke na satu.
 - **Prvo dijeljenje uvijek otvara igrač (ti).** Djelitelj prvog dijeljenja je zato igrač prije tebe.
 - Djelitelj se mijenja nakon svakog dijeljenja, u smjeru igre. Otvara igrač koji je na redu poslije djelitelja.
-- Špil se ne siječe.
+- Špil se u igri na siteu ne siječe (uživo ga siječe igrač prije djelitelja; za igru na računalu to ništa ne mijenja).
 - Dijeli se u dva kruga po pet karata, počevši od igrača poslije djelitelja. Engine dijeli tim redom (važno za ponovljivost sa sjemenom), ali sučelje dijeljenje ne prikazuje: karte se odmah pojave u rukama.
 
 **Ruka (štih)**
@@ -364,7 +364,7 @@ Radi se nakon Faze 2 (kad postoje komponente karte), a može ići usporedno s fa
 
 ## Odluke urednice (10. 10. 2026.)
 
-1. Igra ide u smjeru kazaljke na satu. Prvo dijeljenje otvara igrač; djelitelj je igrač prije njega. Špil se ne siječe. Dijeli se svih 40 karata, po 10 svakom igraču, u dva kruga po pet.
+1. Igra ide u smjeru kazaljke na satu. Prvo dijeljenje otvara igrač; djelitelj je igrač prije njega. Špil se u igri na siteu ne siječe; uživo ga siječe igrač prije djelitelja. Dijeli se svih 40 karata, po 10 svakom igraču, u dva kruga po pet.
 2. Kad oba para prijeđu cilj, pobjeđuje par s više punata. Kod izjednačenja igra se dodatno dijeljenje.
 3. Zvanje dosta se u igri ne izvodi.
 4. Kapot ne nosi dodatne punte i ne briše akužu para koji je akužao.
