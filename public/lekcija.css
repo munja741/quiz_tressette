@@ -85,3 +85,11 @@
 .kartica-lekcije.savladano { border-color: var(--felt); box-shadow: inset 4px 0 0 var(--felt); }
 .kartica-lekcije.savladano .stanje { color: var(--felt); }
 .kartica-lekcije.procitano .stanje { color: var(--brass); }
+
+.kviz-signali { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin: .2rem 0 .8rem; }
+.kviz-pilula { font: inherit; font-weight: 600; background: var(--bg); color: var(--ink); border: 1px solid var(--rule); border-radius: 999px; padding: .35rem .9rem; min-height: 40px; cursor: pointer; }
+.kviz-pilula[aria-pressed='true'] { background: #18201b; color: #d8b45a; border-color: #18201b; }
+.kviz-pilula:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+.ocjena-savrseno { color: #2e7d4f; }
+.ocjena-pogresno { color: #9a6a00; }
+.ocjena-katastrofalno { color: #b3261e; }
