@@ -1,0 +1,78 @@
+---
+naslov: "Otvaranje: duja+aš, trica+aš, napolitana"
+razina: Igrač
+redoslijed: 7
+minuta: 9
+opis: Kako se otvaraju i igraju kombinacije dviju velikih u istoj boji.
+preduvjeti: [otvaranje-1]
+ciljevi:
+  - Znati zašto se suha trica+aš ne otvara.
+  - Otvoriti duju+aša dujom i znati kada inzistirati.
+  - Otvoriti tricu+aša kraljem ili lišinom, a ne tricom.
+  - Izbjeći potez koji upropaštava dvije igre odjednom.
+sazetak: Suhu tricu+aša ne otvaraš, nego čekaš da boju otvore drugi. Duju+aša otvaraš dujom i tražiš tricu, a tricu+aša kraljem ili lišinom, nikad tricom. Kad tražiš veliku u jednoj boji, ne prelaziš na traženje u drugoj.
+---
+import Dijagram from '../../components/Dijagram.astro';
+import Pravilo from '../../components/Pravilo.astro';
+
+<h2 id="suha-trica-as">Suha trica+aš: čekaj</h2>
+
+Trica i aš iste boje, bez ijedne druge karte, izgledaju kao dvije sigurne ruke. Nisu. Ako otvoriš tricom, aš ti ostaje suh i duja ga uhvati. Ako otvoriš ašem, trica ga ne štiti.
+
+<Pravilo naslov="Suhu tricu+aša ne otvaraš prvi" tocka="t. 10">
+  <p>Čekaš da tu boju otvori netko drugi. Iznimka: kad netko odbaci duju te boje ili znaš da je duja kod partnera.</p>
+</Pravilo>
+
+Kad boju otvori protivnik, igraš drugi ili četvrti i biraš: tricom uzimaš kad duja padne ili kad je to zadnja prilika, ašem kad je trica već izašla na stol. To je vrijednost čekanja.
+
+<h2 id="duja-as">Duja+aš: otvori dujom</h2>
+
+S dujom i ašem iste boje, uz barem još jednu kartu, **otvaraš dujom i tražiš tricu**, čak i kad nemaš kralja (t. 11).
+
+<Dijagram karte="kupe:3,A|spade:2,A,13,5|dinari:12,7,5|bastoni:11" igra="spade:2" potpis="Kupe su suha trica+aš: čekaš. Špade su duja+aš s kraljem: otvaraš dujom špada." />
+
+Zašto dujom, a ne lišinom? Jer ruka mora ostati tebi. Ako duja uzme, trica nije pala i ti biraš: nastaviti u istoj boji ili promijeniti. Da si otvorio lišinom, ruku bi mogao uzeti protivnik i on bi birao.
+
+Ako na tvoju duju ne padne trica i ruka ostane tebi, nastavi u istoj boji kraljem, ako ga imaš, dok trica ne padne. Aš čuvaš za kraj, jer je on karta koju trica lovi.
+
+<h2 id="igrac-poslije-nema">Kad igrač poslije tebe nema boju</h2>
+
+Otvoriš dujom, a igrač poslije tebe ne odgovori: nema te boje. Ako ruka ostane tebi, **ne inzistiraj, promijeni boju** (t. 12).
+
+Razlog: partner tada ima priliku sačuvati barem jednu kartu te boje. Kad on kasnije dođe u ruku i vrati ti se u nju, ti igraš poslije igrača koji nema boju, a protivnik s tricom mora odlučiti prije tebe.
+
+<h2 id="trica-as">Trica+aš: otvori kraljem ili lišinom</h2>
+
+Kod trice+aša je obrnuto. Ne otvaraš tricom, osim ako je boja vrlo duga (šest karata ili više). Otvaraš **kraljem ili najmanjom lišinom** (t. 11).
+
+Ruka ovdje ne mora ostati tebi. Ako duja ne padne i ruku uzme protivnik, ti i dalje upravljaš bojom, jer tvoja trica tuče njegovu duju kad god padne.
+
+<Dijagram karte="kupe:3,A,13,6|spade:12,7|dinari:2,6,4|bastoni:7,5" igra="kupe:13" potpis="Četvrta trica+aš s kraljem. Otvaraš kraljem kupa, bez signala." />
+
+S četvrtom tricom+ašem s kraljem talijanska škola otvara kraljem bez signala (t. 13). Ako duja ne padne, a svi su odgovorili, udari tricu: dobre su šanse da duja padne.
+
+<h2 id="jedna-igra">Kad imaš samo jednu igru</h2>
+
+Ako je duja+aš ili trica+aš tvoja jedina igra, a u ostalim bojama nemaš povratka, otvori je, ali **nemoj inzistirati** da padne velika koja ti nedostaje (t. 14). Inzistiranje partneru govori da imaš povratak u drugoj boji. Ako ga nemaš, poslao si ga krivim putem.
+
+<h2 id="zabranjeni-potez">Potez koji upropaštava dvije igre</h2>
+
+Zamisli ovu ruku, bez baštona:
+
+<Dijagram karte="kupe:2,A,13,5|spade:3,A,7,4|dinari:6,5|bastoni:-" igra="kupe:2" potpis="Duja+aš s kraljem u kupama, trica+aš u špadama." />
+
+Otvaraš dujom kupa i tražiš tricu. Trica ne padne. Napast je sada prijeći u špade i tricom tražiti duju.
+
+<Pravilo naslov="Ne traži u dvije boje" tocka="t. 16">
+  <p>Kad dujom tražiš tricu u jednoj boji, nemoj zatim tricom tražiti duju u drugoj. Inzistiraj u prvoj boji dok trica ne padne. Trica špada je tvoj sigurni povratak i nju čuvaš.</p>
+</Pravilo>
+
+Ako napraviš oba poteza, u kupama ti aš ostaje izložen trici, a u špadama aš duji. Obje igre su upropaštene, a nijedna nije dovršena.
+
+<h2 id="trica-duja">Trica+duja i napolitana</h2>
+
+S tricom i dujom iste boje imaš dvije sigurne ruke. Ako su suhe, **udari tricu** (t. 17). Partner sad zna gdje ti je snaga. Ako na tvoju tricu stavi nisku lišinu, poziva te da odigraš i duju. Ako stavi figuru, mijenjaš boju.
+
+S trećom tricom+dujom isto: udari tricu i gledaj partnerov odgovor (t. 30). Talijanska škola tu ima posebne signale; kod nas igraš bez njih, a partner čita tvoje otvaranje tricom.
+
+**Napolitana** (trica, duja i aš) igra se odozgo: trica, duja, pa aš. Ako je duga, nakon velikih nastavljaš lišinama, jer su to sada najjače karte u boji, a protivnici moraju odgovarati.

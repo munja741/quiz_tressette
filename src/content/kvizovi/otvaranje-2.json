@@ -1,0 +1,115 @@
+{
+  "lekcija": "otvaranje-2",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "o2-1",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Kako otvaraš?",
+      "ruka": "kupe:3,A|spade:2,A,13,5|dinari:12,7,5|bastoni:11",
+      "otvaranja": [
+        { "karte": ["spade:2"], "signal": "bilo", "ocjena": "savrseno", "zasto": "Duju+aša otvaraš dujom i tražiš tricu. Ruka mora ostati tebi." },
+        { "karte": ["spade:A"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Otvaraš dujom, ne ašem. Aš je karta koju trica lovi." },
+        { "karte": ["spade:13", "spade:5"], "signal": "bilo", "ocjena": "pogresno", "zasto": "S dujom+ašem ruka mora ostati tebi, zato otvaraš dujom." },
+        { "karte": ["kupe:3", "kupe:A"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Suhu tricu+aša ne otvaraš prvi. Čekaš da tu boju otvori netko drugi." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Imaš duju+aša s još dvije karte: to je boja za otvaranje." },
+      "najbolje": "duja špada",
+      "objasnjenje": "Suha trica+aš čeka, duja+aš otvara se dujom.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "duja-as", "tocka": "t. 10, t. 11" }
+    },
+    {
+      "id": "o2-2",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Nemaš baštona. Kako otvaraš?",
+      "ruka": "kupe:2,A,13,5|spade:3,A,7,4|dinari:6,5|bastoni:-",
+      "otvaranja": [
+        { "karte": ["kupe:2"], "signal": "bilo", "ocjena": "savrseno", "zasto": "Duju+aša otvaraš dujom, a trica+aš u špadama ostaje tvoj sigurni povratak." },
+        { "karte": ["spade:3"], "signal": "bilo", "ocjena": "pogresno", "zasto": "S tricom+ašem ne otvaraš tricom. Tricu čuvaš kao povratak." },
+        { "karte": ["dinari:6", "dinari:5"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Kad nemaš jednu boju, kreni s najjačom igrom." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Najjača igra su kupe s dujom i ašem." },
+      "najbolje": "duja kupa",
+      "objasnjenje": "Kad nemaš jednu boju, kreni s najjačom igrom. Ovdje je to duja+aš s kraljem u kupama.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "zabranjeni-potez", "tocka": "t. 16" }
+    },
+    {
+      "id": "o2-3",
+      "vrsta": "izbor",
+      "pitanje": "Otvorio si dujom kupa iz ruke iz prethodnog pitanja. Svi su odgovorili, trica nije pala i ruka je tvoja. Što igraš?",
+      "odgovori": [
+        { "tekst": "Kralja kupa: inzistiram dok trica ne padne", "tocno": true },
+        { "tekst": "Tricu špada: sad tražim duju u drugoj boji" },
+        { "tekst": "Šesticu dinara: mijenjam boju" }
+      ],
+      "objasnjenje": "Inzistiraš u boji duje+aša dok trica ne padne. Prijeći na traženje duje tricom špada znači upropastiti obje igre.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "zabranjeni-potez", "tocka": "t. 16" }
+    },
+    {
+      "id": "o2-4",
+      "vrsta": "izbor",
+      "pitanje": "Otvorio si dujom, a igrač poslije tebe nije odgovorio na boju. Ruka je ostala tebi. Što sada?",
+      "odgovori": [
+        { "tekst": "Promijenim boju", "tocno": true },
+        { "tekst": "Nastavim u istoj boji kraljem" },
+        { "tekst": "Odigram aša te boje" }
+      ],
+      "objasnjenje": "Kad igrač poslije tebe nema boju, ne inzistiraj. Partner tako može sačuvati kartu te boje i kasnije ti se vratiti.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "igrac-poslije-nema", "tocka": "t. 12" }
+    },
+    {
+      "id": "o2-5",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Kako otvaraš kupe?",
+      "ruka": "kupe:3,A,13,6|spade:12,7|dinari:2,6,4|bastoni:7,5",
+      "signali": false,
+      "otvaranja": [
+        { "karte": ["kupe:13"], "signal": "bilo", "ocjena": "savrseno", "zasto": "S četvrtom tricom+ašem s kraljem otvaraš kraljem. Trica i dalje upravlja bojom." },
+        { "karte": ["kupe:6"], "signal": "bilo", "ocjena": "savrseno", "zasto": "Najmanja lišina je također dobro otvaranje trice+aša." },
+        { "karte": ["kupe:3"], "signal": "bilo", "ocjena": "pogresno", "zasto": "S tricom+ašem ne otvaraš tricom, osim kad je boja šesta ili duža." },
+        { "karte": ["kupe:A"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Aš bi ostao pod dujom. Otvaraš kraljem ili lišinom." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Pitanje je kako otvaraš kupe." },
+      "najbolje": "kralj kupa (ili najmanja lišina)",
+      "objasnjenje": "Tricu+aša otvaraš kraljem ili najmanjom lišinom, nikad tricom.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "trica-as", "tocka": "t. 11, t. 13" }
+    },
+    {
+      "id": "o2-6",
+      "vrsta": "izbor",
+      "pitanje": "Zašto se duja+aš otvara dujom, a trica+aš kraljem ili lišinom?",
+      "odgovori": [
+        { "tekst": "Kod duje+aša ruka mora ostati tebi; kod trice+aša trica i tako upravlja bojom", "tocno": true },
+        { "tekst": "Jer duja vrijedi više od trice" },
+        { "tekst": "Jer se trica nikad ne igra prva" }
+      ],
+      "objasnjenje": "S dujom+ašem moraš imati ruku da biraš hoćeš li inzistirati. S tricom+ašem tvoja trica tuče duju kad god ona padne.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "trica-as", "tocka": "t. 11" }
+    },
+    {
+      "id": "o2-7",
+      "vrsta": "izbor",
+      "pitanje": "Imaš suhu tricu+duju kupa. Što radiš kao prvi od ruke?",
+      "karte": "kupe:3,2",
+      "odgovori": [
+        { "tekst": "Udarim tricu kupa", "tocno": true },
+        { "tekst": "Čekam da kupe otvori netko drugi" },
+        { "tekst": "Otvorim dujom" }
+      ],
+      "objasnjenje": "Suha trica+duja su dvije sigurne ruke. Udari tricu: partner vidi gdje ti je snaga, a iz njegova odgovora odlučuješ hoćeš li nastaviti dujom.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "trica-duja", "tocka": "t. 17" }
+    },
+    {
+      "id": "o2-8",
+      "vrsta": "izbor",
+      "pitanje": "Četvrta duja+aš ti je jedina igra, bez povratka u drugim bojama. Otvorio si dujom i trica nije pala. Inzistiraš li?",
+      "odgovori": [
+        { "tekst": "Ne. Inzistiranje bi partneru reklo da imam povratak.", "tocno": true },
+        { "tekst": "Da, dok trica ne padne" },
+        { "tekst": "Da, ali ašem" }
+      ],
+      "objasnjenje": "S jednom igrom i bez povratka ne inzistiraš, da ne zavaraš partnera.",
+      "izvor": { "lekcija": "otvaranje-2", "odjeljak": "jedna-igra", "tocka": "t. 14" }
+    }
+  ]
+}
