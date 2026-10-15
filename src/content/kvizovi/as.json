@@ -1,0 +1,107 @@
+{
+  "lekcija": "as",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "as-1",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Kako otvaraš?",
+      "ruka": "kupe:A,7,5|spade:3,6,5,4|dinari:12,6|bastoni:11,4",
+      "otvaranja": [
+        { "karte": ["spade:4", "spade:5", "spade:6"], "signal": "bato", "ocjena": "savrseno", "zasto": "Špade s tricom su tvoja jedina jaka boja. Treći aš kupa čeka." },
+        { "karte": ["spade:4", "spade:5", "spade:6"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Prava boja, ali uz bato partner zna da je trica kod tebe." },
+        { "karte": ["kupe:A", "kupe:7", "kupe:5"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Boju trećeg aša otvaraš samo kad si jak u sve tri ostale boje. Ovdje nisi." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Imaš jednu boju za bato: špade." },
+      "najbolje": "lišina špada uz bato",
+      "objasnjenje": "Treći aš nije boja za otvaranje kad su ostale boje slabe.",
+      "izvor": { "lekcija": "as", "odjeljak": "treci-as", "tocka": "Uporaba aša, t. 1" }
+    },
+    {
+      "id": "as-2",
+      "vrsta": "izbor",
+      "pitanje": "Kada smiješ otvoriti boju svog trećeg aša?",
+      "odgovori": [
+        { "tekst": "Kad imaš treće velike ili velike za strišo u sve tri ostale boje", "tocno": true },
+        { "tekst": "Kad imaš i kralja te boje" },
+        { "tekst": "Kad nemaš drugu boju za otvaranje" }
+      ],
+      "objasnjenje": "Treći aš je ranjiv. Otvaraš ga samo kad je ostatak ruke jak u sve tri boje.",
+      "izvor": { "lekcija": "as", "odjeljak": "treci-as", "tocka": "Uporaba aša, t. 1" }
+    },
+    {
+      "id": "as-3",
+      "vrsta": "izbor",
+      "pitanje": "Imaš trećeg aša s kraljem i jake ostale boje. Otvaraš kraljem i ruka ostane tebi. Što dalje?",
+      "odgovori": [
+        { "tekst": "Promijenim boju", "tocno": true },
+        { "tekst": "Nastavim ašem" },
+        { "tekst": "Nastavim lišinom iste boje" }
+      ],
+      "objasnjenje": "Kralj je obavio posao. Aša ne izlažeš trici i duji, nego mijenjaš boju.",
+      "izvor": { "lekcija": "as", "odjeljak": "treci-as", "tocka": "Uporaba aša, t. 1" }
+    },
+    {
+      "id": "as-4",
+      "vrsta": "izbor",
+      "pitanje": "Imaš šestog aša (aš i pet lišina). Kako otvaraš tu boju?",
+      "karte": "bastoni:A,7,6,5,4|kupe:13",
+      "odgovori": [
+        { "tekst": "Ašem", "tocno": true },
+        { "tekst": "Najmanjom lišinom" },
+        { "tekst": "Ne otvaram je" }
+      ],
+      "objasnjenje": "Partner vjerojatno ima jednu kartu te boje, možda suhu tricu. Ako otvoriš lišinom, njegova trica uzme ruku i tvoj aš ostaje sam.",
+      "izvor": { "lekcija": "as", "odjeljak": "dugi-as", "tocka": "Uporaba aša, t. 3" }
+    },
+    {
+      "id": "as-5",
+      "vrsta": "izbor",
+      "pitanje": "Imaš četvrtog aša bez trice i duje, a u ostalim bojama nemaš nijedne trice. Otvaraš li tu boju lišinom?",
+      "odgovori": [
+        { "tekst": "Ne. Dugi aš otvaraš samo kad imaš povratak u drugoj boji.", "tocno": true },
+        { "tekst": "Da, dugi aš uvijek se otvara lišinom" },
+        { "tekst": "Da, ali ašem" }
+      ],
+      "objasnjenje": "Bez povratka nećeš moći ponovno uzeti ruku i naplatiti ostatak boje, a partner će krivo zaključiti o tvojoj ruci.",
+      "izvor": { "lekcija": "as", "odjeljak": "dugi-as", "tocka": "Uporaba aša, t. 2" }
+    },
+    {
+      "id": "as-6",
+      "vrsta": "izbor",
+      "pitanje": "Imaš tri jake boje, a u četvrtoj aša i četvorku. Što radiš s tim ašem kao prvi od ruke?",
+      "karte": "dinari:A,4",
+      "odgovori": [
+        { "tekst": "Odigram ga odmah, uz strišo", "tocno": true },
+        { "tekst": "Čuvam ga do kraja dijeljenja" },
+        { "tekst": "Odigram četvorku, uz bato" }
+      ],
+      "objasnjenje": "Uz tri jake boje aš u slaboj boji odmah ide na stol. Strišo kaže da imaš još jednu, manju kartu te boje.",
+      "izvor": { "lekcija": "as", "odjeljak": "suhi-as", "tocka": "Uporaba aša, t. 4" }
+    },
+    {
+      "id": "as-7",
+      "vrsta": "izbor",
+      "pitanje": "Igrač poslije tebe uzima ruku za rukom. Iz partnerovih odbacivanja vidiš da zove baš u boju tvog trećeg aša. Smiješ li aša ostaviti suhog?",
+      "odgovori": [
+        { "tekst": "Ne. Ako partner pusti ruku, aš ti ostaje pod dujom.", "tocno": true },
+        { "tekst": "Da, partner će ga zaštititi" },
+        { "tekst": "Da, uvijek kad partner zove u tu boju" }
+      ],
+      "objasnjenje": "Kad ruke uzima igrač poslije tebe, ne ostavljaš aša suhog. Kad ih uzima igrač prije tebe, smiješ.",
+      "izvor": { "lekcija": "as", "odjeljak": "obrana" }
+    },
+    {
+      "id": "as-8",
+      "vrsta": "izbor",
+      "pitanje": "Partner uzima ruku za rukom, a protivnici na njegove ruke odbacuju boju u kojoj ti imaš trećeg aša. Što radiš?",
+      "odgovori": [
+        { "tekst": "Dam partneru aša odmah, pa i lišine te boje", "tocno": true },
+        { "tekst": "Čuvam aša za kraj" },
+        { "tekst": "Odbacim drugu boju i čekam" }
+      ],
+      "objasnjenje": "Protivnici su odbacivanjem rekli da u toj boji nemaju ništa. Aš na partnerovoj ruci je siguran punat.",
+      "izvor": { "lekcija": "as", "odjeljak": "obrana" }
+    }
+  ]
+}
