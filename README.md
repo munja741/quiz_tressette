@@ -1,6 +1,6 @@
 # Škola trešete
 
-Web mjesto za učenje trešete u parove na hrvatskom. Gotovo je: razina **Početnik** (pet lekcija s kvizom) i **igra protiv računala**: ti i CPU partner protiv dva CPU protivnika, po hrvatskim pravilima, s izgledom po uzoru na BridgeBase Online.
+Web mjesto za učenje trešete u parove na hrvatskom. Gotovo je: razine **Početnik** i **Igrač** (deset lekcija s kvizom) i **igra protiv računala**: ti i CPU partner protiv dva CPU protivnika, po hrvatskim pravilima, s izgledom po uzoru na BridgeBase Online.
 
 - Lekcije: `/put-ucenja/` i `/lekcije/<slug>/` (sadržaj u `src/content/lekcije/*.mdx`, kvizovi u `src/content/kvizovi/*.json`)
 - Igra: `/igraj/` (kod u `src/igra/`)
