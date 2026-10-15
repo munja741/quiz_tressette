@@ -1,0 +1,72 @@
+---
+naslov: Odgovori na otvaranje
+razina: Igrač
+redoslijed: 9
+minuta: 9
+opis: Što staviti kad boju otvori partner ili protivnik, uz bato, uz strišo ili bez signala.
+preduvjeti: [otvaranje-2, as]
+ciljevi:
+  - Primijeniti pravilo druge duje bez iznimke.
+  - Odgovoriti na partnerov bato.
+  - Znati kada drugog aša baciti, a kada čuvati.
+  - Odgovoriti na protivnički strišo.
+sazetak: Kad protivnik prije tebe bati, a ti imaš drugu duju, odmah uzimaš dujom i mijenjaš boju. Na partnerov bato igraš najjaču kartu, a na protivnikov prvi bato drugog aša bacaš. Na protivnikov strišo drugu duju čuvaš, a drugog aša bez povratka odmah stavljaš.
+---
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+import Karte from '../../components/Karte.astro';
+
+<h2 id="druga-duja">Druga duja na protivnikov bato</h2>
+
+Ovo je pravilo koje talijanska škola zove dogmom.
+
+<Pravilo naslov="Druga duja uzima" tocka="t. 32">
+  <p>Kad igrač prije tebe otvori uz bato, a ti imaš duju i još jednu kartu te boje, odmah uzmi dujom i promijeni boju.</p>
+</Pravilo>
+
+Zašto? Bato znači da je kod njih trica, ili da traže tricu. Ako ne uzmeš sada, tvoja duja ostaje druga, pa suha, a trica je čeka. Uzmi dok možeš i promijeni boju, da protivnik s tricom ne nastavi kako želi.
+
+<Karte karte="kupe:2,6" potpis="Tvoje kupe kad igrač prije tebe otvori kupe uz bato. Uzimaš dujom." />
+
+Postoje dvije situacije u kojima ruku možeš uzeti i drukčije:
+
+- Ako si zadnji od ruke i možeš uzeti figurom, uzmi figurom i zadrži duju.
+- Ako je partner već stavio aša i on drži ruku, ruku možeš prepustiti njemu.
+
+Ali tvoj par mora uzeti tu ruku. Uvijek.
+
+<h2 id="partnerov-bato">Partnerov bato</h2>
+
+<KodNas>
+  <p>Bato znači "igraj najjaču i vrati mi manjom". Na partnerov bato igraš svoju najjaču kartu te boje, a kad uzmeš ruku, vraćaš mu se manjom kartom.</p>
+</KodNas>
+
+Talijanska škola ovdje ima iznimku: na partnerov bato s tricom ne stavlja se drugi aš (t. 33), jer protivnici moraju uzeti dujom i aš tada ostaje siguran. Kod nas bato ne razlikuje tricu od duje, pa partner ne zna treba li mu tvoj aš. Igraj kako bato kaže: najjaču.
+
+{/* TREBA POTVRDITI: vrijedi li kod nas iznimka s drugim ašem na partnerov bato (vidi docs/otvorena-pitanja.md). */}
+
+<h2 id="drugi-as">Drugi aš na protivnikov bato</h2>
+
+Igrač prije tebe otvori prvu ruku dijeljenja uz bato, a ti imaš aša i jednu kartu te boje. Talijanska škola kaže: **drugog aša baci** (t. 34).
+
+Razlog je u brojanju. Ako zadržiš aša, a tricu ima tvoj partner, partner misli da je aš drugi kod protivnika i ne igra tricu. Boja se zaglavi, a aš na kraju često izgubiš. Ako ga baciš odmah, partner zna gdje je aš bio i slobodno igra svoju tricu.
+
+Kad isti igrač bati tek u drugom ili trećem otvaranju, a protivnici se u toj boji vjerojatno susreću, drugog aša možeš zadržati i ostaviti protivnika u dvojbi gdje je.
+
+<h2 id="striso-protivnika">Protivnički strišo</h2>
+
+Igrač prije tebe otvori uz strišo: ima još jednu, manju kartu te boje, a obično nema velikih.
+
+- **Imaš drugu duju:** baci lišinu i zadrži duju (t. 42). Ako odigraš duju, igrač poslije tebe s tricom+ašem uzme je tricom i naplati aša.
+- **Imaš drugog aša, a u ostalim bojama nemaš povratka:** stavi aša odmah (t. 38). To ti je možda jedina prilika da partneru oslobodiš igru.
+- **Imaš drugog aša i povratke:** ne bacaj ga.
+
+<h2 id="treca-duja-s-kraljem">Treća duja s kraljem</h2>
+
+Igrač prije tebe bati, a ti imaš duju, kralja i lišinu te boje. Uzmi dujom i zadrži kralja (t. 43). Ako je aš kod igrača poslije tebe, ionako je izgubljen za vas. Ako je kod partnera, on ga stavlja na tvoju duju, a tvoj kralj kasnije blokira protivnika kad se pokuša vratiti u tu boju.
+
+<h2 id="kad-netko-nema-boju">Kad protivnik nema boju</h2>
+
+Igrač poslije tebe bati, a igrač prije tebe ne odgovori jer nema te boje. Ako imaš treću duju ili treću tricu, uzmi ruku (figurom ako možeš) i **vrati se u istu boju** (t. 36). Igrač koji je batio sada mora uzeti svojom velikom i promijeniti boju, ili vam prepustiti aša.
+
+Ako je igrač poslije tebe batio s dugom bojom, uzmi i promijeni boju.

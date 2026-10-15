@@ -1,0 +1,95 @@
+{
+  "lekcija": "odgovori",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "od-1",
+      "vrsta": "stol",
+      "pitanje": "Igrač prije tebe otvori šesticu kupa uz bato. Što staviš?",
+      "ruka": "kupe:2,5|spade:3,12,4|dinari:A,7,6|bastoni:13,5",
+      "stol": [{ "tko": "prije", "karta": "kupe:6", "signal": "bato" }],
+      "tocne": ["kupe:2"],
+      "objasnjenje": "Druga duja na protivnikov bato odmah uzima. Inače ostaje suha pod tricom.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "druga-duja", "tocka": "t. 32" }
+    },
+    {
+      "id": "od-2",
+      "vrsta": "izbor",
+      "pitanje": "Uzeo si ruku drugom dujom na protivnikov bato. Što dalje?",
+      "odgovori": [
+        { "tekst": "Promijenim boju", "tocno": true },
+        { "tekst": "Nastavim lišinom iste boje" },
+        { "tekst": "Čekam da protivnik ponovno otvori" }
+      ],
+      "objasnjenje": "Uzmi dujom i promijeni boju, da protivnik s tricom ne nastavi kako želi.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "druga-duja", "tocka": "t. 32" }
+    },
+    {
+      "id": "od-3",
+      "vrsta": "stol",
+      "pitanje": "Partner otvori četvorku špada uz bato, igrač prije tebe stavi sedmicu. Što staviš?",
+      "ruka": "spade:A,13,5|kupe:3,6|dinari:12,7|bastoni:2,6,4",
+      "stol": [
+        { "tko": "partner", "karta": "spade:4", "signal": "bato" },
+        { "tko": "prije", "karta": "spade:7" }
+      ],
+      "tocne": ["spade:A"],
+      "objasnjenje": "Kod nas bato znači \"igraj najjaču i vrati mi manjom\". Tvoja najjača špada je aš.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "partnerov-bato" }
+    },
+    {
+      "id": "od-4",
+      "vrsta": "stol",
+      "pitanje": "Igrač prije tebe otvori prvu ruku dijeljenja peticom dinara uz bato. Što staviš?",
+      "ruka": "dinari:A,4|kupe:3,7,5|spade:2,13,6|bastoni:12,5",
+      "stol": [{ "tko": "prije", "karta": "dinari:5", "signal": "bato" }],
+      "tocne": ["dinari:A"],
+      "objasnjenje": "Na protivnikov prvi bato drugog aša bacaš. Tako partner, ako ima tricu, slobodno igra.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "drugi-as", "tocka": "t. 34" }
+    },
+    {
+      "id": "od-5",
+      "vrsta": "stol",
+      "pitanje": "Igrač prije tebe otvori sedmicu baštona uz strišo. Što staviš?",
+      "ruka": "bastoni:2,5|kupe:3,13,4|spade:A,6|dinari:12,7,6",
+      "stol": [{ "tko": "prije", "karta": "bastoni:7", "signal": "striso" }],
+      "tocne": ["bastoni:5"],
+      "objasnjenje": "Na protivnički strišo drugu duju čuvaš i bacaš lišinu. Duja bi pala pod tricu+aša igrača poslije tebe.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "striso-protivnika", "tocka": "t. 42" }
+    },
+    {
+      "id": "od-6",
+      "vrsta": "izbor",
+      "pitanje": "Igrač prije tebe otvori uz strišo. Imaš aša i lišinu te boje, a u drugim bojama nemaš nijednu tricu ni duju. Što radiš?",
+      "odgovori": [
+        { "tekst": "Stavim aša odmah", "tocno": true },
+        { "tekst": "Bacim lišinu i čuvam aša" },
+        { "tekst": "Svejedno je" }
+      ],
+      "objasnjenje": "Bez povrataka ovo ti je možda jedina prilika da partneru oslobodiš igru. S povratcima aša ne bacaš.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "striso-protivnika", "tocka": "t. 38" }
+    },
+    {
+      "id": "od-7",
+      "vrsta": "stol",
+      "pitanje": "Igrač prije tebe otvori četvorku kupa uz bato. Što staviš?",
+      "ruka": "kupe:2,13,6|spade:3,7|dinari:A,12,5|bastoni:6,4",
+      "stol": [{ "tko": "prije", "karta": "kupe:4", "signal": "bato" }],
+      "tocne": ["kupe:2"],
+      "objasnjenje": "S trećom dujom s kraljem uzmi dujom i zadrži kralja. Kralj kasnije blokira protivnika u toj boji.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "treca-duja-s-kraljem", "tocka": "t. 43" }
+    },
+    {
+      "id": "od-8",
+      "vrsta": "izbor",
+      "pitanje": "Igrač poslije tebe bati, igrač prije tebe nema tu boju, a ti imaš treću tricu. Uzeo si ruku. Što otvaraš?",
+      "odgovori": [
+        { "tekst": "Istu boju, da protivnik koji je batio mora odlučiti", "tocno": true },
+        { "tekst": "Drugu boju" },
+        { "tekst": "Tricu te boje, da uhvatim aša" }
+      ],
+      "objasnjenje": "Vraćaš se u boju: protivnik koji je batio mora uzeti velikom i promijeniti boju ili vam prepustiti aša.",
+      "izvor": { "lekcija": "odgovori", "odjeljak": "kad-netko-nema-boju", "tocka": "t. 36" }
+    }
+  ]
+}
