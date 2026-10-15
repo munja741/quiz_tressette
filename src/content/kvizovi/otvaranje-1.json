@@ -1,0 +1,117 @@
+{
+  "lekcija": "otvaranje-1",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "o1-1",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Kako otvaraš?",
+      "ruka": "kupe:12,7,4|spade:3,6,5,4|dinari:A,6|bastoni:13",
+      "otvaranja": [
+        { "karte": ["spade:4", "spade:5", "spade:6"], "signal": "bato", "ocjena": "savrseno", "zasto": "Špade su tvoja jedina jaka boja. Uz bato partner odmah zna gdje se može osloniti na tvoju tricu." },
+        { "karte": ["spade:4", "spade:5", "spade:6"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Boja je dobra, ali bez bata partner ne zna da je trica kod tebe." },
+        { "karte": ["spade:3"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Tricom uzimaš ruku s malim kartama u njoj, a partner ne doznaje ništa." },
+        { "karte": ["bastoni:13"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Suhi kralj kao prvi od ruke igra se samo kad si vrlo jak u svim ostalim bojama." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Imaš jednu jaku boju, a nju ne otvaraš." },
+      "najbolje": "lišina špada uz bato",
+      "objasnjenje": "Jedinu boju s tricom barem četvrtom otvaraš najmanjom kartom, uz bato.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "jedina-boja", "tocka": "t. 3" }
+    },
+    {
+      "id": "o1-2",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Nemaš baštona. Kako otvaraš?",
+      "ruka": "kupe:2,7,6,5,4|spade:3,13,4|dinari:A,12|bastoni:-",
+      "otvaranja": [
+        { "karte": ["kupe:4", "kupe:5", "kupe:6", "kupe:7"], "signal": "bato", "ocjena": "savrseno", "zasto": "Duga duja je iznimka od pravila: tu boju uvijek otvaraš. Bato traži partnerovu najjaču kartu." },
+        { "karte": ["kupe:4", "kupe:5", "kupe:6", "kupe:7"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Boja je prava, ali uz dugu duju kod nas se otvara uz bato." },
+        { "karte": ["kupe:2"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Duja ide pod tricu. Otvori lišinom i pusti partnera da stavi najjaču." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Kad nemaš jednu boju, kreni s najjačom igrom. Ovdje su to kupe s dugom dujom." },
+      "najbolje": "lišina kupa uz bato",
+      "objasnjenje": "Duju s još četiri ili više karata uvijek pokušaj otvoriti, a kad nemaš jednu boju, kreni s najjačom igrom.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "ne-idi-protiv-trice", "tocka": "t. 1" }
+    },
+    {
+      "id": "o1-3",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Kako otvaraš?",
+      "ruka": "kupe:3,6|spade:2,5|dinari:2,7,4|bastoni:12,6,5",
+      "otvaranja": [
+        { "karte": ["bastoni:12", "bastoni:6", "bastoni:5"], "signal": "bez", "ocjena": "savrseno", "zasto": "Srednja igra u tri boje i tri karte bez velikih u četvrtoj: otvaraš najslabiju boju, bez signala. Partner zna gdje nemaš." },
+        { "karte": ["bastoni:12", "bastoni:6", "bastoni:5"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Boja je prava, ali ovo otvaranje igra se bez signala. Bato bi partnera poslao krivo." },
+        { "karte": ["dinari:7", "dinari:4"], "signal": "bilo", "ocjena": "pogresno", "zasto": "U dinarima imaš duju bez trice. Ne idi protiv trice." },
+        { "karte": ["kupe:6"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Druga trica nije boja za otvaranje. Čuvaj je." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Ovo otvaranje troši jednu od tvojih srednjih igara." },
+      "najbolje": "konj baštona, bez signala",
+      "objasnjenje": "Sa srednjom igrom u tri boje otvara se najslabija boja, bez signala.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "srednja-igra", "tocka": "t. 2" }
+    },
+    {
+      "id": "o1-4",
+      "vrsta": "ruka",
+      "pitanje": "Prvi si od ruke. Kako otvaraš?",
+      "ruka": "kupe:2,7,5|spade:3,7,6,4|dinari:13,12,5|bastoni:7",
+      "otvaranja": [
+        { "karte": ["spade:4", "spade:6", "spade:7"], "signal": "bato", "ocjena": "savrseno", "zasto": "Špade s tricom su tvoja jaka boja. Otvaraš ih malom kartom uz bato." },
+        { "karte": ["spade:4", "spade:6", "spade:7"], "signal": "bilo", "ocjena": "pogresno", "zasto": "Prava boja, ali bez bata partner ne zna da imaš tricu." },
+        { "karte": ["kupe:2", "kupe:7", "kupe:5"], "signal": "bilo", "ocjena": "pogresno", "zasto": "U kupama imaš duju bez trice. Kao prvi od ruke ne ideš protiv trice." }
+      ],
+      "inace": { "ocjena": "pogresno", "zasto": "Imaš boju za bato, a ne otvaraš je." },
+      "najbolje": "lišina špada uz bato",
+      "objasnjenje": "Boju u kojoj imaš duju bez trice ne otvaraš kao prvi od ruke.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "ne-idi-protiv-trice", "tocka": "t. 1" }
+    },
+    {
+      "id": "o1-5",
+      "vrsta": "izbor",
+      "pitanje": "Partnerovo prvo odbacivanje bila je sedmica dinara. Uzeo si ruku i biraš što otvoriti. Smiješ li otvoriti dinare?",
+      "odgovori": [
+        { "tekst": "Ne. Boju partnerova prvog odbacivanja ne otvaram ja.", "tocno": true },
+        { "tekst": "Da, ako imam aša dinara." },
+        { "tekst": "Da, jer partner tamo sigurno ima tricu." }
+      ],
+      "objasnjenje": "Prvo odbacivanje kaže gdje partner nema ništa. Tu boju do kraja dijeljenja ne otvaraš ti, a ako baš moraš, otvori je bez signala.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "prvo-odbacivanje", "tocka": "t. 5" }
+    },
+    {
+      "id": "o1-6",
+      "vrsta": "izbor",
+      "pitanje": "Otvorio si boju u kojoj imaš tri karte bez velikih. Svi su odgovorili, nije pala nijedna velika i ruka je ostala tebi. Gdje je najvjerojatnije aš?",
+      "odgovori": [
+        { "tekst": "Kod igrača poslije tebe ili kod partnera", "tocno": true },
+        { "tekst": "Kod igrača prije tebe" },
+        { "tekst": "Nema načina da se zaključi" }
+      ],
+      "objasnjenje": "Igrač prije tebe igrao je zadnji i nije uzeo ruku. Da je imao veliku koja uzima, vjerojatno bi je stavio.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "tri-lisine", "tocka": "t. 6" }
+    },
+    {
+      "id": "o1-7",
+      "vrsta": "izbor",
+      "pitanje": "Nemaš nijednu kartu jedne boje. Što otvaraš kao prvi od ruke?",
+      "odgovori": [
+        { "tekst": "Najjaču igru", "tocno": true },
+        { "tekst": "Najslabiju boju, da partner vidi gdje nemam" },
+        { "tekst": "Boju u kojoj imam najmanje karata" }
+      ],
+      "objasnjenje": "Kad nemaš jednu boju, kreni s najjačom igrom, u nadi da ćeš se susresti s partnerovim kartama.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "nemas-boju", "tocka": "t. 4" }
+    },
+    {
+      "id": "o1-8",
+      "vrsta": "izbor",
+      "pitanje": "Imaš drugog kralja kupa (kralj i šestica). Kako ga otvaraš kao prvi od ruke?",
+      "karte": "kupe:13,6",
+      "odgovori": [
+        { "tekst": "Kraljem, uz strišo", "tocno": true },
+        { "tekst": "Kraljem, uz bato" },
+        { "tekst": "Šesticom, bez signala" }
+      ],
+      "objasnjenje": "Strišo kaže da imaš još jednu, manju kartu te boje. Ako kralj uzme, a partner odgovori lišinom, odigraj i šesticu.",
+      "izvor": { "lekcija": "otvaranje-1", "odjeljak": "suhe-karte", "tocka": "t. 9" }
+    }
+  ]
+}
