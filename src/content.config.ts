@@ -29,6 +29,20 @@ const pitanje = z.discriminatedUnion('vrsta', [
     stol: z.array(z.object({ tko: z.enum(['prije', 'partner', 'poslije']), karta: z.string(), signal: z.enum(['bato', 'striso']).optional() })),
     tocne: z.array(z.string()).min(1),
   }),
+  z.object({
+    ...osnova,
+    vrsta: z.literal('ruka'),
+    ruka: z.string(),
+    signali: z.boolean().default(true),
+    otvaranja: z.array(z.object({
+      karte: z.array(z.string()).min(1),
+      signal: z.enum(['bilo', 'bez', 'bato', 'striso']).default('bilo'),
+      ocjena: z.enum(['savrseno', 'pogresno', 'katastrofalno']),
+      zasto: z.string(),
+    })).min(1),
+    inace: z.object({ ocjena: z.enum(['savrseno', 'pogresno', 'katastrofalno']), zasto: z.string() }).default({ ocjena: 'pogresno', zasto: 'Ovo otvaranje lekcija ne preporučuje za ovu ruku.' }),
+    najbolje: z.string(),
+  }),
 ]);
 
 const kvizovi = defineCollection({

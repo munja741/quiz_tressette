@@ -95,6 +95,8 @@
 .plocica-info { display: flex; justify-content: center; gap: .5rem; font-size: .8rem; color: #4a554d; flex-wrap: wrap; }
 .zeton { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; border-radius: 50%; background: #18201b; color: #f7f4ea; font-size: .72rem; font-weight: 700; }
 .oznaka-signala { margin-top: .25rem; display: inline-block; background: #18201b; color: var(--mjed); border-radius: 999px; padding: .05rem .6rem; font-weight: 700; font-size: .85rem; }
+.plocica-akuza { margin-top: .2rem; font-size: .78rem; font-weight: 600; color: #6b4f0a; line-height: 1.25; }
+.plocica.na-potezu .plocica-akuza { color: #18201b; }
 .oznaka-akuze { margin-top: .25rem; font-size: .78rem; color: #4a554d; }
 
 .sredina { grid-area: sredina; position: relative; min-height: 15rem; }

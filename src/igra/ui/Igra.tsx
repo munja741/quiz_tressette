@@ -272,6 +272,13 @@ export default function Igra() {
   const prvaRuka = d.odigrane.length ? d.odigrane[0].karte : d.tekuca;
   const akuzaVidljiva = (i: number) => prviKrug && (prvaRuka.some((o) => o.igrac === i) || (d.odigrane.length === 0 && d.naPotezu === i));
 
+  // akuža ostaje na pločici igrača cijelo dijeljenje, od trenutka kad ju je prijavio (prvi put na redu)
+  const akuzaNaPlocici = (i: number) => {
+    const a = akuzaIgraca(i);
+    if (!a) return undefined;
+    return d.odigrane.length > 0 || d.tekuca.some((o) => o.igrac === i) || d.naPotezu === i ? a : undefined;
+  };
+
   const najave = (i: number) => {
     const a = akuzaVidljiva(i) ? akuzaIgraca(i) : undefined;
     const sig = signalRuke && otvaracRuke === i && naStolu.length > 0 ? signalRuke : null;
@@ -295,6 +302,7 @@ export default function Igra() {
           {ULOGA[i] && <span>{ULOGA[i]}</span>}
           <span>{d.ruke[i].length} {d.ruke[i].length === 1 ? 'karta' : d.ruke[i].length < 5 && d.ruke[i].length > 1 ? 'karte' : 'karata'}</span>
         </div>
+        {akuzaNaPlocici(i) && <div class="plocica-akuza">Akuža {akuzaNaPlocici(i)!.punti}: {akuzaNaPlocici(i)!.kombinacije.map(opisKombinacije).join(', ')}</div>}
       </div>
     );
   };

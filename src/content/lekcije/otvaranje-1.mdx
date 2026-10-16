@@ -1,0 +1,85 @@
+---
+naslov: "Otvaranje: osnovna pravila"
+razina: Igrač
+redoslijed: 6
+minuta: 10
+opis: Koju boju otvoriti kad si prvi od ruke, i što partneru poručuje svako otvaranje.
+preduvjeti: [signali, punti-i-bele]
+ciljevi:
+  - Izbjeći najčešću grešku prvog otvaranja.
+  - Prepoznati kada se otvara uz bato, a kada bez signala.
+  - Znati što učiniti kad nemaš jednu boju.
+  - Iz otvaranja i prvih odbacivanja zaključiti gdje su karte.
+sazetak: Kao prvi od ruke ne otvaraš boju u kojoj imaš duju bez trice, osim kad je duja duga. Jedinu jaku boju otvaraš uz bato, a kad nemaš jednu boju, kreni s najjačom igrom. Boju partnerova prvog odbacivanja ne otvaraš ti.
+---
+import Dijagram from '../../components/Dijagram.astro';
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+
+<h2 id="zasto-je-vazno">Prva karta je poruka</h2>
+
+Prva karta dijeljenja nije samo karta. Ona je prva informacija koju partner dobiva o tvojoj ruci, a protivnici je čuju jednako dobro. Dobro otvaranje partneru kaže gdje se može osloniti na tebe; loše ga šalje u krivu boju za cijelo dijeljenje.
+
+Lekcija prati pravila talijanske škole iz priručnika *Biblija trešete u parove*, s brojem točke uz svako pravilo. Primjeri ruku su naši.
+
+<h2 id="ne-idi-protiv-trice">Ne idi protiv trice</h2>
+
+Najstarije pravilo trešete i danas vrijedi: kao prvi od ruke **ne otvaraj boju u kojoj imaš duju, a nemaš tricu**.
+
+Razlog je jednostavan. Trica je negdje vani. Ako je kod igrača poslije tebe, uzet će ti duju čim je odigraš. Ako je kod igrača prije tebe, on igra zadnji i bira hoće li uzeti. Duja koju čekaš da trica izađe vrijedi mnogo više od duje koju sam baciš pod tricu.
+
+<Dijagram karte="kupe:2,7,5|spade:3,7,6,4|dinari:13,12,5|bastoni:7" igra="spade:4" potpis="Kupe imaju duju bez trice: tu boju ne otvaraš. Otvaraš špade, gdje je trica." />
+
+<Pravilo naslov="Iznimka: duga duja" tocka="t. 1">
+  <p>Duju s još četiri ili više karata te boje uvijek pokušaj otvoriti. Kod nas se to otvara uz bato.</p>
+</Pravilo>
+
+S dugom dujom igraš na drugi način: boja je tvoja po broju karata, a bato traži od partnera najjaču kartu. Ako je trica kod njega, pada odmah.
+
+<h2 id="jedina-boja">Jedina jaka boja: otvori je uz bato</h2>
+
+Kad imaš samo jednu boju s tricom (tricu i još barem tri karte), a ostale boje su slabe, otvori upravo tu boju, najmanjom kartom, uz bato (t. 3).
+
+<Dijagram karte="kupe:12,7,4|spade:3,6,5,4|dinari:A,6|bastoni:13" igra="spade:4" potpis="Jedina jaka boja su špade. Otvaraš četvorkom špada uz bato." />
+
+Tako partner od prve ruke zna gdje se može osloniti na tvoju tricu. Kad kasnije uđe u igru, vratit će ti se u špade.
+
+<h2 id="srednja-igra">Srednja igra u tri boje</h2>
+
+Ponekad nemaš nijednu jaku boju, ali imaš nešto u tri boje: drugu tricu, drugu duju, treću duju. Četvrta boja su tri karte bez velikih.
+
+<Dijagram karte="kupe:3,6|spade:2,5|dinari:2,7,4|bastoni:12,6,5" igra="bastoni:12" potpis="Srednja igra u kupama, špadama i dinarima. Otvaraš baštone, i to bez signala." />
+
+Talijanska škola tada savjetuje otvoriti **upravo najslabiju boju, bez signala** (t. 2). Zvuči čudno, ali ima smisla: partner odmah zna gdje nemaš, a ti ne otvaraš nijednu boju u kojoj bi izgubio veliku. Ako ni partner nema igru u toj boji, protivnici će se u njoj susresti i potrošiti je, a iz odbacivanja ćeš saznati gdje partner zove.
+
+<h2 id="nemas-boju">Kad nemaš jednu boju</h2>
+
+Kad u ruci nemaš jednu boju, **kreni s najjačom igrom** (t. 4). Nedostatak boje znači da su karte drugdje koncentrirane, a partner vjerojatno ima više karata u boji koju ti nemaš. Ne otvaraj slabu boju u nadi da ćeš se kasnije snaći: s rupom u ruci, kasnije možda neće biti.
+
+<Dijagram karte="kupe:2,A,13,5|spade:3,A,7,4|dinari:6,5|bastoni:-" potpis="Nema baštona. Najjača igra su kupe s dujom i ašem: otvaraš dujom kupa (lekcija Otvaranje: duja+aš)." />
+
+<h2 id="prvo-odbacivanje">Boja partnerova prvog odbacivanja</h2>
+
+Kad partner prvi put ne može odgovoriti na boju i odbaci kartu, ta prva odbačena boja govori: "ovdje nemam ništa".
+
+<Pravilo naslov="Ne otvaraj boju partnerova prvog odbacivanja" tocka="t. 5">
+  <p>Do kraja dijeljenja ti ne otvaraš boju koju je partner prvu odbacio. Ako baš moraš, otvori je bez signala.</p>
+</Pravilo>
+
+Pravilo vrijedi za prvo odbacivanje para, ne za svako odbacivanje. Da bi partner mogao računati na tvoje, i ti svoje prvo odbacivanje stavljaš tamo gdje si slab. Više o tome u lekciji Odbacivanje.
+
+<h2 id="tri-lisine">Što govore karte koje ne padnu</h2>
+
+Otvoriš boju u kojoj imaš tri karte bez velikih. Svi odgovore, ali ne padne nijedna velika. Što to znači?
+
+Trica i duja su kod nekoga, a ruka je ostala tebi. Igrač prije tebe igrao je zadnji i nije uzeo, pa vjerojatno nema tricu ni duju koje bi mogle uzeti. Aš je, dakle, najvjerojatnije kod igrača poslije tebe ili kod partnera (t. 6). Ako je ruka ostala tebi, bolje je promijeniti boju nego nastaviti.
+
+<h2 id="suhe-karte">Suha duja, suhi kralj, drugi kralj</h2>
+
+Talijanska škola dopušta da se kao prvi od ruke odmah odigra suha duja ili suhi kralj, kad si vrlo jak u ostalim bojama (t. 7, 8). Uz to koristi signal kojim kaže "ovo mi je zadnja karta te boje". Takvog signala kod nas nema, pa partner taj potez teško pročita. Na razini Igrač bolje je da ga ne igraš.
+
+**Drugi kralj** je drukčiji. Njega kao prvi od ruke možeš otvoriti uz **strišo** (t. 9): partner zna da imaš još jednu, manju kartu te boje. Ako kralj uzme ruku, a partner odgovori lišinom, odigraj i drugu kartu, da padnu velike kod protivnika.
+
+<KodNas>
+  <p>Dopušteni su samo bato i strišo. Potezi za koje talijanska škola ima druge signale kod nas se igraju bez signala ili se ne igraju.</p>
+</KodNas>

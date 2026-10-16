@@ -1,0 +1,71 @@
+---
+naslov: Uporaba aša
+razina: Igrač
+redoslijed: 8
+minuta: 9
+opis: Kada se aš otvara, kada se brani, a kada žrtvuje da bi se oslobodila partnerova igra.
+preduvjeti: [otvaranje-2]
+ciljevi:
+  - Znati kada smiješ otvoriti boju trećeg aša.
+  - Otvoriti dugog aša na pravi način.
+  - Prepoznati kada aša treba odmah odigrati.
+  - Braniti trećeg aša ovisno o tome tko uzima ruke.
+sazetak: Aš je najvrjednija karta, a protivnici ga love tricom i dujom. Boju trećeg aša otvaraš samo kad si jak u ostale tri boje; dugog aša lišinom ili kraljem, samo uz povratak. Kad aša ne možeš spasiti, iskoristi ga da partneru oslobodiš igru.
+---
+import Dijagram from '../../components/Dijagram.astro';
+import Pravilo from '../../components/Pravilo.astro';
+import KodNas from '../../components/KodNas.astro';
+
+<h2 id="zasto-as">Oko aša se vrti igra</h2>
+
+Aš vrijedi cijeli punat, a jače su od njega samo dvije karte: trica i duja iste boje. Velik dio trešete svodi se na to tko će uhvatiti čijeg aša.
+
+Zato s ašem imaš dva cilja. Ako ga možeš obraniti, obrani ga. Ako ne možeš, iskoristi ga: aš koji padne u pravom trenutku može partneru osloboditi cijelu boju.
+
+<h2 id="treci-as">Treći aš</h2>
+
+Treći aš (aš i dvije karte, bez trice i duje) najranjivija je velika u ruci. Ako otvoriš njegovu boju, trica i duja su vani i čekaju ga.
+
+<Pravilo naslov="Boju trećeg aša otvaraš samo kad si jak u ostale tri boje" tocka="Uporaba aša, t. 1">
+  <p>Treće velike ili velike za strišo u sve tri ostale boje. Inače tu boju ne otvaraš ti.</p>
+</Pravilo>
+
+Ako imaš trećeg aša s kraljem, otvaraš kraljem. Ako ruka ostane tebi, promijeni boju: kralj je obavio posao, a aša ne izlažeš.
+
+<KodNas>
+  <p>Talijanska škola uz ovo otvaranje daje poseban signal koji kod nas ne postoji. Otvaraš bez signala.</p>
+</KodNas>
+
+<Dijagram karte="kupe:A,13,5|spade:3,7,4|dinari:2,6|bastoni:3,12" potpis="Treći aš s kraljem u kupama, a velike u svim ostalim bojama. Ovdje smiješ otvoriti kraljem kupa." />
+
+<h2 id="dugi-as">Dugi aš</h2>
+
+S ašem i još tri ili više karata boja je tvoja po broju, ali trica i duja i dalje su vani.
+
+- **Četvrti ili peti aš** otvaraš lišinom ili kraljem, ali samo ako imaš povratak u drugoj boji, na primjer tricu. Bez povratka nema smisla rušiti protivničke velike, jer nećeš moći ponovno uzeti ruku i naplatiti ostatak boje.
+- **Šesti aš ili duži** otvaraš ašem. Partner vjerojatno ima jednu kartu te boje, možda baš suhu tricu. Ako otvoriš lišinom, njegova trica uzme ruku i tvoj aš može ostati sam.
+- **Peti aš s kraljem i konjem**, uz tricu u drugoj boji, talijanska škola otvara ašem bez signala. Igrač poslije tebe ne zna imaš li i tricu, pa često baca svoju drugu duju da uzme ruku.
+
+<h2 id="suhi-as">Suhi aš uz tri jake boje</h2>
+
+Ako imaš tri jake boje, a u četvrtoj suhog aša ili aša i jednu kartu, **odigraj ga odmah**. Partner vjerojatno ima više karata te boje. Tvoj aš tjera protivnika da tricom ili dujom uzme ruku, a ti si se riješio slabe boje i ostaju ti tri jake.
+
+Aša s još jednom kartom otvaraš uz strišo, jer imaš još jednu, manju kartu te boje. Suhog aša otvaraš bez signala.
+
+<h2 id="strisati-asa">Kada aša treba žrtvovati</h2>
+
+Ponekad je najbolji potez s ašem dati ga, i to namjerno.
+
+- Ako vjeruješ da partner ima igru u boji u kojoj ti imaš aša i jednu kartu, a on još nije ušao u igru, odigraj aša uz strišo (t. 21a). Tvoj aš ruši protivničku veliku i partneru čisti put.
+- Kao prvi od ruke, ako u ostale tri boje imaš srednju igru (treće duje, drugu tricu), otvaranje drugim ašem uz strišo može biti dobro za par (t. 21b).
+- Ako imaš trećeg aša s kraljem, nakon četiri ruke nitko nije odbacio tu boju, a misliš da je jedna velika kod partnera, odigraj aša (t. 21c). Kralj ti ostaje da kasnije blokiraš boju.
+
+<h2 id="obrana">Obrana trećeg aša</h2>
+
+Kad protivnik uzima ruku za rukom, a ti iz partnerova odbacivanja vidiš da on zove baš u boju tvog trećeg aša, ključno je pitanje **tko uzima ruke**:
+
+- **Igrač prije tebe uzima ruke:** aša smiješ ostaviti suhog. Ako protivnici otvore tu boju, ti igraš drugi, partner vidi tvog aša i ravna se prema tome.
+- **Igrač poslije tebe uzima ruke:** aša ne smiješ ostaviti suhog. Ako partner pusti ruku, aš ti ostaje pod dujom.
+- **Partner uzima ruke, a protivnici odbacuju boju tvog aša:** daj partneru aša odmah, pa i lišine te boje. Protivnici su ti upravo rekli da tamo nemaju ništa.
+
+<Dijagram karte="dinari:A,7,5" potpis="Treći aš. Hoćeš li ga ostaviti suhog ovisi o tome igra li igrač koji uzima ruke prije ili poslije tebe." />

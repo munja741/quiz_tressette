@@ -127,7 +127,7 @@ Raspored i ponašanje slijede BBO-ov stol za bridž, prilagođeno trešeti. Graf
 - **Sredina stola:** odigrana karta odmah se pojavi ispred mjesta igrača koji ju je odigrao. Nema klizanja ni okretanja.
 - **Kraj ruke:** kad su na stolu sve četiri karte, ostaju vidljive koliko traje postavka Stanka između poteza, a zatim nestanu. Brojač uzetih ruku odmah se poveća. Klik ili dodir na stol skraćuje stanku.
 - **Ultima ostaje na stolu:** nakon zadnje ruke dijeljenja karte se ne miču i stol se ničim ne prekriva, da se može proučiti kako je ultima odigrana. Obračun i izbornik pojavljuju se ispod stola.
-- **Akuža na stolu:** u prvom krugu, redom kako igrači dolaze na red, ispred svakog igrača piše što je akužao, npr. "Akuža 3: 3 trice (bez kupa)". Kod tri iste u zagradi je boja koja nedostaje. Kod četiri iste nema zagrade, jer igrač ima veliku u svim bojama. Napolitana se piše s bojom: "napolitana u dinarima". Natpisi nestaju kad se prva ruka pokupi.
+- **Akuža na stolu:** u prvom krugu, redom kako igrači dolaze na red, ispred svakog igrača piše što je akužao, npr. "Akuža 3: 3 trice (bez kupa)". Kod tri iste u zagradi je boja koja nedostaje. Kod četiri iste nema zagrade, jer igrač ima veliku u svim bojama. Napolitana se piše s bojom: "napolitana u dinarima". Natpisi na stolu nestaju kad se prva ruka pokupi, a akuža ostaje upisana na pločici igrača do kraja dijeljenja.
 - **Karte:** velika ilustrirana karta iz `05-dizajn.md` (komponenta `Karta`), u bojama kupe plava, špade crna, dinari zlatna, baštoni crvena. Uz postavku "kompaktne karte" koristi se karta iz dijagrama ruke (broj i ikona), kao jednostavne karte u BBO-u.
 
 **Ploča sa stanjem** (gornji kut, kao BBO-ov okvir s brojem dijeljenja)

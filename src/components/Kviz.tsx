@@ -9,7 +9,14 @@ type Pitanje =
   | { id: string; vrsta: 'izbor'; pitanje: string; ruka?: string; karte?: string; odgovori: { tekst: string; tocno?: boolean }[]; objasnjenje: string; izvor: Izvor }
   | { id: string; vrsta: 'broj'; pitanje: string; karte?: string; tocno: number; jedinica?: string; objasnjenje: string; izvor: Izvor }
   | { id: string; vrsta: 'redoslijed'; pitanje: string; karte: string; objasnjenje: string; izvor: Izvor }
-  | { id: string; vrsta: 'stol'; pitanje: string; ruka: string; stol: { tko: 'prije' | 'partner' | 'poslije'; karta: string; signal?: 'bato' | 'striso' }[]; tocne: string[]; objasnjenje: string; izvor: Izvor };
+  | { id: string; vrsta: 'stol'; pitanje: string; ruka: string; stol: { tko: 'prije' | 'partner' | 'poslije'; karta: string; signal?: 'bato' | 'striso' }[]; tocne: string[]; objasnjenje: string; izvor: Izvor }
+  | { id: string; vrsta: 'ruka'; pitanje: string; ruka: string; signali: boolean; otvaranja: Otvaranje[]; inace: { ocjena: Ocjena; zasto: string }; najbolje: string; objasnjenje: string; izvor: Izvor };
+
+type Ocjena = 'savrseno' | 'pogresno' | 'katastrofalno';
+type SignalIzbor = 'bez' | 'bato' | 'striso';
+interface Otvaranje { karte: string[]; signal: 'bilo' | SignalIzbor; ocjena: Ocjena; zasto: string }
+const BODOVI: Record<Ocjena, number> = { savrseno: 3, pogresno: 0, katastrofalno: -2 };
+const OCJENA_IME: Record<Ocjena, string> = { savrseno: 'Savršeno', pogresno: 'Pogrešno', katastrofalno: 'Katastrofalno' };
 
 interface Props {
   slug: string;
@@ -43,7 +50,9 @@ export default function Kviz({ slug, prolaz, pitanja, odjeljci, sljedeca }: Prop
   const izmijesaneKarte = useMemo(() => pitanja.map((p) => (p.vrsta === 'redoslijed' ? promijesaj(parsirajZapis(p.karte)) : [])), [kljuc]);
   const [i, setI] = useState(0);
   const [odgovoreno, setOdgovoreno] = useState<null | boolean>(null);
-  const [rezultati, setRezultati] = useState<boolean[]>([]);
+  const [rezultati, setRezultati] = useState<number[]>([]);
+  const [signal, setSignal] = useState<SignalIzbor>('bez');
+  const [ocjena, setOcjena] = useState<{ ocjena: Ocjena; zasto: string } | null>(null);
   const [broj, setBroj] = useState('');
   const [poredak, setPoredak] = useState<Karta[]>([]);
   const [odabrano, setOdabrano] = useState<number | Karta | null>(null);
@@ -52,31 +61,40 @@ export default function Kviz({ slug, prolaz, pitanja, odjeljci, sljedeca }: Prop
   const p = pitanja[i];
   const gotovo = kraj;
 
-  function zabiljezi(tocno: boolean) {
+  function zabiljezi(tocno: boolean, bodovi = tocno ? 3 : 0) {
     setOdgovoreno(tocno);
-    const novi = [...rezultati, tocno];
+    const novi = [...rezultati, bodovi];
     setRezultati(novi);
-    if (novi.length === pitanja.length) spremiKviz(slug, novi.filter(Boolean).length, pitanja.length);
+    if (novi.length === pitanja.length) spremiKviz(slug, Math.max(0, novi.reduce((a, b) => a + b, 0)), 3 * pitanja.length);
+  }
+  function otvori(q: Extract<Pitanje, { vrsta: 'ruka' }>, k: Karta) {
+    const o = q.otvaranja.find((x) => x.karte.map(jednaKarta).includes(k) && (x.signal === 'bilo' || x.signal === (q.signali ? signal : 'bez')));
+    const r = o ? { ocjena: o.ocjena, zasto: o.zasto } : q.inace;
+    setOcjena(r);
+    zabiljezi(r.ocjena === 'savrseno', BODOVI[r.ocjena]);
   }
   function dalje() {
     if (i + 1 >= pitanja.length) { setKraj(true); return; }
-    setI(i + 1); setOdgovoreno(null); setBroj(''); setPoredak([]); setOdabrano(null);
+    setI(i + 1); setOdgovoreno(null); setBroj(''); setPoredak([]); setOdabrano(null); setSignal('bez'); setOcjena(null);
   }
   function ponovi() {
-    setKljuc(kljuc + 1); setKraj(false); setI(0); setOdgovoreno(null); setRezultati([]); setBroj(''); setPoredak([]); setOdabrano(null);
+    setKljuc(kljuc + 1); setKraj(false); setI(0); setOdgovoreno(null); setRezultati([]); setBroj(''); setPoredak([]); setOdabrano(null); setSignal('bez'); setOcjena(null);
   }
 
   if (gotovo) {
-    const tocnih = rezultati.filter(Boolean).length;
-    const polozen = tocnih / pitanja.length >= prolaz;
+    const tocnih = rezultati.filter((b) => b === 3).length;
+    const bodovi = rezultati.reduce((a, b) => a + b, 0);
+    const polozen = bodovi / (3 * pitanja.length) >= prolaz;
+    const imaRuka = pitanja.some((q) => q.vrsta === 'ruka');
     const promaseni = new Map<string, number>();
-    pitanja.forEach((q, j) => { if (!rezultati[j]) promaseni.set(q.izvor.odjeljak, (promaseni.get(q.izvor.odjeljak) ?? 0) + 1); });
+    pitanja.forEach((q, j) => { if (rezultati[j] !== 3) promaseni.set(q.izvor.odjeljak, (promaseni.get(q.izvor.odjeljak) ?? 0) + 1); });
     const zaCitanje = [...promaseni.entries()].sort((a, b) => b[1] - a[1]);
     return (
       <section class="kviz" aria-labelledby="kviz-naslov">
         <h2 id="kviz-naslov">Kviz</h2>
         <p class="kviz-rezultat"><span class="kviz-broj">{tocnih}</span> od {pitanja.length}</p>
-        <p>{polozen ? 'Lekcija je savladana.' : `Za prolaz treba ${Math.ceil(prolaz * pitanja.length)} točnih odgovora.`}</p>
+        {imaRuka && <p class="kviz-uputa">Bodovi: {bodovi} od {3 * pitanja.length} (savršeno 3, pogrešno 0, katastrofalno −2).</p>}
+        <p>{polozen ? 'Lekcija je savladana.' : imaRuka ? `Za prolaz treba ${Math.ceil(prolaz * 3 * pitanja.length)} bodova.` : `Za prolaz treba ${Math.ceil(prolaz * pitanja.length)} točnih odgovora.`}</p>
         {zaCitanje.length > 0 && (
           <>
             <p>Pročitaj ponovno:</p>
@@ -149,6 +167,29 @@ export default function Kviz({ slug, prolaz, pitanja, odjeljci, sljedeca }: Prop
     );
   }
 
+  if (p.vrsta === 'ruka') {
+    tijelo = (
+      <div>
+        <div class="kviz-karte">{parsirajZapis(p.ruka).sort((a, b) => a - b).map((k) => (
+          <KartaGumb key={k} k={k} oznacena={odabrano === k} disabled={odgovoreno !== null} onClick={() => setOdabrano(k)} />
+        ))}</div>
+        {p.signali && (
+          <div class="kviz-signali" role="group" aria-label="Signal">
+            <span class="kviz-uputa">Signal:</span>
+            {(['bez', 'bato', 'striso'] as SignalIzbor[]).map((s) => (
+              <button type="button" key={s} class="kviz-pilula" aria-pressed={signal === s} disabled={odgovoreno !== null} onClick={() => setSignal(s)}>{s === 'bez' ? 'bez signala' : s === 'bato' ? 'bato' : 'strišo'}</button>
+            ))}
+          </div>
+        )}
+        {odgovoreno === null && (
+          <button type="button" class="kviz-gumb glavni" disabled={odabrano === null} onClick={() => odabrano !== null && otvori(p, odabrano as Karta)}>
+            {odabrano === null ? 'Odaberi kartu' : `Otvori: ${naziv(odabrano as Karta)}`}
+          </button>
+        )}
+      </div>
+    );
+  }
+
   const prikazKarata = (p.vrsta === 'izbor' && p.ruka) ? dijagramSVG(p.ruka).svg : ('karte' in p && p.karte && p.vrsta !== 'redoslijed') ? dijagramSVG(p.karte, { n: 0 }).svg : null;
 
   return (
@@ -160,8 +201,19 @@ export default function Kviz({ slug, prolaz, pitanja, odjeljci, sljedeca }: Prop
       {tijelo}
       {odgovoreno !== null && (
         <div class={`kviz-povratna ${odgovoreno ? 'tocno' : 'netocno'}`} aria-live="polite">
-          <p class="kviz-presuda">{odgovoreno ? 'Točno.' : 'Nije točno.'}</p>
-          <p>{p.objasnjenje}{p.izvor.tocka ? ` (${p.izvor.tocka})` : ''}</p>
+          {p.vrsta === 'ruka' && ocjena ? (
+            <>
+              <p class={`kviz-presuda ocjena-${ocjena.ocjena}`}>{OCJENA_IME[ocjena.ocjena]}</p>
+              <p>{ocjena.zasto}</p>
+              {ocjena.ocjena !== 'savrseno' && <p>Savršeno otvaranje: {p.najbolje}.</p>}
+              <p>{p.objasnjenje}{p.izvor.tocka ? ` (${p.izvor.tocka})` : ''}</p>
+            </>
+          ) : (
+            <>
+              <p class="kviz-presuda">{odgovoreno ? 'Točno.' : 'Nije točno.'}</p>
+              <p>{p.objasnjenje}{p.izvor.tocka ? ` (${p.izvor.tocka})` : ''}</p>
+            </>
+          )}
           {!odgovoreno && <p>Pročitaj ponovno: <a href={`#${p.izvor.odjeljak}`}>{odjeljci[p.izvor.odjeljak] ?? p.izvor.odjeljak}</a></p>}
           <button type="button" class="kviz-gumb glavni" onClick={dalje}>{i + 1 < pitanja.length ? 'Sljedeće pitanje' : 'Rezultat'}</button>
         </div>

@@ -1,0 +1,102 @@
+{
+  "lekcija": "odbacivanje",
+  "prolaz": 0.75,
+  "pitanja": [
+    {
+      "id": "ob-1",
+      "vrsta": "stol",
+      "pitanje": "Igrač prije tebe udara tricu dinara. Ti nemaš dinara i prvi si u svom paru koji odbacuje. Što odbaciš?",
+      "ruka": "kupe:12,6|spade:3,2,7,5|bastoni:11,4",
+      "stol": [{ "tko": "prije", "karta": "dinari:3" }],
+      "tocne": ["kupe:12", "bastoni:11"],
+      "objasnjenje": "Prvo odbacivanje ide u slabu boju, i to od veće karte. Špade, gdje si jak, ne diraš.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "zatvaranje", "tocka": "t. 45" }
+    },
+    {
+      "id": "ob-2",
+      "vrsta": "izbor",
+      "pitanje": "Partner je na tvoje ruke odbacio redom konja kupa, fanta baštona, šesticu kupa. Gdje te zove?",
+      "odgovori": [
+        { "tekst": "U jednu od boja koje nije dirao", "tocno": true },
+        { "tekst": "U kupe, jer ih je odbacio dvaput" },
+        { "tekst": "U baštone" }
+      ],
+      "objasnjenje": "Slabe boje se odbacuju od veće prema manjoj, naizmjence. Boja koju partner čuva je ona u kojoj je jak.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "zatvaranje", "tocka": "t. 45" }
+    },
+    {
+      "id": "ob-3",
+      "vrsta": "izbor",
+      "pitanje": "Partner je odbacio redom četvorku, peticu i sedmicu baštona. Što ti govori?",
+      "karte": "bastoni:4,5,7",
+      "odgovori": [
+        { "tekst": "Zove te da otvoriš baštone", "tocno": true },
+        { "tekst": "U baštonima nema ništa" },
+        { "tekst": "Nema više baštona" }
+      ],
+      "objasnjenje": "Odbacivanje od manje prema većoj je poziv da se otvori ta boja.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "poziv", "tocka": "t. 46" }
+    },
+    {
+      "id": "ob-4",
+      "vrsta": "izbor",
+      "pitanje": "Uzimaš ruku za rukom u kupama. Partner odbacuje redom špadu, dinar i bašton. Što radiš kad završiš s kupama?",
+      "odgovori": [
+        { "tekst": "Otvorim četvrtu boju bez signala i branim se", "tocno": true },
+        { "tekst": "Otvorim boju partnerova prvog odbacivanja" },
+        { "tekst": "Otvorim boju koju je zadnju odbacio" }
+      ],
+      "objasnjenje": "Tri različite boje zaredom su odbacivanje odbijanja: partner nema ništa za tebe.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "odbijanje", "tocka": "t. 31" }
+    },
+    {
+      "id": "ob-5",
+      "vrsta": "izbor",
+      "pitanje": "Partner je prvi odbacio baštone. Ni ti u baštonima nemaš ništa. Odbacuješ li i ti baštone?",
+      "odgovori": [
+        { "tekst": "Ne, odbacim drugu boju", "tocno": true },
+        { "tekst": "Da, da partner vidi da se slažemo" },
+        { "tekst": "Da, ali od manje prema većoj" }
+      ],
+      "objasnjenje": "Kad ste obojica slabi u istoj boji, odbacivanjem je oba otvarate protivnicima put do kapota.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "kao-partner", "tocka": "t. 50" }
+    },
+    {
+      "id": "ob-6",
+      "vrsta": "izbor",
+      "pitanje": "Partner je prvi odbacio špade. Ti u špadama imaš tricu, konja i lišinu. Što ti je činiti?",
+      "karte": "spade:3,12,5",
+      "odgovori": [
+        { "tekst": "Odbaciti i ja špade, najprije konja, pa lišinu", "tocno": true },
+        { "tekst": "Nikad ne odbacivati špade" },
+        { "tekst": "Odbaciti tricu špada" }
+      ],
+      "objasnjenje": "Odbacivanjem iste boje za partnerom, figurom pa lišinom, kažeš mu da je trica kod tebe.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "kao-partner", "tocka": "t. 50" }
+    },
+    {
+      "id": "ob-7",
+      "vrsta": "izbor",
+      "pitanje": "Uzimaš ruke. Protivnik i partner odbacili su različite boje. Kome više vjeruješ?",
+      "odgovori": [
+        { "tekst": "Partneru", "tocno": true },
+        { "tekst": "Protivniku, jer nema razloga varati" },
+        { "tekst": "Jednako obojici" }
+      ],
+      "objasnjenje": "Protivnici ponekad odbacuju protiv pravila, da te navedu u krivu boju.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "protivnicka", "tocka": "t. 48" }
+    },
+    {
+      "id": "ob-8",
+      "vrsta": "izbor",
+      "pitanje": "Duja kupa ti je ostala suha. Protivnik uzima ruku za rukom u drugoj boji. Smiješ li odbaciti suhu duju?",
+      "odgovori": [
+        { "tekst": "Ne", "tocno": true },
+        { "tekst": "Da, ionako će je uhvatiti trica" },
+        { "tekst": "Da, ako je to tvoje prvo odbacivanje" }
+      ],
+      "objasnjenje": "Suhu duju odbacuješ samo kad se zatvaraš u ruci za vrijeme partnerove igre, a on ima čime ti se vratiti.",
+      "izvor": { "lekcija": "odbacivanje", "odjeljak": "suha-duja", "tocka": "t. 56" }
+    }
+  ]
+}
